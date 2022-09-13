@@ -21,10 +21,10 @@ Dlubal Software GmbH
 
 Welcome to RSTAB Python High Level Functions
 
-<a href="https://www.dlubal.com/en/products/rfem-fea-software/what-is-rfem" title="API"><img src="./img/2Dtruss.gif" width=550 alt="Tutorial" /></a>
+<a href="https://www.dlubal.com/en/products/rstab-beam-structures/what-is-rstab" title="API"><img src="./img/2Dtruss.gif" width=550 alt="Tutorial" /></a>
 </h2>
 
-Python client (high-level functions) for [RFEM 6](https://www.dlubal.com/en/products/rfem-fea-software/what-is-rfem) using [Web Services](https://en.wikipedia.org/wiki/Web_service) (WS), [SOAP](https://cs.wikipedia.org/wiki/SOAP) and [WSDL](https://en.wikipedia.org/wiki/Web_Services_Description_Language). Available Python SOAP pkgs can be found on [wiki.python.org](https://wiki.python.org/moin/WebServices#SOAP).
+Python client (high-level functions) for [RSTAB 6](https://www.dlubal.com/en/products/rstab-beam-structures/what-is-rstab) using [Web Services](https://en.wikipedia.org/wiki/Web_service) (WS), [SOAP](https://cs.wikipedia.org/wiki/SOAP) and [WSDL](https://en.wikipedia.org/wiki/Web_Services_Description_Language). Available Python SOAP pkgs can be found on [wiki.python.org](https://wiki.python.org/moin/WebServices#SOAP).
 
 
 ## Description

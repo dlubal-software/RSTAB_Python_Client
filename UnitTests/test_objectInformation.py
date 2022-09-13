@@ -11,11 +11,8 @@ from RSTAB.enums import SelectedObjectInformation
 from RSTAB.initModel import CheckIfMethodOrTypeExists, Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
-from RSTAB.BasicObjects.thickness import Thickness
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.line import Line
 from RSTAB.BasicObjects.member import Member
-from RSTAB.BasicObjects.surface import Surface
 from RSTAB.Tools.centreOfGravityAndObjectInfo import ObjectInformation
 from math import sqrt
 import pytest
@@ -73,35 +70,3 @@ def test_member_information():
     assert round(L,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.LENGTH)
     assert round(V,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.VOLUME)
     assert round(M,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.MASS)
-
-def test_surface_information():
-
-    Model.clientModel.service.delete_all()
-    Model.clientModel.service.begin_modification()
-
-    x1, y1, z1 = 0 , 0, 0
-    x2, y2, z2 = 10, 0, 0
-    x3, y3, z3 = 10, 15, 0
-    x4, y4, z4 = 0, 15, 0
-
-    Node(1, x1, y1, z1)
-    Node(2, x2, y2, z2)
-    Node(3, x3, y3, z3)
-    Node(4, x4, y4, z4)
-    Line(1, '1 2')
-    Line(2, '2 3')
-    Line(3, '3 4')
-    Line(4, '4 1')
-    Material(2, name='C30/37')
-    Thickness(material_no= 2)
-    Surface()
-
-    Model.clientModel.service.finish_modification()
-
-    A = (x2 - x1) * (y4 - y1)
-    V = A * 0.2
-    M = (V * 2500) / 1000
-
-    assert round(A,3) == ObjectInformation.SurfaceInformation(information=SelectedObjectInformation.AREA)
-    assert round(V,3) == ObjectInformation.SurfaceInformation(information=SelectedObjectInformation.VOLUME)
-    assert round(M,3) == ObjectInformation.SurfaceInformation(information=SelectedObjectInformation.MASS)

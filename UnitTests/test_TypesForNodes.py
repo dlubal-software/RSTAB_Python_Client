@@ -7,15 +7,11 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 import pytest
-from RSTAB.enums import NodalMeshRefinementType, NodalSupportType
+from RSTAB.enums import NodalSupportType
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.line import Line
-from RSTAB.BasicObjects.surface import Surface
-from RSTAB.BasicObjects.thickness import Thickness
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
-from RSTAB.TypesForNodes.nodalMeshRefinement import NodalMeshRefinement, FElengthArrangement
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
 from RSTAB.dataTypes import inf
 
@@ -29,7 +25,6 @@ def test_typesForNodes():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Thickness(1, 'Thick', 1, 0.35)
 
     Node(1, 0, 0, 0)
     Node(2, 5, 0, 0)
@@ -43,9 +38,6 @@ def test_typesForNodes():
     with pytest.raises(ValueError):
         NodalSupport(4, '5', [inf, inf, inf, 0.0])
 
-    NodalMeshRefinement(1, NodalMeshRefinementType.TYPE_CIRCULAR, [2.2, 0.1, 0.5, FElengthArrangement.LENGTH_ARRANGEMENT_RADIAL])
-    NodalMeshRefinement.Circular(2, 3)
-    NodalMeshRefinement.Rectangular(3, 2.7)
     Model.clientModel.service.finish_modification()
 
     nodalSupport = Model.clientModel.service.get_nodal_support(1)
@@ -71,12 +63,3 @@ def test_typesForNodes():
     assert nodalSupport.rotational_restraint_x == 0
     assert nodalSupport.rotational_restraint_y == 0
     assert nodalSupport.rotational_restraint_z == inf
-
-    nodalMeshRefinement = Model.clientModel.service.get_nodal_mesh_refinement(1)
-    assert nodalMeshRefinement.circular_radius == 2.2
-
-    nodalMeshRefinement = Model.clientModel.service.get_nodal_mesh_refinement(2)
-    assert nodalMeshRefinement.circular_radius == 3
-
-    nodalMeshRefinement = Model.clientModel.service.get_nodal_mesh_refinement(3)
-    assert nodalMeshRefinement.rectangular_side == 2.7

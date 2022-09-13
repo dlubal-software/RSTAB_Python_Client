@@ -54,9 +54,6 @@ class StaticAnalysisSettings():
                   name: str = None,
                   load_modification = [False, 1, False],
                   bourdon_effect: bool = False,
-                  nonsymmetric_direct_solver: bool = False,
-                  method_of_equation_system = StaticAnalysisSettingsMethodOfEquationSystem.METHOD_OF_EQUATION_SYSTEM_DIRECT,
-                  plate_bending_theory = StaticAnalysisSettingsPlateBendingTheory.PLATE_BENDING_THEORY_MINDLIN,
                   mass_conversion = [False, 0, 0, 0],
                   comment: str = '',
                   params: dict = None,
@@ -68,10 +65,6 @@ class StaticAnalysisSettings():
             name (str, optional): Static Analysis Setting Name
             load_modification (list, optional): Load Modification Parameters
                 load_modification = [loading_by_multiplier_factor, multiplier_factor, dividing_results]
-            bourdon_effect (bool, optional): Bourdon Effect Boolean
-            nonsymmetric_direct_solver (bool, optional): Nonsymmetric Direct Solver Boolean
-            method_of_equation_system (enum): Static Analysis Settings Method of Equation System Enumeration
-            plate_bending_theory (enum): Static Analysis Settings Plate Bending Theory Enumeration
             mass_conversion (list, optional): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
             comment (str, optional): Comments
@@ -106,19 +99,10 @@ class StaticAnalysisSettings():
             clientObject.mass_conversion_factor_in_direction_y = mass_conversion[2]
             clientObject.mass_conversion_factor_in_direction_z = mass_conversion[3]
 
-        # Method for Equation System
-        clientObject.method_of_equation_system = method_of_equation_system.name
-
         if load_modification[0]:
             clientObject.modify_loading_by_multiplier_factor = True
             clientObject.loading_multiplier_factor = load_modification[1]
             clientObject.divide_results_by_loading_factor = load_modification[2]
-
-        # Nonsymetric Direct Solver if Demanded by Nonlinear Model
-        clientObject.nonsymmetric_direct_solver = nonsymmetric_direct_solver
-
-        # Plate Bending Theory
-        clientObject.plate_bending_theory = plate_bending_theory.name
 
         # Calculations Diagrams
         # If needed utilize 'params' dictionary

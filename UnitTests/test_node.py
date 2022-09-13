@@ -11,7 +11,6 @@ from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.line import Line
 from RSTAB.BasicObjects.member import Member
 
 if Model.clientModel is None:
@@ -27,9 +26,6 @@ def test_node():
     Node.Standard(3, [5, 5, 0],NodeCoordinateSystemType.COORDINATE_SYSTEM_CARTESIAN)
     Node.BetweenTwoNodes(4,2,3,NodeReferenceType.REFERENCE_TYPE_L, 1, [True, 0.60])
     Node.BetweenTwoPoints(5,0,0,0,6,0,0,NodeReferenceType.REFERENCE_TYPE_L, [True, 0.7], 1, 1)
-
-    Line(1,'1 2')
-    Node.OnLine(6, 1, NodeReferenceType.REFERENCE_TYPE_L, 1, [True, 0.50])
 
     Material(1, 'S235')
     Section(1, 'IPE 300', 1)

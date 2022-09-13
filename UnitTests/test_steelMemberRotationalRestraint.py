@@ -14,7 +14,6 @@ from RSTAB.TypesForSteelDesign.steelMemberRotationalRestraints import *
 if Model.clientModel is None:
     Model()
 
-@pytest.mark.skipif(CheckIfMethodOrTypeExists(Model.clientModel,'ns0:steel_member_rotational_restraint', True), reason="Type ns0:steel_member_rotational_restraint not in RSTAB GM yet")
 def test_steelMemberRotationalRestraints():
 
     Model.clientModel.service.begin_modification()
@@ -38,5 +37,3 @@ def test_steelMemberRotationalRestraints():
 
     assert steelMemberRestraint2.type == "TYPE_DISCRETE"
     assert steelMemberRestraint2.continuous_beam_effect == "CONTINUOUS_BEAM_EFFECT_END_PANEL"
-
-test_steelMemberRotationalRestraints()

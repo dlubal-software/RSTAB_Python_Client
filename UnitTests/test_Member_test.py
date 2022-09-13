@@ -9,7 +9,6 @@ from RSTAB.enums import *
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
-from RSTAB.BasicObjects.thickness import Thickness
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForMembers.memberHinge import MemberHinge
@@ -28,8 +27,6 @@ def test_all_member_types():
 
     Section(1, 'IPE 300', 1)
     Section(2, 'IPE 500', 1)
-
-    Thickness(1, '180 mm', 2, 0.18)
 
     node_tag_lst = list(range(1, 62, 1))
     node_x_lst = [0, 5]*(int(len(node_tag_lst)/2))
@@ -106,18 +103,6 @@ def test_all_member_types():
     # Cable Member
     Member.Cable(21, 41, 42, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0])
 
-    # Result Beam 1
-    Member.ResultBeam(22, 43, 44, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, MemberResultBeamIntegration.INTEGRATE_WITHIN_CUBOID_QUADRATIC, [0], 1, 1,  integration_parameters = [0.1])
-
-    # Result Beam 2
-    Member.ResultBeam(23, 45, 46, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, MemberResultBeamIntegration.INTEGRATE_WITHIN_CUBOID_GENERAL, [0], 1, 1, integration_parameters=[0.1, 0.2, 0.3, 0.4])
-
-    # Result Beam 3
-    Member.ResultBeam(24, 47, 48, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, MemberResultBeamIntegration.INTEGRATE_WITHIN_CYLINDER, [0], 1, 1, integration_parameters=[0.5])
-
-    # Result Beam 4
-    Member.ResultBeam(25, 49, 50, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, MemberResultBeamIntegration.INTEGRATE_FROM_LISTED_OBJECT, [0], 1, 1)
-
     # Member Definable Stiffness
     MemberDefinableStiffness(1)
     Member.DefinableStiffness(26, 51, 52, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 1)
@@ -146,7 +131,7 @@ def test_all_member_types():
 
     mem = Model.clientModel.service.get_member(3)
     assert mem.rotation_specification_type == 'COORDINATE_SYSTEM_ROTATION_VIA_HELP_NODE'
-    assert mem.rotation_help_node == 5
+    assert mem.rotation_help_node == 0
     assert mem.rotation_plane_type == 'ROTATION_PLANE_XY'
 
     mem = Model.clientModel.service.get_member(15)
@@ -162,14 +147,6 @@ def test_all_member_types():
     assert Model.clientModel.service.get_member(19).type == 'TYPE_COMPRESSION'
     assert Model.clientModel.service.get_member(20).type == 'TYPE_BUCKLING'
     assert Model.clientModel.service.get_member(21).type == 'TYPE_CABLE'
-
-    mem = Model.clientModel.service.get_member(23)
-    assert mem.type == 'TYPE_RESULT_BEAM'
-    assert mem.result_beam_integrate_stresses_and_forces == 'INTEGRATE_WITHIN_CUBOID_GENERAL'
-    assert mem.result_beam_y_plus == 0.1
-    assert mem.result_beam_z_plus == 0.2
-    assert mem.result_beam_y_minus == 0.3
-    assert mem.result_beam_z_minus == 0.4
 
     assert Model.clientModel.service.get_member(26).type == 'TYPE_DEFINABLE_STIFFNESS'
     assert Model.clientModel.service.get_member(30).type == 'TYPE_COUPLING_HINGE_HINGE'

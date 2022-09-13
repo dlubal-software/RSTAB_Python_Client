@@ -7,7 +7,6 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.BasicObjects.member import Member
-from RSTAB.BasicObjects.line import Line
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.material import Material
@@ -48,12 +47,6 @@ def test_model_check():
 
     Node(15, 7, 0, 0)
     Node(16, 7, 3, 0)
-
-    Line(1, '5 6')
-    Line(2, '7 8')
-
-    Line(3, '13 14')
-    Line(4, '13 14')
 
     Member(1, 9, 10, 0, 1, 1)
     Member(2, 11, 12, 0, 1, 1)

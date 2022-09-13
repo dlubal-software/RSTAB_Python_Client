@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import *
-from RSTAB.initModel import Model, SetAddonStatus, CheckIfMethodOrTypeExists
+from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.TypesForSteelDesign.steelEffectiveLengths import SteelEffectiveLengths
 
 if Model.clientModel is None:

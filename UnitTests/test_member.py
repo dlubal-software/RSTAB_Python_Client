@@ -76,28 +76,6 @@ def test_member_rigid():
     assert round(member.analytical_length, 5) == 5.19615
     assert member.type == "TYPE_RIGID"
 
-"""
-def test_member_rib():
-
-    Model.clientModel.service.delete_all()
-    Model.clientModel.service.begin_modification()
-
-    Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
-
-    Node(1, 0, 0, 0)
-    Node(2, 3, 3, -3)
-
-    Member.Rib(5, 1, 2, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, 1, 1)
-
-    Model.clientModel.service.finish_modification()
-
-    member = Model.clientModel.service.get_member(5)
-
-    assert round(member.analytical_length, 5) == 5.19615
-    assert member.type == "TYPE_RIGID"
-"""
-
 def test_member_truss():
 
     Model.clientModel.service.delete_all()
@@ -217,29 +195,6 @@ def test_member_cable():
 
     assert round(member.analytical_length, 5) == 5.19615
     assert member.type == "TYPE_CABLE"
-
-def test_member_resultBeam():
-
-    Model.clientModel.service.delete_all()
-    Model.clientModel.service.begin_modification()
-
-    Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
-
-    Node(1, 0, 0, 0)
-    Node(2, 3, 3, -3)
-
-    Member.ResultBeam(1, 1, 2, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM,
-                      MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE,
-                      MemberResultBeamIntegration.INTEGRATE_WITHIN_CUBOID_GENERAL,
-                      [0.2618], 1, 1, [], [1,2,3,4])
-
-    Model.clientModel.service.finish_modification()
-
-    member = Model.clientModel.service.get_member(1)
-
-    assert member.result_beam_z_minus == 4
-    assert member.type == "TYPE_RESULT_BEAM"
 
 def test_member_definableStiffness():
 
