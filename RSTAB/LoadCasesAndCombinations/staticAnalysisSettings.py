@@ -8,7 +8,7 @@ class StaticAnalysisSettings():
     def __init__(self,
                  no: int = 1,
                  name: str = None,
-                 analysis_type=StaticAnalysisType.GEOMETRICALLY_LINEAR,
+                 analysis_type = StaticAnalysisType.GEOMETRICALLY_LINEAR,
                  comment: str = '',
                  params: dict = None,
                  model = Model):

@@ -51,6 +51,9 @@ def test_modal_analysis_settings():
     ModalAnalysisSettings(acting_masses=[True, False, True, False, True, False])
     ModalAnalysisSettings(2, 'Modal Analysis Settings 1', ModalNumberOfModes.NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY, maxmimum_natural_frequency=1800,
                           acting_masses=[False, False, False, False, True, True])
+    ModalAnalysisSettings.UserDefined(3)
+    ModalAnalysisSettings.EffectiveMass(4)
+    ModalAnalysisSettings.MaximumFrequency(5)
 
     # Load Case Static
     LoadCase(1, 'DEAD', [True, 0, 0, 1])

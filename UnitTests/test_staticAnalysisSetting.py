@@ -21,8 +21,7 @@ def test_StaticAnalysisSettings():
     # Set Static Analysis Settings
     StaticAnalysisSettings(1, 'Geometrisch-linear', StaticAnalysisType.GEOMETRICALLY_LINEAR)
     StaticAnalysisSettings.GeometricallyLinear(2,'Geometric-linear',[True, 1.5, True],True,[True,0,0,2.0])
-    StaticAnalysisSettings.LargeDeformation(3)
-    #StaticAnalysisSettings.LargeDeformation(3,standard_precision_and_tolerance_settings = [True, 0.02, 0.02, 2.0])
+    StaticAnalysisSettings.LargeDeformation(3,standard_precision_and_tolerance_settings = [True, 0.02, 0.02, 2.0])
     StaticAnalysisSettings.SecondOrderPDelta(4)
 
     Model.clientModel.service.finish_modification()
