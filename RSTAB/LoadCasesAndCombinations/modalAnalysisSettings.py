@@ -1,15 +1,20 @@
 from RSTAB.initModel import Model, clearAtributes
-from RSTAB.enums import ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, ModalNeglectMasses
+from RSTAB.enums import ModalNumberOfModes, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, ModalNeglectMasses
 
 class ModalAnalysisSettings():
 
     def __init__(self,
                  no: int = 1,
-                 name: str = 'Modal Analysis Settings',
-                 solution_method = ModalSolutionMethod.METHOD_LANCZOS,
-                 mass_conversion_type = ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS,
-                 mass_matrix_type = ModalMassMatrixType.MASS_MATRIX_TYPE_CONSISTENT,
+                 name: str = 'Modal Analysis Sett',
+                 number_of_modes_method = ModalNumberOfModes.NUMBER_OF_MODES_METHOD_USER_DEFINED,
                  number_of_modes : int = 4,
+                 solution_method = ModalSolutionMethod.SOLUTION_METHOD_SHIFTED_INVERSE_POWER_METHOD,
+                 find_modes_beyond_frequency: bool = False,
+                 frequency_f: float = 10,
+                 maxmimum_natural_frequency: float = 1700,
+                 effective_modal_mass_factor: float = 0.85,
+                 mass_matrix_type = ModalMassMatrixType.MASS_MATRIX_TYPE_CONSISTENT,
+                 mass_conversion_type = ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS,
                  acting_masses: list = None,
                  neglect_masses = ModalNeglectMasses.E_NEGLECT_MASSES_NO_NEGLECTION,
                  comment: str = '',
@@ -38,22 +43,25 @@ class ModalAnalysisSettings():
         # Static Analysis Settings No.
         clientObject.no = no
 
-        # Name
-        clientObject.user_defined_name_enabled = True
-        clientObject.name = name
+        # Method for Dertermining the Number of Nodes
+        clientObject.number_of_modes_method = number_of_modes_method.name
 
         # Analysis Type
         clientObject.solution_method = solution_method.name
 
-        # Mass Conversion Type
-        clientObject.mass_conversion_type = mass_conversion_type.name
-
-        # Mass Matrix Type
-        clientObject.mass_matrix_type = mass_matrix_type.name
-
-        # Number of Modes
-        clientObject.number_of_modes_method = "NUMBER_OF_MODES_METHOD_USER_DEFINED"
-        clientObject.number_of_modes = number_of_modes
+        # Modes beyond frequency
+        if number_of_modes_method == ModalNumberOfModes.NUMBER_OF_MODES_METHOD_USER_DEFINED:
+            clientObject.number_of_modes = number_of_modes
+            clientObject.find_eigenvectors_beyond_frequency = find_modes_beyond_frequency
+            if find_modes_beyond_frequency:
+                clientObject.frequency = frequency_f
+        elif number_of_modes_method == ModalNumberOfModes.NUMBER_OF_MODES_METHOD_EFFECTIVE_MASS_FACTORS:
+            clientObject.effective_modal_mass_factor = effective_modal_mass_factor
+        elif number_of_modes_method == ModalNumberOfModes.NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY:
+            clientObject.maxmimum_natural_frequency = maxmimum_natural_frequency
+            clientObject.find_eigenvectors_beyond_frequency = find_modes_beyond_frequency
+            if find_modes_beyond_frequency:
+                clientObject.frequency = frequency_f
 
         # Acting Masses
         if len(acting_masses) == 6:
@@ -65,6 +73,17 @@ class ModalAnalysisSettings():
             clientObject.acting_masses_in_direction_z_enabled = acting_masses[5]
         else:
             raise Exception('WARNING: The acting masses array needs to be of length 6. Kindly check list inputs for completeness and correctness.')
+
+        # Name
+        if name:
+            clientObject.user_defined_name_enabled = True
+            clientObject.name = name
+
+        # Mass Conversion Type
+        clientObject.mass_conversion_type = mass_conversion_type.name
+
+        # Mass Matrix Type
+        clientObject.mass_matrix_type = mass_matrix_type.name
 
         # Neglect Masses
         clientObject.neglect_masses = neglect_masses.name

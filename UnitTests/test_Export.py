@@ -20,7 +20,7 @@ if Model.clientModel is None:
 def test_export():
 
     Model.clientModel.service.delete_all()
-    Model.clientModel.service.run_script('..\\scripts\\internal\\Demos\\Demo-002 Cantilever Beams.js')
+    Model.clientModel.service.run_script('..\\scripts\\internal\\Demos\\Demo-001 Hall.js')
 
     dirname = os.path.join(os.getcwd(), os.path.dirname(__file__), 'testResults')
     targetFile1 = os.path.join(dirname, 'test_ifcExport1.ifc')
@@ -32,8 +32,8 @@ def test_export():
     ObjectLoc1 = ObjectLocation
     ObjectLoc2 = ObjectLocation
 
-    ObjectLoc2['type'] = ObjectTypes.E_OBJECT_TYPE_SURFACE.name
-    ObjectLoc2['no'] = 5
+    ObjectLoc2['type'] = ObjectTypes.E_OBJECT_TYPE_NODE.name
+    ObjectLoc2['no'] = 45
     ObjectLoc = ObjectLocations([ObjectLoc1, ObjectLoc2])
 
     Model.clientModel.service.begin_modification()

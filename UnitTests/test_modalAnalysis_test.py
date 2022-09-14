@@ -6,7 +6,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalSolutionMethod
+from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalNumberOfModes
 from RSTAB.enums import ModalMassConversionType, ModalMassMatrixType, AnalysisType, AddOn
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
@@ -49,8 +49,8 @@ def test_modal_analysis_settings():
 
     # Modal Analysis Settings
     ModalAnalysisSettings(acting_masses=[True, False, True, False, True, False])
-    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', ModalSolutionMethod.METHOD_LANCZOS, ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS,
-                          ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, 2, [False, False, False, False, True, True])
+    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', ModalNumberOfModes.NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY, maxmimum_natural_frequency=1800,
+                          acting_masses=[False, False, False, False, True, True])
 
     # Load Case Static
     LoadCase(1, 'DEAD', [True, 0, 0, 1])
@@ -79,7 +79,5 @@ def test_modal_analysis_settings():
     assert actingMasses.acting_masses_in_direction_x_enabled == False
     assert actingMasses.acting_masses_in_direction_y_enabled == True
     assert actingMasses.acting_masses_in_direction_z_enabled == True
-    assert actingMasses.solution_method == 'METHOD_LANCZOS'
-    assert actingMasses.mass_conversion_type == 'MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS'
-    assert actingMasses.mass_matrix_type == 'MASS_MATRIX_TYPE_DIAGONAL'
-    assert actingMasses.number_of_modes == 2
+    assert actingMasses.maxmimum_natural_frequency == 1800
+    assert actingMasses.name == 'Modal Analysis Settings 1'

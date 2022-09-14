@@ -1115,11 +1115,18 @@ class ModelType(Enum):
     E_MODEL_TYPE_2D_XZ_PLANE_STRESS, E_MODEL_TYPE_3D = range(8)
 
 
+class ModalNumberOfModes(Enum):
+    '''
+    Modal Analysis Settings Method for Dertermining the Number of Nodes
+    '''
+    NUMBER_OF_MODES_METHOD_USER_DEFINED, NUMBER_OF_MODES_METHOD_EFFECTIVE_MASS_FACTORS, NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY = range(3)
+
+
 class ModalSolutionMethod(Enum):
     '''
     Modal Analysis Settings Solution Method
     '''
-    METHOD_ICG_ITERATION, METHOD_LANCZOS, METHOD_ROOT_OF_CHARACTERISTIC_POLYNOMIAL, METHOD_SUBSPACE_ITERATION, SOLUTION_METHOD_SHIFTED_INVERSE_POWER_METHOD = range(5)
+    METHOD_SUBSPACE_ITERATION, SOLUTION_METHOD_SHIFTED_INVERSE_POWER_METHOD = range(2)
 
 
 class ModalMassConversionType(Enum):

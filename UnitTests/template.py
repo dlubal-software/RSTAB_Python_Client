@@ -59,7 +59,7 @@ def template():
     # individualy but when running all of them it causes RSTAB to stuck and generates
     # failures, which are hard to investigate.
 
-    assert Model.clientModel is not None, "WARNING: clientModel is not initialized"
+    assert Model.clientModel, "WARNING: clientModel is not initialized"
     #assert member.length == 5
     #assert member.result_beam_z_minus == 4
 

@@ -65,8 +65,5 @@ def test_SteelMemberLocalSectionReduction():
     assert smlr_3.components[0][1].row['multiple_offset_definition_type'] == 'OFFSET_DEFINITION_TYPE_ABSOLUTE'
     assert smlr_3.components[0][1].row['multiple_offset'] == 0.3
 
-    # assert smlr_1.components[][].row[''] ==
-    # assert Model.clientModel is not None, "WARNING: clientModel is not initialized"
-
     Model.clientModel.service.finish_modification()
 
