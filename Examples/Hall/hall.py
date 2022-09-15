@@ -12,7 +12,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 
 sys.path.append(os.path.dirname(PROJECT_ROOT))
 from RSTAB.enums import NodalSupportType, StaticAnalysisType, LoadDirectionType, MemberLoadDistribution, MemberLoadDirection, MemberRotationSpecificationType
-from Examples.window import window
+from window import window
 from RSTAB.dataTypes import inf
 from RSTAB.initModel import Model, Calculate_all, modelLst
 from RSTAB.BasicObjects.material import Material
