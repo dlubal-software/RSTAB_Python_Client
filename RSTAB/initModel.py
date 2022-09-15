@@ -45,7 +45,7 @@ class Model():
 
     def __init__(self,
                  new_model: bool=True,
-                 model_name: str="TestModel",
+                 model_name: str="TestModel.rs9",
                  delete: bool=False,
                  delete_all: bool=False):
         """
