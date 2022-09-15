@@ -1,7 +1,5 @@
 from RSTAB.initModel import Model, clearAtributes
-from RSTAB.enums import StaticAnalysisSettingsIterativeMethodForNonlinearAnalysis
-from RSTAB.enums import StaticAnalysisSettingsMethodOfEquationSystem
-from RSTAB.enums import StaticAnalysisSettingsPlateBendingTheory, StaticAnalysisType
+from RSTAB.enums import StaticAnalysisSettingsIterativeMethodForNonlinearAnalysis, StaticAnalysisType
 
 class StaticAnalysisSettings():
 
