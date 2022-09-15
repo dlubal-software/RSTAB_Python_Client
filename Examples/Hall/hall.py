@@ -55,28 +55,6 @@ def main(hall_width_L, hall_height_h_o, hall_height_h_m, number_frames, frame_sp
         Node(j+5, hall_width_L  , -(i-1) * frame_spacing)
         i += 1
 
-    # Nodes for openings
-    k = number_frames*5
-    open_dim_x = hall_width_L/10
-    open_dim_y = -(number_frames*frame_spacing)/15
-
-    Node(k+1, hall_width_L-open_dim_x,   open_dim_y)
-    Node(k+2, hall_width_L-open_dim_x,   2*open_dim_y)
-    Node(k+3, hall_width_L-2*open_dim_x, 2*open_dim_y)
-    Node(k+4, hall_width_L-2*open_dim_x, open_dim_y)
-
-    params = {'coordinate_system':1, 'coordinate_system_type':'COORDINATE_SYSTEM_CARTESIAN'}
-    Node(k+5, 1, 1, 0, '', params)
-    Node(k+6, 2, 1, 0, '', params)
-    Node(k+7, 2, 2, 0, '', params)
-    Node(k+8, 1, 2, 0, '', params)
-    solid_support = str(k+5)+" "+str(k+6)+" "+str(k+7)+" "+str(k+8)
-
-    Node(k+9, 1, 1, -1)
-    Node(k+10, 2, 1, -1)
-    Node(k+11, 2, 2, -1)
-    Node(k+12, 1, 2, -1)
-
 # -------------------------------------------------------------
 
     # Member Hinges
@@ -140,9 +118,6 @@ def main(hall_width_L, hall_height_h_o, hall_height_h_m, number_frames, frame_sp
     nodes_no = nodes_no.rstrip(nodes_no[-1])    # Removes one character from the end of the string
 
     NodalSupport(1, nodes_no, NodalSupportType.HINGED, "Hinged support")
-
-    # Support of solid
-    NodalSupport(2, solid_support, NodalSupportType.HINGED, "Hinged support")
 
 # -------------------------------------------------------------
 
