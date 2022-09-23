@@ -5,11 +5,12 @@ Dlubal Software GmbH
 
 [![image](https://img.shields.io/twitter/follow/dlubal_en?style=social)](https://twitter.com/dlubal_en "Twitter Follow")
 [![image](https://img.shields.io/badge/GitHub-Dlubal_Software-darkblue?logo=github&amp;)](https://github.com/Dlubal-Software "Github Follow")
-[![image](https://img.shields.io/badge/http://-dlubal.com-darkblue)](https://www.dlubal.com/en-US "RFEM Latest")
-[![image](https://img.shields.io/badge/docs-API-darkblue?logo=read-the-docs&amp;logoColor=white)](https://dlubal-software.github.io/.github/ "RFEM Latest")
+[![image](https://img.shields.io/badge/http://-dlubal.com-darkblue)](https://www.dlubal.com/en-US "Dlubal Website")
+[![image](https://img.shields.io/badge/docs-API-darkblue?logo=read-the-docs&amp;logoColor=white)](https://dlubal-software.github.io/.github/ "Documentation")
 
 [![image](https://img.shields.io/badge/RFEM-v6.0-blue)](https://www.dlubal.com/en/products/rfem-fea-software/what-is-rfem "RFEM")
-[![image](https://img.shields.io/badge/RSTAB-v9.0-blue)](https://www.dlubal.com/en/products/rstab-beam-structures/what-is-rstab "RFEM")
+[![image](https://img.shields.io/badge/RSTAB-v9.0-blue)](https://www.dlubal.com/en/products/rstab-beam-structures/what-is-rstab "RSTAB")
+[![image](https://img.shields.io/badge/RSECTION-v1.0-blue)](https://www.dlubal.com/en/products/cross-section-properties-software/rsection "RSECTION")
 [![image](https://img.shields.io/badge/Python-3-blue?logo=python&amp;logoColor=yellow)](https://www.python.org/)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Dlubal-Software/RSTAB_Python_Client)
 ![image](https://img.shields.io/badge/coverage-87%25-green)
@@ -44,11 +45,11 @@ This Python project is focused on opening RSTAB 9 to all of our customers, enabl
 Dependency check is implemented inside [dependencies.py](RSTAB/dependencies.py) with option to install during execution.
 * <img align="left" alt="PyPi" width="26px" src="https://raw.githubusercontent.com/Dlubal-Software/RFEM_Python_Client/main/img/PyPI.png" style="padding-right:1px;">PyPi pkgs: [SUDS](https://github.com/cackharot/suds-py3), [requests](https://docs.python-requests.org/en/master/), [six](https://pypi.org/project/six/), [mock](https://pypi.org/project/mock/), and [xmltodict](https://pypi.org/project/xmltodict/).
 
-* <img align="left" alt="RFEM" width="26px" src="https://raw.githubusercontent.com/Dlubal-Software/RFEM_Python_Client/main/img/RFEM.png" style="padding-right:1px;">RFEM 6 application. Client is always compatible with the latest version.
+* <img align="left" alt="RSTAB" width="26px" src="https://raw.githubusercontent.com/Dlubal-Software/RFEM_Python_Client/main/img/RSTAB.png" style="padding-right:1px;">RSTAB 9 application. Client is always compatible with the latest version.
 
 ### Step by step
 1) 🌀 [Clone](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository#:~:text=Cloning%20an%20Existing%20Repository) this repository (if you have GitHub account) or download actual [release](https://github.com/Dlubal-Software/RFEM_Python_Client/releases)
-2) <img align="left" alt="RFEM" width="18px" src="https://raw.githubusercontent.com/Dlubal-Software/RFEM_Python_Client/main/img/RFEM.png"> Open RSTAB 9 application
+2) <img align="left" alt="RSTAB" width="18px" src="https://raw.githubusercontent.com/Dlubal-Software/RFEM_Python_Client/main/img/RSTAB.png"> Open RSTAB 9 application
 
 3) ☑️ Check if there are no opened dialogues in RSTAB and server port range under *Options-Web Services* corresponds to the one set in initModel
 4) 🏃 Run your script. Inspirations can be found in [Examples](/Examples/) or [UnitTests](/UnitTests/).
