@@ -103,11 +103,6 @@ class StaticAnalysisSettings():
             clientObject.loading_multiplier_factor = load_modification[1]
             clientObject.divide_results_by_loading_factor = load_modification[2]
 
-        # Calculations Diagrams
-        # If needed utilize 'params' dictionary
-        clientObject.calculation_diagrams_enabled = False
-        clientObject.calculation_diagrams_list = ""
-
         # Comment
         clientObject.comment = comment
 

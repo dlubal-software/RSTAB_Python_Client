@@ -24,7 +24,6 @@ def test_AddOns():
     SetAddonStatus(Model.clientModel, AddOn.steel_design_active, True)
     SetAddonStatus(Model.clientModel, AddOn.timber_design_active, True)
     SetAddonStatus(Model.clientModel, AddOn.aluminum_design_active, True)
-    SetAddonStatus(Model.clientModel, AddOn.craneway_design_active, True)
     SetAddonStatus(Model.clientModel, AddOn.cost_estimation_active, True)
 
     Model.clientModel.service.finish_modification()
@@ -38,5 +37,4 @@ def test_AddOns():
     assert GetAddonStatus(Model.clientModel, AddOn.steel_design_active)
     assert GetAddonStatus(Model.clientModel, AddOn.timber_design_active)
     assert GetAddonStatus(Model.clientModel, AddOn.aluminum_design_active)
-    assert GetAddonStatus(Model.clientModel, AddOn.craneway_design_active)
     assert GetAddonStatus(Model.clientModel, AddOn.cost_estimation_active)
