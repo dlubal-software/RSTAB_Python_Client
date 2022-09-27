@@ -114,14 +114,14 @@ Contributions are always welcome!🙂 Please ensure your pull request adheres to
 </br>
 </br>
 
-## GitHub Stargazers over time
+## GitHub Stargazers over Time
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Dlubal-Software/RFEM_Python_Client&type=Date)](https://star-history.com/#Dlubal-Software/RSTAB_Python_Client&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Dlubal-Software/RSTAB_Python_Client&type=Date)](https://star-history.com/#Dlubal-Software/RSTAB_Python_Client&Date)
 
 
 ## Contributors
 
 </br>
 
-[![Contributors](https://contrib.rocks/image?repo=Dlubal-Software/RFEM_Python_Client)](https://github.com/Dlubal-Software/RSTAB_Python_Client/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Dlubal-Software/RSTAB_Python_Client)](https://github.com/Dlubal-Software/RSTAB_Python_Client/graphs/contributors)
 
