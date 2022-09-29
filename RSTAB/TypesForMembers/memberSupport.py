@@ -1,5 +1,5 @@
 from RSTAB.enums import MemberSupportNonlinearity
-from RSTAB.initModel import ConvertToDlString, Model, clearAtributes
+from RSTAB.initModel import ConvertToDlString, Model, clearAttributes
 from RSTAB.dataTypes import inf
 
 class MemberSupport():
@@ -36,7 +36,7 @@ class MemberSupport():
         clientObject = model.clientModel.factory.create('ns0:member_support')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Member Support No.
         clientObject.no = no

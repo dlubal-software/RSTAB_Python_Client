@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes
+from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import StaticAnalysisSettingsIterativeMethodForNonlinearAnalysis, StaticAnalysisType
 
 class StaticAnalysisSettings():
@@ -23,7 +23,7 @@ class StaticAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:static_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -75,7 +75,7 @@ class StaticAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:static_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -151,7 +151,7 @@ class StaticAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:static_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -245,7 +245,7 @@ class StaticAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:static_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no

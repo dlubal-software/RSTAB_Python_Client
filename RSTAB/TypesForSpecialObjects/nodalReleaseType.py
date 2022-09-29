@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
 from RSTAB.enums import *
 
 class NodalReleaseType():

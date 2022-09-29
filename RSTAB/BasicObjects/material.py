@@ -1,4 +1,4 @@
-from RSTAB.initModel import clearAtributes, Model, ConvertStrToListOfInt
+from RSTAB.initModel import clearAttributes, Model, ConvertStrToListOfInt
 from RSTAB.enums import ObjectTypes
 
 
@@ -23,7 +23,7 @@ class Material():
         clientObject = model.clientModel.factory.create('ns0:material')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Material No.
         clientObject.no = no

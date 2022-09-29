@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
 from RSTAB.dataTypes import inf
 from RSTAB.enums import NodalSupportType
 
@@ -58,7 +58,7 @@ class NodalSupport():
         clientObject = model.clientModel.factory.create('ns0:nodal_support')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Nodal Support No.
         clientObject.no = no

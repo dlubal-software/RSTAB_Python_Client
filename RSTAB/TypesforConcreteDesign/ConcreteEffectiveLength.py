@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
 from RSTAB.enums import *
 
 class ConcreteEffectiveLength():
@@ -45,7 +45,7 @@ class ConcreteEffectiveLength():
         clientObject = model.clientModel.factory.create('ns0:concrete_effective_lengths')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Concrete Durability No.
         clientObject.no = no

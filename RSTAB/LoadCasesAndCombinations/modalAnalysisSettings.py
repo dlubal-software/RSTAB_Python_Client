@@ -1,5 +1,5 @@
 from pytest import skip
-from RSTAB.initModel import Model, clearAtributes
+from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import ModalNumberOfModes, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, ModalNeglectMasses
 
 class ModalAnalysisSettings():
@@ -45,7 +45,7 @@ class ModalAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:modal_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -139,7 +139,7 @@ class ModalAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:modal_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -221,7 +221,7 @@ class ModalAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:modal_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no
@@ -304,7 +304,7 @@ class ModalAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:modal_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Static Analysis Settings No.
         clientObject.no = no

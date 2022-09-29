@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes
+from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import DesignSituationType
 
 class DesignSituation():
@@ -27,7 +27,7 @@ class DesignSituation():
         clientObject = model.clientModel.factory.create('ns0:design_situation')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Design Situation No.
         clientObject.no = no

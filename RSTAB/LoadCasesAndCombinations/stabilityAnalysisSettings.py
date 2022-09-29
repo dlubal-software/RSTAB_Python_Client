@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes
+from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import StabilityAnalysisSettingsAnalysisType
 from RSTAB.enums import StabilityAnalysisSettingsEigenvalueMethod
 from RSTAB.enums import StabilityAnalysisSettingsMatrixType
@@ -24,7 +24,7 @@ class StabilityAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:stability_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Stability Analysis Settings No.
         clientObject.no = no
@@ -102,7 +102,7 @@ class StabilityAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:stability_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Stability Analysis Settings No.
         clientObject.no = no
@@ -224,7 +224,7 @@ class StabilityAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:stability_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Stability Analysis Settings No.
         clientObject.no = no
@@ -355,7 +355,7 @@ class StabilityAnalysisSettings():
         clientObject = model.clientModel.factory.create('ns0:stability_analysis_settings')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Stability Analysis Settings No.
         clientObject.no = no

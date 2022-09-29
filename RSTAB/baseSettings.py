@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes
+from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import GlobalAxesOrientationType, LocalAxesOrientationType
 
 class BaseSettings():

@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAtributes, ConvertStrToListOfInt
+from RSTAB.initModel import Model, clearAttributes, ConvertStrToListOfInt
 from RSTAB.enums import ObjectTypes
 
 class Section():
@@ -24,7 +24,7 @@ class Section():
         clientObject = model.clientModel.factory.create('ns0:section')
 
         # Clears object atributes | Sets all atributes to None
-        clearAtributes(clientObject)
+        clearAttributes(clientObject)
 
         # Section No.
         clientObject.no = no
