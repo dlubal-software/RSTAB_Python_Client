@@ -64,7 +64,7 @@ Collection of [scripts](https://github.com/Dlubal-Software/RSTAB_Python_Client/t
 The easiest way to enjoy the Client is to install current [RSTAB package](https://pypi.org/project/RSTAB/) directly to your Python via `pip install RSTAB`. Especially if no code changes are required.
 
 ## Documentation 📚
-For complete description of classes and functions visit our [![image](https://img.shields.io/badge/GitHub-page-darkblue?logo=github&amp;)](https://dlubal-software.github.io/.github/guide/ready.html).
+For complete description of classes and functions visit our [![image](https://img.shields.io/badge/Documentation-pages-darkblue?logo=read-the-docs&amp;logoColor=white)](https://dlubal-software.github.io/.github/guide/ready.html).
 
 ## Wiki
 If you run into problems see our [Wiki](https://github.com/Dlubal-Software/RSTAB_Python_Client/wiki). We are slowly but surely expanding the solutions to the problems found in the Issues section.
@@ -114,14 +114,14 @@ Contributions are always welcome!🙂 Please ensure your pull request adheres to
 </br>
 </br>
 
-## GitHub Stargazers over time
+## GitHub Stargazers over Time
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Dlubal-Software/RFEM_Python_Client&type=Date)](https://star-history.com/#Dlubal-Software/RSTAB_Python_Client&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Dlubal-Software/RSTAB_Python_Client&type=Date)](https://star-history.com/#Dlubal-Software/RSTAB_Python_Client&Date)
 
 
 ## Contributors
 
 </br>
 
-[![Contributors](https://contrib.rocks/image?repo=Dlubal-Software/RFEM_Python_Client)](https://github.com/Dlubal-Software/RSTAB_Python_Client/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Dlubal-Software/RSTAB_Python_Client)](https://github.com/Dlubal-Software/RSTAB_Python_Client/graphs/contributors)
 
