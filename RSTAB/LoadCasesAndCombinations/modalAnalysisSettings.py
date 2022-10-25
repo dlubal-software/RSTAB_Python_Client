@@ -1,4 +1,3 @@
-from pytest import skip
 from RSTAB.initModel import Model, clearAttributes
 from RSTAB.enums import ModalNumberOfModes, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, ModalNeglectMasses
 

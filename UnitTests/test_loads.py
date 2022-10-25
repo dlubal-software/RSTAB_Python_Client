@@ -125,7 +125,7 @@ def test_member_load_init():
 
     Material(1, 'S235')
     Section(1, 'IPE 300', 1)
-    Member(1,  1, 2)
+    Member(1,  1, 2, 0, 1, 1)
 
     StaticAnalysisSettings(1, 'Linear', StaticAnalysisType.GEOMETRICALLY_LINEAR)
     LoadCase(1, 'DEAD')

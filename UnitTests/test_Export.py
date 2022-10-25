@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import ObjectTypes
-from RSTAB.initModel import client, Model, closeModel
+from RSTAB.initModel import client, Model, url
 from RSTAB.ImportExport.exports import IFCExportSettings, ObjectLocation, ObjectLocations, ExportToIFC, GetTableExportConfigManager, SetTableExportConfigManager, ExportTo
 from RSTAB.ImportExport.imports import getConversionTables, setConversionTables, getSAFSettings, setSAFSettings, importFrom
 
@@ -16,7 +16,7 @@ from RSTAB.ImportExport.imports import getConversionTables, setConversionTables,
 if Model.clientModel is None:
     Model()
 
-#pytest.mark.xfail(reason="Performs incosistently.", strict=False)
+
 def test_export():
 
     Model.clientModel.service.delete_all()
@@ -55,6 +55,9 @@ def test_export():
 
     Model.clientModel.service.finish_modification()
 
+@pytest.mark.skipif(url != 'http://127.0.0.1', reason="This test fails on remote PC due to incorrect file paths. \
+                    Althought it is easy to change, it would not be easy to update on every remote computer.\
+                    It is not necessary to evaluate Client as functional. Localy this tests still gets executed.")
 def test_import():
 
     Model.clientModel.service.delete_all()

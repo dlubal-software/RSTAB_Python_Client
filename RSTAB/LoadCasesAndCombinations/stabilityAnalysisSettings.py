@@ -41,7 +41,7 @@ class StabilityAnalysisSettings():
         clientObject.number_of_lowest_eigenvalues = 4
 
         # Eigenvalue Method
-        clientObject.eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_LANCZOS.name
+        clientObject.eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_SUBSPACE_ITERATION.name
 
         # Matrix Type
         clientObject.matrix_type = StabilityAnalysisSettingsMatrixType.MATRIX_TYPE_STANDARD.name
@@ -66,7 +66,7 @@ class StabilityAnalysisSettings():
                  critical_load_factor = None,
                  minimum_initial_strain = 1e-05,
                  local_torsional_rotations = None,
-                 eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_LANCZOS,
+                 eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_SUBSPACE_ITERATION,
                  matrix_type = StabilityAnalysisSettingsMatrixType.MATRIX_TYPE_STANDARD,
                  comment: str = '',
                  params: dict = None,
@@ -166,7 +166,7 @@ class StabilityAnalysisSettings():
                  incrementally_increasing_loading = [1.0, 0.1, 10, 100],
                  stopping_of_load_increasing = None,
                  save_results_of_all_increments: bool = False,
-                 eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_LANCZOS,
+                 eigenvalue_method = StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_SUBSPACE_ITERATION,
                  matrix_type = StabilityAnalysisSettingsMatrixType.MATRIX_TYPE_STANDARD,
                  comment: str = '',
                  params: dict = None,
