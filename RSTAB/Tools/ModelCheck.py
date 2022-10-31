@@ -1,4 +1,3 @@
-from RSTAB.BasicObjects.member import Member
 from RSTAB.initModel import Model
 from RSTAB.enums import ModelCheckGetOptionType, ModelCheckProcessOptionType
 

@@ -6,14 +6,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-import pytest
 from RSTAB.enums import *
-from RSTAB.initModel import Model, CheckIfMethodOrTypeExists, SetAddonStatus
+from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.material import Material
-from RSTAB.TypesforConcreteDesign.ConcreteDurability import ConcreteDurability
 #from RSTAB.ConcreteDesign.ConcreteUltimateConfigurations import ConcreteUltimateConfiguration
 #from RSTAB.ConcreteDesign.ConcreteServiceabilityConfigurations import ConcreteServiceabilityConfiguration
 from RSTAB.TypesforConcreteDesign.ConcreteEffectiveLength import ConcreteEffectiveLength

@@ -1,6 +1,5 @@
 import sys
 import os
-import pytest
 PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.path.dirname(__file__),
                   os.pardir)
@@ -8,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import *
-from RSTAB.initModel import Model, SetAddonStatus, CheckIfMethodOrTypeExists
+from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.TypesForSteelDesign.steelMemberRotationalRestraints import *
 
 if Model.clientModel is None:

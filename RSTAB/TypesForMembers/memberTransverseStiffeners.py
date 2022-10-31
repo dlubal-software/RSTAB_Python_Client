@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString, GetAddonStatus, SetAddonStatus
+from RSTAB.initModel import ConvertToDlString, Model, SetAddonStatus, clearAttributes
 from RSTAB.enums import MemberTransverseStiffenerType, MemberTransverseStiffenerPosition, MemberTransverseStiffenerOffsetType, MemberTransverseStiffenerDefinitionType, AddOn
 
 class MemberTransverseStiffeners():

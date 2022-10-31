@@ -5,7 +5,6 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-from RSTAB.enums import *
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.node import Node
 from RSTAB.TypesForMembers.memberDefinableStiffness import MemberDefinableStiffness

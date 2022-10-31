@@ -1,4 +1,3 @@
-from http import client
 from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
 from RSTAB.enums import *
 

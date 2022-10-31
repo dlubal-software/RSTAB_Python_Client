@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalNumberOfModes
-from RSTAB.enums import ModalMassConversionType, ModalMassMatrixType, AnalysisType, AddOn
+from RSTAB.enums import AddOn, AnalysisType
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section

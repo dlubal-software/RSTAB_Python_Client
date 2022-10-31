@@ -1,4 +1,3 @@
-from pydoc import cli
 from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
 from RSTAB.enums import ImperfectionType, ImperfectionCaseDirection, DirectionForLevelDirection
 from RSTAB.enums import ImperfectionCaseSourceType, ImperfectionCaseAssignmentType
