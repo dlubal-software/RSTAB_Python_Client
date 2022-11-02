@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 from RSTAB.initModel import Model, CheckIfMethodOrTypeExists
 from RSTAB.enums import CaseObjectType
-from RSTAB.Results.resultTables import ResultTables, GetMaxValue, GetMinValue
+from RSTAB.Results.resultTables import ResultTables
 import pytest
 
 if Model.clientModel is None:

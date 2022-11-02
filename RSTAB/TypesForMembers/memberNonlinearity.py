@@ -1,4 +1,3 @@
-from pytest import param
 from RSTAB.enums import MemberNonlinearityType
 from RSTAB.initModel import ConvertToDlString, Model, clearAttributes
 
