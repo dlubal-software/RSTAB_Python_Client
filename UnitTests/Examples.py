@@ -18,7 +18,7 @@ def test_examples():
 
     When executing in cmd always use verbose (-s) to run scripts without GUI.
     Example:
-        pytest -s ./RFEM_Python_Client/UnitTests/Examples.py
+        pytest -s ./RSTAB_Python_Client/UnitTests/Examples.py
     """
     print() # jump 1 line further
 

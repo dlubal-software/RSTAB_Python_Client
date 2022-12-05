@@ -6,7 +6,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import OptimizeOnType, Optimizer
-from RSTAB.initModel import Model
+from RSTAB.initModel import Model, client
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings
 
 if Model.clientModel is None:
@@ -29,3 +29,6 @@ def test_optimization_settings():
 
     opt_sett.general_keep_best_number_model_mutations = 15
     OptimizationSettings.set(opt_sett)
+
+    # Testing model is closed at the end of the testing session to enable easier and cleaned restart of the unit tests.
+    client.service.close_model(0, False)

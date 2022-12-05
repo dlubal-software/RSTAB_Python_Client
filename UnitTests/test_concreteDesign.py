@@ -37,7 +37,7 @@ def test_concrete_design():
 
 	# Obsolete since 12.10.2022
     # Concrete Ultimate Configuration
-    #ConcreteUltimateConfiguration(1, 'ULS', '1')
+    # ConcreteUltimateConfiguration(1, 'ULS', '1')
 
     # Concrete Serviceability Configuration
     #ConcreteServiceabilityConfiguration(1, 'SLS', '1')

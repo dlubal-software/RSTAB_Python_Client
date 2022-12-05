@@ -49,8 +49,10 @@ class ModalAnalysisSettings():
         # Static Analysis Settings No.
         clientObject.no = no
 
-        # Method for Dertermining the Number of Nodes
-        clientObject.number_of_modes_method = number_of_modes_method.name
+        # Name
+        if name:
+            clientObject.user_defined_name_enabled = True
+            clientObject.name = name
 
         # Analysis Type
         clientObject.solution_method = solution_method.name
@@ -64,7 +66,8 @@ class ModalAnalysisSettings():
         elif number_of_modes_method == ModalNumberOfModes.NUMBER_OF_MODES_METHOD_EFFECTIVE_MASS_FACTORS:
             clientObject.effective_modal_mass_factor = effective_modal_mass_factor
         elif number_of_modes_method == ModalNumberOfModes.NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY:
-            clientObject.maxmimum_natural_frequency = maxmimum_natural_frequency
+            # TODO: WS are missing maxmimum_natural_frequency
+            #clientObject.maxmimum_natural_frequency = maxmimum_natural_frequency
             clientObject.find_eigenvectors_beyond_frequency = find_modes_beyond_frequency
             if find_modes_beyond_frequency:
                 clientObject.frequency = frequency_f

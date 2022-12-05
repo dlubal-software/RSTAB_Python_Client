@@ -1593,6 +1593,122 @@ class SteelEffectiveLengthsDeterminationMcrEurope(Enum):
     '''
     DETERMINATION_EUROPE_EIGENVALUE, DETERMINATION_EUROPE_USER_DEFINED = range(2)
 
+class TimberEffectiveLengthsSupportType(Enum):
+    '''
+    Timber Effective Lengths Support Type
+    '''
+    SUPPORT_TYPE_FIXED_ALL, SUPPORT_TYPE_FIXED_IN_Y, SUPPORT_TYPE_FIXED_IN_Z, SUPPORT_TYPE_FIXED_IN_Z_AND_TORSION, \
+    SUPPORT_TYPE_FIXED_IN_Z_AND_TORSION_AND_WARPING, SUPPORT_TYPE_FIXED_IN_Z_Y_AND_TORSION, SUPPORT_TYPE_FIXED_IN_Z_Y_AND_TORSION_AND_WARPING, \
+    SUPPORT_TYPE_INDIVIDUALLY, SUPPORT_TYPE_NONE, SUPPORT_TYPE_RESTRAINT_ABOUT_X = range(10)
+
+class TimberEffectiveLengthsEccentricityType(Enum):
+    '''
+    Timber Effective Lengths Eccentricity Type
+    '''
+    ECCENTRICITY_TYPE_AT_LOWER_FLANGE, ECCENTRICITY_TYPE_AT_UPPER_FLANGE, ECCENTRICITY_TYPE_NONE, ECCENTRICITY_TYPE_USER_VALUE = range(4)
+
+class TimberEffectiveLengthsSupportTypeInY(Enum):
+    '''
+    Timber Effective Lengths Support in Y Type
+    '''
+    SUPPORT_STATUS_NO, SUPPORT_STATUS_SPRING, SUPPORT_STATUS_YES = range(3)
+
+class TimberEffectiveLengthsRestraintTypeAboutX(Enum):
+    '''
+    Timber Effective Lengths Restraint About X Type
+    '''
+    SUPPORT_STATUS_NO, SUPPORT_STATUS_SPRING, SUPPORT_STATUS_YES = range(3)
+
+class TimberEffectiveLengthsDeterminationType(Enum):
+    '''
+    Timber Effective Lengths Determination Type
+    '''
+    DETERMINATION_ANALYTICAL, DETERMINATION_EIGENVALUE_SOLVER, DETERMINATION_USER_DEFINED = range(3)
+
+class TimberMemberLocalSectionReductionType(Enum):
+    '''
+    Timber Member Local Section Reduction Type
+    '''
+    REDUCTION_COMPONENT_TYPE_CIRCLE_OPENING, REDUCTION_COMPONENT_TYPE_END_NOTCH, REDUCTION_COMPONENT_TYPE_INNER_NOTCH, \
+    REDUCTION_COMPONENT_TYPE_RECTANGLE_OPENING, REDUCTION_COMPONENT_TYPE_START_NOTCH = range(5)
+
+class ZAxisReferenceType(Enum):
+    '''
+    Timber Member Local Section Reduction Z Axis Reference Type
+    '''
+    E_POSITION_REFERENCE_CENTER, E_POSITION_REFERENCE_TOP, E_POSITION_REFERENCE_BOTTOM = range(3)
+
+class OrientationType(Enum):
+    '''
+    Timber Member Local Section Reduction Orientation Type
+    '''
+    E_ORIENTATION_DEPTH, E_ORIENTATION_WIDTH = range(2)
+
+class DirectionType(Enum):
+    '''
+    Timber Member Local Section Reduction Direction Type
+    '''
+    E_DIRECTION_DEPTH_NEGATIVE, E_DIRECTION_DEPTH_POSITIVE, E_DIRECTION_WIDTH_NEGATIVE, E_DIRECTION_WIDTH_POSITIVE = range(4)
+
+class PositionOnSection(Enum):
+    '''
+    Timber Member Shear Panel Position On Section
+    '''
+    POSITION_DEFINE, POSITION_IN_CENTROID, POSITION_ON_LOWER_FLANGE, POSITION_ON_UPPER_FLANGE = range(4)
+
+class TimberServiceClassServiceClass(Enum):
+    '''
+    Timber Service Class Service Classs
+    '''
+    TIMBER_SERVICE_CLASS_TYPE_1, TIMBER_SERVICE_CLASS_TYPE_2, TIMBER_SERVICE_CLASS_TYPE_3 = range(3)
+
+class AluminumEffectiveLengthsDeterminationMcrEurope(Enum):
+    '''
+    Aluminum Effective Lengths Determination MCR Europe
+    '''
+    DETERMINATION_EUROPE_EIGENVALUE, DETERMINATION_EUROPE_USER_DEFINED = range(2)
+
+class AluminumMemberRotationalRestraintType(Enum):
+    '''
+    Aluminum Member Rotational Restraint Type
+    '''
+    TYPE_CONTINUOUS, TYPE_DISCRETE, TYPE_MANUALLY = range(3)
+
+class AluminumMemberRotationalRestraintContinuousBeamEffect(Enum):
+    '''
+    Aluminum Member Rotational Restraint Continuous Beam Effect
+    '''
+    CONTINUOUS_BEAM_EFFECT_END_PANEL, CONTINUOUS_BEAM_EFFECT_INTERNAL_PANEL = range(2)
+
+class AluminumMemberRotationalRestraintPositionofSheeting(Enum):
+    '''
+    Aluminum Member Rotational Restraint Position of Sheeting
+    '''
+    SHEETING_POSITION_NEGATIVE, SHEETING_POSITION_POSITIVE = range(2)
+
+class AluminumMemberRotationalRestraintRotationalStiffness(Enum):
+    '''
+    Steel Member Rotational Restraint Rotational Stiffness
+    '''
+    ROTATIONAL_STIFFNESS_INFINITELY, ROTATIONAL_STIFFNESS_MANUALLY = range(2)
+
+class AluminumMemberShearPanelDefinitionType(Enum):
+    '''
+    Aluminum Member Shear Panel Definition Type
+    '''
+    DEFINITION_TYPE_BRACING, DEFINITION_TYPE_DEFINE_S_PROV, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING_AND_BRACING = range(4)
+
+class AluminumMemberShearPanelPositionOnSection(Enum):
+    '''
+    Aluminum Member Shear Panel Position On Section
+    '''
+    POSITION_DEFINE, POSITION_IN_CENTROID, POSITION_ON_LOWER_FLANGE, POSITION_ON_UPPER_FLANGE = range(4)
+
+class AluminumMemberShearPanelFasteningArrangement(Enum):
+    '''
+    Aluminum Member Shear Panel Fastening Arrangement
+    '''
+    FASTENING_ARRANGEMENT_EVERY_RIB, FASTENING_ARRANGEMENT_EVERY_SECOND_RIB = range(2)
 
 class SteelEffectiveLengthsDeterminationMcrIs800(Enum):
     '''
@@ -1716,6 +1832,7 @@ class SteelMemberShearPanelFasteningArrangement(Enum):
     Steel Member Shear Panel Fastening Arrangement
     '''
     FASTENING_ARRANGEMENT_EVERY_RIB, FASTENING_ARRANGEMENT_EVERY_SECOND_RIB = range(2)
+
 class SteelMemberRotationalRestraintType(Enum):
     '''
     Steel Member Rotational Restraint Type
@@ -1920,7 +2037,7 @@ class ActionCategoryType(Enum):
     ACTION_CATEGORY_VARIABLE_GEOTECHNICAL_ACTIONS_SOIL_PARAMETERS_UN_FACTORED_GROUND_WATER_FLUIDS_GEU2, ACTION_CATEGORY_VARIABLE_GEOTECHNICAL_ACTIONS_SOIL_PARAMETERS_UN_FACTORED_OTHER_ACTIONS_GEU3, ACTION_CATEGORY_VARIABLE_LOADS_FROM_FLUIDS_Q_FL, \
     ACTION_CATEGORY_VARIABLE_PERSISTENT_HORIZONTAL_IMPOSED_ACTIONS_Q3, ACTION_CATEGORY_VARIABLE_Q, ACTION_CATEGORY_VERTICAL_EARTHQUAKE_ACTION_EV, ACTION_CATEGORY_WEIGHT_OF_ICE_DI, ACTION_CATEGORY_WIND_LOADINGS_Q_W, ACTION_CATEGORY_WIND_LOADS_FWK_EXECUTION_QWE, \
     ACTION_CATEGORY_WIND_LOADS_FWK_PERSISTENT_DESIGN_SITUATIONS_QWP, ACTION_CATEGORY_WIND_LOADS_FW_QW, ACTION_CATEGORY_WIND_LOAD_ACCORDING_TO_8_1_4_W, ACTION_CATEGORY_WIND_LOAD_W, ACTION_CATEGORY_WIND_LOAD_WK, ACTION_CATEGORY_WIND_LOAD_WL, ACTION_CATEGORY_WIND_ON_ICE_DETERMINED_IN_ACCORDANCE_WITH_SECTION_10_WI, \
-    ACTION_CATEGORY_WIND_QW, ACTION_CATEGORY_WORKING_WIND_Q5_2 = range(278)
+    ACTION_CATEGORY_WIND_QW, ACTION_CATEGORY_WORKING_WIND_Q5_2, ACTION_CATEGORY_LOAD_DUE_TO_GROUND_WATER_PRESSURE_HW, ACTION_CATEGORY_TORNADO_LOAD_WT, ACTION_CATEGORY_LOAD_DUE_TO_LATERAL_EARTH_PRESSURE_OR_PRESSURE_OF_BULK_MATERIALS_HEB = range(281)
 
 
 class DesignSituationType(Enum):
@@ -2121,26 +2238,68 @@ class OpeningLoadDirection(Enum):
     '''
     LOAD_DIRECTION_GLOBAL_X_OR_USER_DEFINED_U_PROJECTED, LOAD_DIRECTION_GLOBAL_X_OR_USER_DEFINED_U_TRUE, LOAD_DIRECTION_GLOBAL_Y_OR_USER_DEFINED_V_PROJECTED, LOAD_DIRECTION_GLOBAL_Y_OR_USER_DEFINED_V_TRUE, LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W_PROJECTED, LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W_TRUE, LOAD_DIRECTION_LOCAL_Z = range(7)
 
+class AluminumMemberLocalSectionReductionType(Enum):
+    '''
+    Aluminum Member Local Section Reduction Type
+    '''
+    REDUCTION_COMPONENT_TYPE_DESIGN_PARAMETERS = range(1)
+
 class SteelMemberLocalSectionReductionType(Enum):
     '''
     Steel Member Local Section Reduction Type
     '''
-    REDUCTION_COMPONENT_TYPE_DESIGN_PARAMETERS = range(1)
+    REDUCTION_COMPONENT_TYPE_DESIGN_PARAMETERS, REDUCTION_COMPONENT_TYPE_SECTION_VALUES = range(2)
 
 class FastenerDefinitionType(Enum):
     '''
     Steel Member Local Section Reduction Fastener Definition Type
     '''
-    DEFINITION_TYPE_ABSOLUTE,DEFINITION_TYPE_RELATIVE = range(2)
+    DEFINITION_TYPE_ABSOLUTE, DEFINITION_TYPE_RELATIVE = range(2)
+
+class DefinitionType(Enum):
+    '''
+    Steel Member Local Section Reduction Definition Type
+    '''
+    DIMENSION_TYPE_OFFSET, DIMENSION_TYPE_SIZE = range(2)
 
 class MultipleOffsetDefinitionType(Enum):
     '''
-    Steel Member Local Section Reduction Multiple Offset Definition Type
+    Member Local Section Reduction Multiple Offset Definition Type
     '''
-    OFFSET_DEFINITION_TYPE_ABSOLUTE,OFFSET_DEFINITION_TYPE_RELATIVE = range(2)
+    OFFSET_DEFINITION_TYPE_ABSOLUTE, OFFSET_DEFINITION_TYPE_RELATIVE = range(2)
 
 class CaseObjectType(Enum):
     '''
     Case Object Type (Result Tables)
     '''
     E_OBJECT_TYPE_CONSTRUCTION_STAGE, E_OBJECT_TYPE_DESIGN_SITUATION, E_OBJECT_TYPE_LOAD_CASE, E_OBJECT_TYPE_LOAD_COMBINATION, E_OBJECT_TYPE_RESULT_COMBINATION = range(5)
+
+class ProgramLanguage(Enum):
+    '''
+    Program Language Type
+    '''
+    CHINESE, CZECH, DUTCH, ENGLISH, FRENCH, GERMAN, GREEK, ITALIAN, POLISH, PORTUGUESE, RUSSIAN, SPANISH = range(12)
+
+class ActionType(Enum):
+    '''
+    Action Type
+    '''
+    ACTING_ALTERNATIVELY, ACTING_DIFFERENTLY, ACTING_SIMULTANEOUSLY, DYNAMIC_LOAD_CASE = range(4)
+
+class ImposedLoadCategory(Enum):
+    '''
+    Imposed Load Category
+    '''
+    IMPOSED_LOADS_CATEGORY_A, IMPOSED_LOADS_CATEGORY_B, IMPOSED_LOADS_CATEGORY_C, IMPOSED_LOADS_CATEGORY_D, IMPOSED_LOADS_CATEGORY_E = range(5)
+
+class ActionCombinationItems(Enum):
+    '''
+    Action Combination Items
+    '''
+    ENVELOPE_PERMANENT, ENVELOPE_TRANSIENT, GENERAL, SUPERPOSITION = range(4)
+
+class FormulaParameter(Enum):
+    '''
+    Formula Parameter to Return from Formula.Get Function
+    '''
+    ALL, FORMULA, IS_VALID, CALCULATED_VALUE = range(4)

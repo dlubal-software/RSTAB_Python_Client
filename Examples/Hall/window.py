@@ -6,7 +6,7 @@ def window(mainFunc, lstOfModels):
     # Creating tkinter window
     win = Tk()
     win.resizable(False, False)
-    win.title('Power of automation with RFEM6')
+    win.title('Power of automation with RSTAB9')
     win.geometry("550x280")
 
     win.configure(bg=color)

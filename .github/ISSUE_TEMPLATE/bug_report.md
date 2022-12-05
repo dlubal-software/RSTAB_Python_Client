@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - Version of WIN10 OS: [WIN 10 20H2]
- - Version of RFEM6
+ - Version of RSTAB9
  - Version of tool [e.g. 1.0.1]
 
 **Additional context**

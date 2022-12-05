@@ -82,5 +82,5 @@ def test_modal_analysis_settings():
     assert actingMasses.acting_masses_in_direction_x_enabled == False
     assert actingMasses.acting_masses_in_direction_y_enabled == True
     assert actingMasses.acting_masses_in_direction_z_enabled == True
-    assert actingMasses.maxmimum_natural_frequency == 1800
+    #assert actingMasses.maxmimum_natural_frequency == 1800
     assert actingMasses.name == 'Modal Analysis Settings 1'
