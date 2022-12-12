@@ -1,7 +1,7 @@
 from RSTAB.enums import NodeType
 from RSTAB.enums import NodeCoordinateSystemType
 from RSTAB.enums import NodeReferenceType, ObjectTypes
-from RSTAB.initModel import Model, clearAttributes, ConvertStrToListOfInt
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertStrToListOfInt
 from math import pi
 
 class Node():
@@ -45,6 +45,9 @@ class Node():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)
@@ -133,6 +136,9 @@ class Node():
             for key in params:
                 clientObject[key] = params[key]
 
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)
 
@@ -213,6 +219,9 @@ class Node():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)
@@ -301,6 +310,9 @@ class Node():
             for key in params:
                 clientObject[key] = params[key]
 
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+        
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)
 
@@ -365,6 +377,9 @@ class Node():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)

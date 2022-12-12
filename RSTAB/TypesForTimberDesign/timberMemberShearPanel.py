@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
 from RSTAB.enums import PositionOnSection
 
 class TimberMemberShearPanel():
@@ -65,6 +65,9 @@ class TimberMemberShearPanel():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Timber Effective Lengths to client model
         Model.clientModel.service.set_timber_member_shear_panel(clientObject)

@@ -1,4 +1,4 @@
-from RSTAB.initModel import clearAttributes, Model, ConvertStrToListOfInt
+from RSTAB.initModel import clearAttributes, deleteEmptyAttributes, Model, ConvertStrToListOfInt
 from RSTAB.enums import ObjectTypes
 
 
@@ -38,6 +38,9 @@ class Material():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add material to client model
         model.clientModel.service.set_material(clientObject)

@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
 from RSTAB.enums import StaticAnalysisSettingsIterativeMethodForNonlinearAnalysis, StaticAnalysisType
 
 class StaticAnalysisSettings():
@@ -15,9 +15,9 @@ class StaticAnalysisSettings():
             no (int): Static Analysis Setting Tag
             name (str): Static Analysis Setting Name
             analysis_type (enum): Analysis Type Enumeration
-            comment (str): Comments
-            params (dict): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RSTAB Class): Model to be edited
+            comment (str, optional): Comments
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
+            model (RSTAB Class, optional): Model to be edited
         """
         # Client model | Surface
         clientObject = model.clientModel.factory.create('ns0:static_analysis_settings')
@@ -43,6 +43,9 @@ class StaticAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_static_analysis_settings(clientObject)
@@ -110,6 +113,9 @@ class StaticAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_static_analysis_settings(clientObject)
@@ -202,6 +208,9 @@ class StaticAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_static_analysis_settings(clientObject)
@@ -302,6 +311,9 @@ class StaticAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_static_analysis_settings(clientObject)

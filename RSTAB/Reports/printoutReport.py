@@ -41,4 +41,3 @@ class PrintoutReport():
         Print printout report.
         """
         model.clientModel.service.print_printout_report(printout_report_id)
-

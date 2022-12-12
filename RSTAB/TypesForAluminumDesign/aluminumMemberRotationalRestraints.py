@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString, SetAddonStatus
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString, SetAddonStatus
 from RSTAB.enums import *
 
 class AluminumMemberRotationalRestraint():
@@ -17,10 +17,6 @@ class AluminumMemberRotationalRestraint():
         Args:
             no (int): Aluminum Member Rotational Restraint Tag
             name (str): User Defined Member Rotational Restraint Name
-                for name[0] == False:
-                    pass
-                for name == True:
-                    name[1] = Defined Name
             definition_type (enum): Aluminum Member Rotational Restraint Type Enumeration
             members (str): Assigned Members
             member_sets (str): Assigned Member Sets
@@ -63,7 +59,7 @@ class AluminumMemberRotationalRestraint():
         # Deducing RSTAB Language from aluminum_design_addon String:
         modelInfo = Model.clientModel.service.get_model_info()
         if modelInfo.property_addon_aluminum_design.split()[0] != 'Aluminum':
-            raise Exception("WARNING: The aluminumMemberRotationalRestraints operates with the RSTAB Application set to English. Kindly switch RSTAB to English such that Database searches can completed successfully.")
+            raise ValueError("WARNING: The aluminumMemberRotationalRestraints operates with the RSTAB Application set to English. Kindly switch RSTAB to English such that Database searches can completed successfully.")
 
         # Check if Aluminum Design Add-on is ON.
         SetAddonStatus(model.clientModel, AddOn.aluminum_design_active, True)
@@ -132,5 +128,8 @@ class AluminumMemberRotationalRestraint():
             for key in params:
                 clientObject[key] = params[key]
 
-        # Adding Aluminum Member Rotational Restraint to Client Model
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
+        # Add Aluminum Member Rotational Restraint to Client Model
         model.clientModel.service.set_aluminum_member_rotational_restraint(clientObject)

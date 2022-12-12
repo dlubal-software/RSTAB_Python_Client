@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
 from RSTAB.enums import ModalNumberOfModes, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, ModalNeglectMasses
 
 class ModalAnalysisSettings():
@@ -103,6 +103,9 @@ class ModalAnalysisSettings():
             for key in params:
                 clientObject[key] = params[key]
 
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_modal_analysis_settings(clientObject)
 
@@ -189,6 +192,9 @@ class ModalAnalysisSettings():
             for key in params:
                 clientObject[key] = params[key]
 
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_modal_analysis_settings(clientObject)
 
@@ -267,6 +273,9 @@ class ModalAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_modal_analysis_settings(clientObject)
@@ -353,6 +362,9 @@ class ModalAnalysisSettings():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Static Analysis Settings to client model
         model.clientModel.service.set_modal_analysis_settings(clientObject)

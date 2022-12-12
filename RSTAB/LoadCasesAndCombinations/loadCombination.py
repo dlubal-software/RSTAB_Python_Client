@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
 from RSTAB.enums import AnalysisType
 
 class LoadCombination():
@@ -113,6 +113,9 @@ class LoadCombination():
 
 
             clientObject.items.load_combination_items.append(mlvlp)
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Load Combination to client model
         model.clientModel.service.set_load_combination(clientObject)

@@ -28,7 +28,7 @@ def test_loadCombination():
     LoadCase.StaticAnalysis(3)
     LoadCase(4)
 
-    LoadCombination(1, AnalysisType.ANALYSIS_TYPE_STATIC, 1, [False], 1, combination_items=[[1.2, 1, 0, True], [1.6, 1, 0, False]])
+    LoadCombination(1, AnalysisType.ANALYSIS_TYPE_STATIC, 1, 'LC1', 1, combination_items=[[1.2, 1, 0, True], [1.6, 1, 0, False]])
 
     Model.clientModel.service.finish_modification()
 

@@ -1,5 +1,5 @@
 from RSTAB.enums import MemberHingeNonlinearity
-from RSTAB.initModel import ConvertToDlString, Model, clearAttributes
+from RSTAB.initModel import Model, clearAttributes, ConvertToDlString, deleteEmptyAttributes
 from RSTAB.dataTypes import inf
 
 class MemberHinge():
@@ -479,6 +479,9 @@ class MemberHinge():
         if params:
             for key in params:
                 clientObject[key] = params[key]
+
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
 
         # Add Line to client model
         model.clientModel.service.set_member_hinge(clientObject)

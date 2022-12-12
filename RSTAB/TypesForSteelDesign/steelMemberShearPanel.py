@@ -1,5 +1,5 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString
-from RSTAB.enums import *
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
+from RSTAB.enums import SteelMemberShearPanelDefinitionType, SteelMemberShearPanelPositionOnSection, SteelMemberShearPanelFasteningArrangement
 
 class SteelMemberShearPanel():
     def __init__(self,
@@ -164,6 +164,8 @@ class SteelMemberShearPanel():
             for key in params:
                 clientObject[key] = params[key]
 
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
         # Add Steel Effective Lengths to client model
         Model.clientModel.service.set_steel_member_shear_panel(clientObject)
-

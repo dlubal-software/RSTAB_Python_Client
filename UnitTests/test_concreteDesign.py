@@ -6,12 +6,14 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
+import pytest
 from RSTAB.enums import *
-from RSTAB.initModel import Model, SetAddonStatus
+from RSTAB.initModel import Model, CheckIfMethodOrTypeExists, SetAddonStatus
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.material import Material
+from RSTAB.TypesforConcreteDesign.ConcreteDurability import ConcreteDurability
 #from RSTAB.ConcreteDesign.ConcreteUltimateConfigurations import ConcreteUltimateConfiguration
 #from RSTAB.ConcreteDesign.ConcreteServiceabilityConfigurations import ConcreteServiceabilityConfiguration
 from RSTAB.TypesforConcreteDesign.ConcreteEffectiveLength import ConcreteEffectiveLength
@@ -19,6 +21,8 @@ from RSTAB.TypesforConcreteDesign.ConcreteEffectiveLength import ConcreteEffecti
 if Model.clientModel is None:
     Model()
 
+# TODO: US-8087
+@pytest.mark.skipif(CheckIfMethodOrTypeExists(Model.clientModel,'ns0:concrete_durability', True), reason="ns0:concrete_durability not in RSTAB GM yet")
 def test_concrete_design():
 
     Model.clientModel.service.delete_all()
@@ -35,7 +39,6 @@ def test_concrete_design():
 
     Member(1, 1, 2, 0, 1, 1)
 
-	# Obsolete since 12.10.2022
     # Concrete Ultimate Configuration
     # ConcreteUltimateConfiguration(1, 'ULS', '1')
 

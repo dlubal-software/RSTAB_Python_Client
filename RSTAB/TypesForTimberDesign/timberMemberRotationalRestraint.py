@@ -1,5 +1,5 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString, GetAddonStatus, SetAddonStatus
-from RSTAB.enums import *
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString, GetAddonStatus, SetAddonStatus
+from RSTAB.enums import AddOn
 
 class TimberMemberRotationalRestraint():
     def __init__(self,
@@ -26,7 +26,7 @@ class TimberMemberRotationalRestraint():
         # Deducing RSTAB Language from timber_design_addon String:
         modelInfo = Model.clientModel.service.get_model_info()
         if modelInfo.property_addon_timber_design.split()[0] != 'Timber':
-            raise Exception("WARNING: The TimberMemberRotationalRestraints operates with the RSTAB Application set to English. Kindly switch RSTAB to English such that Database searches can completed successfully.")
+            raise ValueError("WARNING: The TimberMemberRotationalRestraints operates with the RSTAB Application set to English. Kindly switch RSTAB to English such that Database searches can completed successfully.")
 
         # Check if Timber Design Add-on is ON.
         if not GetAddonStatus(model.clientModel, AddOn.timber_design_active):
@@ -66,5 +66,8 @@ class TimberMemberRotationalRestraint():
             for key in params:
                 clientObject[key] = params[key]
 
-        # Adding Timber Member Rotational Restraint to Client Model
+        # Delete None attributes for improved performance
+        deleteEmptyAttributes(clientObject)
+
+        # Add Timber Member Rotational Restraint to Client Model
         model.clientModel.service.set_timber_member_rotational_restraint(clientObject)

@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-from RSTAB.initModel import Model, CheckIfMethodOrTypeExists
+from RSTAB.initModel import Model
 from RSTAB.enums import CaseObjectType
 from RSTAB.Results.resultTables import ResultTables
 import pytest
@@ -13,7 +13,6 @@ import pytest
 if Model.clientModel is None:
     Model()
 
-@pytest.mark.skipif(CheckIfMethodOrTypeExists(Model.clientModel, 'has_results', True), reason="has_results not in RSTAB GM yet")
 def test_result_tables():
     Model.clientModel.service.delete_all()
     Model.clientModel.service.run_script('..\\scripts\\internal\\Demos\\Demo-001 Hall.js')
