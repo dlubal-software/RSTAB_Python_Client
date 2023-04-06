@@ -1,11 +1,13 @@
 import os
 import sys
-import RSTAB.dependencies
+import RSTAB.dependencies # dependency check ahead of imports
 import socket
 import requests
 from suds.client import Client
 from RSTAB.enums import ObjectTypes, ModelType, AddOn
 from RSTAB.suds_requests import RequestsTransport
+from suds.cache import DocumentCache
+from tempfile import gettempdir
 
 # Connect to server
 # Check server port range set in "Program Options & Settings"
@@ -35,7 +37,8 @@ else:
 
 # Check for issues locally and remotely
 try:
-    client = Client(urlAndPort+'/wsdl', location = urlAndPort)
+    ca = DocumentCache(location=os.path.join(gettempdir(), 'WSDL'))
+    client = Client(urlAndPort+'/wsdl', location = urlAndPort, cache=ca)
 except:
     print('Error: Connection to server failed!')
     print('Please check:')
@@ -56,14 +59,14 @@ except:
     sys.exit()
 
 # Persistent connection
-# Next 4 lines enables Client to work within 1 session which is much faster to execute.
+# Session and trans(port) enable Client to work within 1 session which is much faster to execute.
 # Without it the session lasts only one request which results in poor performance.
 # Assigning session to application Client (here client) instead of model Client
 # results also in poor performance.
-session = requests.Session()
-adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
-session.mount('http://', adapter)
-trans = RequestsTransport(session)
+
+# Session and trans defined here to have global reach
+session = None
+trans = None
 
 class Model():
     clientModel = None
@@ -121,9 +124,15 @@ class Model():
                 modelCompletePath = modelUrlPort+'/wsdl'
 
                 if self.clientModelDct:
-                    cModel = Client(modelCompletePath, location = modelUrlPort)
+                    cModel = Client(modelCompletePath, location = modelUrlPort, cache=ca)
                 else:
-                    cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort)
+                    session = requests.Session()
+                    adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
+                    session.mount('http://', adapter)
+                    trans = RequestsTransport(session)
+
+                    cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
+
                 self.clientModelDct[model_name] = cModel
 
         else:
@@ -132,7 +141,7 @@ class Model():
 
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]
-            else:
+            elif model_name in modelLst:
                 id = 0
                 for i,j in enumerate(modelLst):
                     if modelLst[i] == model_name:
@@ -141,8 +150,12 @@ class Model():
                 modelPort = modelPath[-5:-1]
                 modelUrlPort = url+':'+modelPort
                 modelCompletePath = modelUrlPort+'/wsdl'
-                cModel = Client(modelCompletePath, location = modelUrlPort)
+
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
                 self.clientModelDct[model_name] = cModel
+            else:
+                print('Model name "'+model_name+'" is not created in RSTAB. Consider changing new_model parameter in Model class from False to True.')
+                sys.exit()
 
             if delete:
                 print('Deleting results...')
@@ -175,13 +188,14 @@ class Model():
         if isinstance(index_or_name, int):
             assert index_or_name <= len(self.clientModelDct)
             modelLs = client.service.get_model_list()
-            self.clientModelDct.pop(modelLs.name[index_or_name])
-            if len(self.clientModelDct) > 0:
-                model_key = list(self.clientModelDct)[-1]
-                self.clientModel = self.clientModelDct[model_key]
 
-            else:
-                self.clientModel = None
+            if modelLs:
+                self.clientModelDct.pop(modelLs.name[index_or_name])
+                if len(self.clientModelDct) > 0:
+                    model_key = list(self.clientModelDct)[-1]
+                    self.clientModel = self.clientModelDct[model_key]
+                else:
+                    self.clientModel = None
 
 def clearAttributes(obj):
     '''
@@ -433,6 +447,7 @@ def SetAddonStatus(modelClient, addOn = AddOn.stress_analysis_active, status = T
         structure_stability_active
         construction_stages_active
         time_dependent_active
+        influence_lines_areas_active
         form_finding_active
         cutting_patterns_active
         torsional_warping_active
@@ -450,6 +465,7 @@ def SetAddonStatus(modelClient, addOn = AddOn.stress_analysis_active, status = T
 
     Dynamic addOns list:
         modal_active
+        equivalent_lateral_forces_active
         spectral_active
         time_history_active
         pushover_active
@@ -458,6 +474,10 @@ def SetAddonStatus(modelClient, addOn = AddOn.stress_analysis_active, status = T
     Special aadOns list:
         building_model_active
         wind_simulation_active
+        tower_wizard_active
+        tower_equipment_wizard_active
+        piping_active
+        air_cushions_active
         geotechnical_analysis_active
     """
 
