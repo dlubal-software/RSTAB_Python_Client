@@ -1,6 +1,8 @@
 from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
-from RSTAB.enums import AnalysisType, ActionCategoryType
+from RSTAB.enums import AnalysisType, ActionCategoryType, ObjectTypes
 from RSTAB.LoadCasesAndCombinations.loadCasesAndCombinations import LoadCasesAndCombinations
+from RSTAB.LoadCasesAndCombinations.staticAnalysisSettings import StaticAnalysisSettings
+from RSTAB.Tools.GetObjectNumbersByType import GetObjectNumbersByType
 
 
 class LoadCase():
@@ -42,7 +44,12 @@ class LoadCase():
 
         # Analysis Type
         clientObject.analysis_type = AnalysisType.ANALYSIS_TYPE_STATIC.name
-        clientObject.static_analysis_settings = 1
+        sas = GetObjectNumbersByType(ObjectTypes.E_OBJECT_TYPE_STATIC_ANALYSIS_SETTINGS)
+        if sas:
+            clientObject.static_analysis_settings = sas[0]
+        else:
+            StaticAnalysisSettings(1)
+            clientObject.static_analysis_settings = 1
 
         # Action Category
         if action_category.name not in LoadCasesAndCombinations.getAvailableLoadActionCategoryTypes():
@@ -52,8 +59,7 @@ class LoadCase():
         # Self-weight Considerations
         clientObject.self_weight_active = self_weight[0]
         if not isinstance(self_weight[0], bool):
-            raise Exception(
-                'WARNING: Entry at index 0 of Self-Weight parameter to be of type bool')
+            raise Exception('WARNING: Entry at index 0 of Self-Weight parameter to be of type bool')
         if self_weight[0]:
             if len(self_weight) != 4:
                 raise ValueError('WARNING: Self-weight is activated and therefore requires a list definition of length 4. Kindly check list inputs for completeness and correctness.')
@@ -123,7 +129,12 @@ class LoadCase():
 
         # Analysis Type
         clientObject.analysis_type = AnalysisType.ANALYSIS_TYPE_STATIC.name
-        clientObject.static_analysis_settings = analysis_settings_no
+        sas = GetObjectNumbersByType(ObjectTypes.E_OBJECT_TYPE_STATIC_ANALYSIS_SETTINGS)
+        if analysis_settings_no in sas:
+            clientObject.static_analysis_settings = analysis_settings_no
+        else:
+            StaticAnalysisSettings(1)
+            clientObject.static_analysis_settings = 1
 
         # Action Category
         if action_category.name not in LoadCasesAndCombinations.getAvailableLoadActionCategoryTypes():
