@@ -41,11 +41,11 @@ class MemberRotationalRestraint():
             position_of_sheeting (enum): Position of Sheeting Enumeration
             continuous_beam_effect (enum): Continous Beam Effect Enumeration
             section_deformation_cdb (bool): Section Deformation Cdb Option
-            modulus_of_elasticity (float): Modulus of Elasticity
-            sheeting_thickness (float): Sheeting Thickness
-            sheeting_moment_of_inertia (float): Sheeting Moment of Inertia
-            sheeting_distance_of_ribs (float): Sheeting Distance of Ribs
-            width_of_sheeting_flange (float): Width of Sheeting Flange
+            modulus_of_elasticity (float, optional): Modulus of Elasticity
+            sheeting_thickness (float, optional): Sheeting Thickness
+            sheeting_moment_of_inertia (float, optional): Sheeting Moment of Inertia
+            sheeting_distance_of_ribs (float, optional): Sheeting Distance of Ribs
+            width_of_sheeting_flange (float, optional): Width of Sheeting Flange
             spring_stiffness (float): Spring Stiffness
             beam_spacing (float): Beam Spacing
             comment (str, optional): Comment
@@ -159,8 +159,8 @@ class MemberRotationalRestraint():
                     rotational_stiffness[1] = rotational_stiffness_value
             continous_beam_effect (enum): Continous Beam Effect Enumeration
             section_deformation_cdb (bool): Section Deformation Cdb Option
-            modulus_of_elasticity (float): Modulus of Elasticity
-            section_moment_of_inertia (float): Section Moment of Inertia
+            modulus_of_elasticity (float, optional): Modulus of Elasticity
+            section_moment_of_inertia (float, optional): Section Moment of Inertia
             purlin_spacing (float): Purlin Spacing
             beam_spacing (float): Beam Spacing
             comment (str, optional): Comment
