@@ -21,9 +21,9 @@ class LoadCase():
         Args:
             no (int): Load Case Tag
             name (str): Load Case Name
-            action_category (enum) = Action Category Type Enumeration
             self_weight (list): Self-Weight Parameters
                 self_weight = [self_weight_active, self_weight_factor_x, self_weight_factor_y, self_weight_factor_z]
+            action_category (enum) = Action Category Type Enumeration
             imperfection_case (int, optional): Assign Imperfection Case
             structure_modification (int,optional): Assign Structure Modification
             comment (str, optional): Comments
