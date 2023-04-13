@@ -49,7 +49,7 @@ class MemberRotationalRestraint():
             spring_stiffness (float): Spring Stiffness
             beam_spacing (float): Beam Spacing
             comment (str, optional): Comment
-            params (dict, optional): Parameters
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
         """
 
@@ -164,7 +164,7 @@ class MemberRotationalRestraint():
             purlin_spacing (float): Purlin Spacing
             beam_spacing (float): Beam Spacing
             comment (str, optional): Comment
-            params (dict, optional): Params
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
         """
 
@@ -252,7 +252,7 @@ class MemberRotationalRestraint():
             member_supports (str): Assigned Member Supports
             rotational_spring_stiffness (float): Rotational Spring Stiffness
             comment (str, optional): Comment
-            params (dict, optional): Params
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
         """
 
