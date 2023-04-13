@@ -34,8 +34,8 @@ class MemberShearPanel():
             member_supports (str): Assigned Member Supports
             position_on_section (enum): Member Shear Panel Position Enumeration
             girder_length_definition (list): Girder Length Definition List
-                girder_length_definition[0] (bool): Definition Option
-                girder_length_definition[1] (float): Definition Type Enumeration
+                girder_length_definition[0] (bool): Activate/Deactivate Automatically Girder Length
+                girder_length_definition[1] (float): Girder Length Value
             sheeting_name (str): Sheeting Name
             fastening_arrangement (enum): Fastening Arrangement Enumeration
             panel_length (float): Panel Length
@@ -130,7 +130,7 @@ class MemberShearPanel():
                 number_of_bracings: int = 2,
                 diagonals_section_area: float = None,
                 posts_section_area: float = None,
-                position_on_section_value: float = 1.0,
+                position_on_section_value: float = None,
                 comment: str = '',
                 params: dict = None,
                 model = Model):
@@ -146,8 +146,8 @@ class MemberShearPanel():
             member_supports (str): Assigned Member Supports
             position_on_section (enum): Member Shear Panel Position Enumeration
             girder_length_definition (list): Girder Length Definition List
-                girder_length_definition[0] (bool): Definition Option
-                girder_length_definition[1] (float): Definition Type Enumeration
+                girder_length_definition[0] (bool): Activate/Deactivate Automatically Girder Length
+                girder_length_definition[1] (float): Girder Length Value
             material_name (str): Material Name
             diagonal_section (str): Diagonal Section
             posts_section (str): Posts Section
@@ -249,7 +249,7 @@ class MemberShearPanel():
                     position_on_section = MemberShearPanelPositionOnSection.POSITION_ON_UPPER_FLANGE,
                     girder_length_definition: list = [True],
                     shear_panel_stiffness: float = 1000.0,
-                    position_on_section_value: float = 1.0,
+                    position_on_section_value: float = None,
                     comment: str = '',
                     params: dict = None,
                     model = Model):
@@ -265,8 +265,8 @@ class MemberShearPanel():
             member_supports (str): Assigned Member Supports
             position_on_section (enum): Position on Section Enumeration
             girder_length_definition (list): Girder Length Definition List
-                girder_length_definition[0] (bool): Definition Option
-                girder_length_definition[1] (float): Definition Type Enumeration
+                girder_length_definition[0] (bool): Activate/Deactivate Automatically Girder Length
+                girder_length_definition[1] (float): Girder Length Value
             shear_panel_stiffness (float): Shear Panel Stiffness
             position_on_section_value (float): Position on Section Value
                 only for position_on_section == MemberShearPanelPositionOnSection.POSITION_DEFINE
@@ -346,7 +346,7 @@ class MemberShearPanel():
                     number_of_bracing: int = 2,
                     diagonals_section_area: float = None,
                     posts_section_area: float = None,
-                    position_on_section_value = 1.0,
+                    position_on_section_value: float = None,
                     comment: str = '',
                     params: dict = None,
                     model = Model):
@@ -369,8 +369,8 @@ class MemberShearPanel():
             modulus_of_elasticity (float, optional): Modulus of Elasticity
             panel_length (float): Panel Length
             girder_length_definition (list): Girder Length Definition List
-                girder_length_definition[0] (bool): Definition Option
-                girder_length_definition[1] (enum): Definition Type Enumeration
+                girder_length_definition[0] (bool): Activate/Deactivate Automatically Girder Length
+                girder_length_definition[1] (float): Girder Length Value
             beam_spacing (float): Beam Spacing
             coefficient_k1 (float, optional): Coefficient K1
             coefficient_k2 (float, optional): Coefficient K2

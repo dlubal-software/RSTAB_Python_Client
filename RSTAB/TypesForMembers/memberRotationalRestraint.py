@@ -156,7 +156,7 @@ class MemberRotationalRestraint():
                 if rotational_stiffness[0] == MemberRotationalRestraintRotationalStiffness.ROTATIONAL_STIFFNESS_INFINITELY:
                     pass
                 elif rotational_stiffness[0] == MemberRotationalRestraintRotationalStiffness.ROTATIONAL_STIFFNESS_MANUALLY:
-                    rotational_stiffness[1] = rotational_stiffness_value
+                    rotational_stiffness[1] (float): Rotational Stiffness Value
             continous_beam_effect (enum): Continous Beam Effect Enumeration
             section_deformation_cdb (bool): Section Deformation Cdb Option
             modulus_of_elasticity (float, optional): Modulus of Elasticity
