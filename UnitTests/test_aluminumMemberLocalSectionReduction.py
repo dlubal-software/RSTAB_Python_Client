@@ -7,14 +7,11 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import AluminumMemberLocalSectionReductionType, FastenerDefinitionType, MultipleOffsetDefinitionType
-from RSTAB.initModel import Model
+from RSTAB.initModel import Model, AddOn, SetAddonStatus
 from RSTAB.TypesForAluminumDesign.aluminumMemberLocalSectionReduction import AluminumMemberLocalSectionReduction
-from RSTAB.initModel import AddOn, SetAddonStatus
-
 
 if Model.clientModel is None:
     Model()
-
 
 def test_AluminumMemberLocalSectionReduction():
 

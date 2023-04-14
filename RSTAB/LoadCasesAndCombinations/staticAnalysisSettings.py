@@ -56,7 +56,7 @@ class StaticAnalysisSettings():
                   name: str = None,
                   load_modification = [False, 1, False],
                   bourdon_effect: bool = False,
-                  mass_conversion = [False, 0, 0, 0],
+                  mass_conversion: list = [False, 0, 0, 0],
                   comment: str = '',
                   params: dict = None,
                   model = Model):
@@ -174,8 +174,7 @@ class StaticAnalysisSettings():
         clientObject.displacements_due_to_bourdon_effect = bourdon_effect
 
         # Iterative Method
-        # TODO: bug 32711
-        #clientObject.iterative_method_for_nonlinear_analysis = iterative_method.name
+        clientObject.iterative_method_for_nonlinear_analysis = iterative_method.name
 
         clientObject.max_number_of_iterations = max_number_of_iterations
         clientObject.number_of_load_increments = number_of_load_increments
