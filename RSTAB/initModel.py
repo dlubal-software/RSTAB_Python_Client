@@ -618,7 +618,7 @@ def GetModelMainParameters(model = Model):
     The method returns the main parameters of the current model.
 
     Args:
-        model (RFEM Class, optional): Model to be edited
+        model (RSTAB Class, optional): Model to be edited
     '''
 
     # Client Model | Get Model Main Parameters
@@ -629,7 +629,7 @@ def GetModelId(model = Model):
     This method returns model id as a string.
 
     Args:
-        model (RFEM Class, optional): Model to be edited
+        model (RSTAB Class, optional): Model to be edited
     '''
 
     # Client Model | Get Model ID
@@ -640,7 +640,7 @@ def GetModelParameters(model = Model):
     This method retuns the parameters of the current model.
 
     Args:
-        model (RFEM Class, optional): Model to be edited
+        model (RSTAB Class, optional): Model to be edited
     '''
 
     # Client Model | Get Model Parameters
@@ -651,7 +651,7 @@ def GetModelSessionId(model = Model):
     This method returns model session id as a string.
 
     Args:
-        model (RFEM Class, optional): Model to be edited
+        model (RSTAB Class, optional): Model to be edited
     '''
 
     # Client Model | Get Session Id

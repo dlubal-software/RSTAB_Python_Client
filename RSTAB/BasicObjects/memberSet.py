@@ -147,7 +147,7 @@ class MemberSet():
         '''
         Args:
             obejct_index (int): Member Set Index
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
 
         # Get Member Set from client model

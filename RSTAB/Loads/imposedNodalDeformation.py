@@ -1,4 +1,4 @@
-from RFEM.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
 
 class ImposedNodalDeformation():
 

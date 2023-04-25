@@ -64,7 +64,7 @@ class Material():
         '''
         Args:
             obejct_index (int): Material Index
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
 
         # Get Material from client model

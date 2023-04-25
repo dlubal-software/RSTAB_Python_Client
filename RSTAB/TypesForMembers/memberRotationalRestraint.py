@@ -30,9 +30,9 @@ class MemberRotationalRestraint():
             no (int): Member Rotational Restraint Tag
             name (str): Member Shear Panel Name
                 if name == '':
-                    user_defined_name = False (Automatic Name Assignment)
+                    name = False (Automatic Name Assignment)
                 else:
-                    user_defined_name = name
+                    name = name
             member_supports (str): Assigned Member Supports
             sheeting_material (str): Sheeting Material
             sheeting_name (str): Sheeting Material
@@ -141,9 +141,9 @@ class MemberRotationalRestraint():
             no (int): Member Rotational Restraint Tag
             name (str): Member Shear Panel Name
                 if name == '':
-                    user_defined_name = False (Automatic Name Assignment)
+                    name = False (Automatic Name Assignment)
                 else:
-                    user_defined_name = name
+                    name = name
             member_supports (str): Assigned Member Supports
             section_material (str): Section Material
             section_name (str): Section Name
@@ -238,9 +238,9 @@ class MemberRotationalRestraint():
             no (int): Member Rotational Restraint Tag
             name (str): Member Shear Panel Name
                 if name == '':
-                    user_defined_name = False (Automatic Name Assignment)
+                    name = False (Automatic Name Assignment)
                 else:
-                    user_defined_name = name
+                    name = name
             member_supports (str): Assigned Member Supports
             rotational_spring_stiffness (float): Rotational Spring Stiffness
             comment (str, optional): Comment

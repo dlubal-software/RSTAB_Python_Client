@@ -44,7 +44,7 @@ class Note():
             show_comment (bool): Enable/disable Show Comment
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
 
         # Client model | Node

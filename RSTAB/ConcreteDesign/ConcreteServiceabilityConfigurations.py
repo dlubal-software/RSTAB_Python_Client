@@ -8,9 +8,6 @@ class ConcreteServiceabilityConfiguration():
                 name: str = 'SLS',
                 members: str = 'All',
                 member_sets: str = 'All',
-                surfaces: str = 'All',
-                surface_sets: str = 'All',
-                nodes: str = '',
                 comment: str = '',
                 params: dict = None,
                 model = Model):
@@ -20,9 +17,6 @@ class ConcreteServiceabilityConfiguration():
             name (str): User Defined Name
             members (str): Assigned Members
             member_sets (str): Assigned Member Sets
-            surfaces (str): Assigned Surfaces
-            surface_sets (str): Assigned Surface Sets
-            nodes (str): Assigned Nodes
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
@@ -57,25 +51,6 @@ class ConcreteServiceabilityConfiguration():
         else:
             clientObject.assigned_to_all_member_sets = False
             clientObject.assigned_to_member_sets = ConvertToDlString(member_sets)
-
-        # Assigned Surfaces
-        if surfaces == 'All':
-            clientObject.assigned_to_all_surfaces = True
-
-        else:
-            clientObject.assigned_to_all_surfaces = False
-            clientObject.assigned_to_surfaces = ConvertToDlString(surfaces)
-
-        # Assigned Surface Sets
-        if surface_sets == 'All':
-            clientObject.assigned_to_all_surface_sets = True
-
-        else:
-            clientObject.assigned_to_all_surface_sets = False
-            clientObject.assigned_to_surface_sets = ConvertToDlString(surface_sets)
-
-        # Assinged Nodes
-        clientObject.assigned_to_nodes = ConvertToDlString(nodes)
 
         # Comment
         clientObject.comment = comment

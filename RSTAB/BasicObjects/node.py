@@ -310,7 +310,7 @@ class Node():
 
         # Delete None attributes for improved performance
         deleteEmptyAttributes(clientObject)
-        
+
         # Add Node to client model
         model.clientModel.service.set_node(clientObject)
 
@@ -401,7 +401,7 @@ class Node():
         '''
         Args:
             obejct_index (int): Node Index
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
 
         # Get Node from client model

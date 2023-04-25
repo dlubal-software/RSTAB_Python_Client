@@ -37,7 +37,7 @@ class SteelMemberLocalSectionReduction():
                         components[i][7] (float): Multiple Offset Value
                     for components[i][6] == MultipleOffsetDefinitionType.OFFSET_DEFINITION_TYPE_RELATIVE;
                         components[i][7] (float): Multiple Offset Value (value must be between 0.0 and 1.0)
-            user_defined_name (str): User Defined  Member Local Section Reduction Name
+            name (str): User Defined  Member Local Section Reduction Name
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited

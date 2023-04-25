@@ -68,7 +68,7 @@ class Section():
         '''
         Args:
             obejct_index (int): Section Index
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
 
         # Get Section from client model

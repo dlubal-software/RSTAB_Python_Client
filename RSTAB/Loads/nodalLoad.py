@@ -93,8 +93,6 @@ class NodalLoad():
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_DIRECTED_TO_NODE, nodes_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_TWO_NODES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, nodes_no]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For force_eccentricity;
@@ -158,9 +156,6 @@ class NodalLoad():
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES:
                 clientObject.parallel_to_two_nodes_first_node = params_s[1]
                 clientObject.parallel_to_two_nodes_second_node = params_s[2]
-
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
 
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]
@@ -239,8 +234,6 @@ class NodalLoad():
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_DIRECTED_TO_NODE, nodes_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_TWO_NODES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, nodes_no]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For shifted_display;
@@ -298,9 +291,6 @@ class NodalLoad():
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES:
                 clientObject.parallel_to_two_nodes_first_node = params_s[1]
                 clientObject.parallel_to_two_nodes_second_node = params_s[2]
-
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
 
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]
@@ -361,8 +351,6 @@ class NodalLoad():
             params (dict, optional):
                 For specific_direction type DIRECTION_TYPE_ROTATED_VIA_3_ANGLES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_ROTATED_VIA_3_ANGLES, NodalLoadAxesSequence, angle_1, angle_2, angle_3, angle_x, angle_y, angle_z]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For force_eccentricity;
@@ -426,9 +414,6 @@ class NodalLoad():
                 clientObject.rotated_about_angle_x = params_s[5]
                 clientObject.rotated_about_angle_y = params_s[6]
                 clientObject.rotated_about_angle_z = params_s[7]
-
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
 
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]

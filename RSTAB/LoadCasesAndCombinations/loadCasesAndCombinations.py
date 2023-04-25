@@ -17,6 +17,7 @@ class LoadCasesAndCombinations():
         """
         Args:
             params(dict, optional): Combination Wizard Parameters
+            model (RSTAB Class, optional): Model to be edited
 
                         National Annex                                      Codes
                        ----------------                                     -----

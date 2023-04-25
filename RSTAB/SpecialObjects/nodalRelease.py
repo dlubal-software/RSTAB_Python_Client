@@ -23,7 +23,7 @@ class NodalRelease():
             deactivate_release (bool): Deactivate Release
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         '''
         # Client model | Node
         clientObject = model.clientModel.factory.create('ns0:nodal_release')
