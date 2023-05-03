@@ -17,7 +17,6 @@ class ConcreteUltimateConfiguration():
             name (str): User Defined Name
             members (str): Assigned Members
             member_sets (str): Assigned Member Sets
-            nodes (str): Assigned Nodes
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited

@@ -12,12 +12,12 @@ class NodalReleaseType():
                  rotational_release_mt: float = inf,
                  rotational_release_my: float = 0.0,
                  rotational_release_mz: float = 0.0,
-                 translational_release_n_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
-                 translational_release_vy_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
-                 translational_release_vz_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
-                 rotational_release_mt_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
-                 rotational_release_my_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
-                 rotational_release_mz_nonlinearity = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 translational_release_n_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 translational_release_vy_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 translational_release_vz_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 rotational_release_mt_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 rotational_release_my_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
+                 rotational_release_mz_nonlinearity: list = [NodalReleaseTypeReleaseNonlinearity.NONLINEARITY_TYPE_NONE],
                  local_axis_system = NodalReleaseTypeLocalAxisSystemObjectType.LOCAL_AXIS_SYSTEM_OBJECT_TYPE_MEMBER,
                  local_axis_system_reference_object: int = 1,
                  name: str = None,
@@ -29,6 +29,12 @@ class NodalReleaseType():
          Args:
             no (int): Nodal Release Type Tag
             coordinate_system (str/int): Coordinate System Selection
+            translational_release_n (float): Translational Spring Constant X
+            translational_release_vy (float): Translational Spring Constant Y
+            translational_release_vz (float): Translational Spring Constant Z
+            rotational_release_mt (float): Rotational Spring Constant X
+            rotational_release_my (float): Rotational Spring Constant Y
+            rotational_release_mz (float): Rotational Spring Constant Z
             translational_release_n_nonlinearity (list/list of lists): Nonlinearity Parameter for Translation Release along X Direction
             translational_release_vy_nonlinearity (list/list of lists): Nonlinearity Parameter for Translation Release along Y Direction
             translational_release_vz_nonlinearity (list/list of lists): Nonlinearity Parameter for Translation Release along Z Direction

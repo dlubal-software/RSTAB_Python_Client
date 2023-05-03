@@ -130,7 +130,7 @@ class StaticAnalysisSettings():
                   number_of_load_increments: float = 1,
                   load_modification: list = [False, 1, False],
                   bourdon_effect: bool = True,
-                  mass_conversion = [False, 0, 0, 1],
+                  mass_conversion: list = [False, 0, 0, 1],
                   comment: str = '',
                   params: dict = {'save_results_of_all_load_increments': False},
                   model = Model):
@@ -224,8 +224,8 @@ class StaticAnalysisSettings():
                   precision_of_convergence_criteria_for_nonlinear_calculation: float = 0,
                   favorable_effect_due_to_tension_in_members : bool = False,
                   bourdon_effect: bool = True,
-                  internal_forces_to_deformed_structure = [True, True, True, True],
-                  mass_conversion = [False, 0, 0, 1],
+                  internal_forces_to_deformed_structure: list = [True, True, True, True],
+                  mass_conversion: list = [False, 0, 0, 1],
                   comment: str = '',
                   params: dict = None,
                   model = Model):
