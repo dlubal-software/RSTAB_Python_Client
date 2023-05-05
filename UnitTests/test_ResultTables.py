@@ -8,7 +8,6 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.initModel import Model
 from RSTAB.enums import CaseObjectType
 from RSTAB.Results.resultTables import ResultTables
-import pytest
 
 if Model.clientModel is None:
     Model()
@@ -21,7 +20,6 @@ def test_result_tables():
     assert Model.clientModel.service.has_any_results()
 
     # CO1
-
     assert ResultTables.MembersGlobalDeformations(CaseObjectType.E_OBJECT_TYPE_LOAD_COMBINATION, 1, 3)
     assert ResultTables.MembersInternalForces(CaseObjectType.E_OBJECT_TYPE_LOAD_COMBINATION, 1, 2)
     assert not ResultTables.MembersInternalForcesBySection(CaseObjectType.E_OBJECT_TYPE_LOAD_COMBINATION, 1, 2)

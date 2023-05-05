@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, ConvertToDlString, deleteEmptyAttributes
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
 from RSTAB.enums import AluminumEffectiveLengthsDeterminationMcrEurope
 
 class AluminumEffectiveLengths():

@@ -23,7 +23,7 @@ class LoadCase():
             name (str): Load Case Name
             self_weight (list): Self-Weight Parameters
                 self_weight = [self_weight_active, self_weight_factor_x, self_weight_factor_y, self_weight_factor_z]
-            action_category (enum) = Action Category Type Enumeration
+            action_category (enum): Action Category Type Enumeration
             imperfection_case (int, optional): Assign Imperfection Case
             structure_modification (int,optional): Assign Structure Modification
             comment (str, optional): Comments
@@ -63,7 +63,7 @@ class LoadCase():
         # Self-weight Considerations
         clientObject.self_weight_active = self_weight[0]
         if not isinstance(self_weight[0], bool):
-            raise Exception('WARNING: Entry at index 0 of Self-Weight parameter to be of type bool')
+            raise ValueError('WARNING: Entry at index 0 of Self-Weight parameter to be of type bool')
         if self_weight[0]:
             if len(self_weight) != 4:
                 raise ValueError('WARNING: Self-weight is activated and therefore requires a list definition of length 4. Kindly check list inputs for completeness and correctness.')

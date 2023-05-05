@@ -143,7 +143,7 @@ class Member():
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
                 params = {'member_hinge_start':, 'member_hinge_end': , 'member_eccentricity_start': ,
-                          'member_eccentricity_end': , 'support':, 'member_nonlinearity': ,
+                          'member_eccentricity_end': 0, 'support':0, 'member_nonlinearity': 0,
                           'end_modifications_member_start_extension': , 'end_modifications_member_start_slope_y': ,
                           'end_modifications_member_start_slope_z': , 'end_modifications_member_end_extension': ,
                           'end_modifications_member_end_slope_y': , 'end_modifications_member_end_slope_z': ,
@@ -1677,3 +1677,15 @@ class Member():
         # Delete from client model
         for member in ConvertStrToListOfInt(members_no):
             model.clientModel.service.delete_object(ObjectTypes.E_OBJECT_TYPE_MEMBER.name, member)
+
+    @staticmethod
+    def GetMember(object_index: int = 1, model = Model):
+
+        '''
+        Args:
+            obejct_index (int): Member Index
+            model (RSTAB Class, optional): Model to be edited
+        '''
+
+        # Get Member from client model
+        return model.clientModel.service.get_member(object_index)

@@ -37,7 +37,7 @@ class SteelMemberLocalSectionReduction():
                         components[i][7] (float): Multiple Offset Value
                     for components[i][6] == MultipleOffsetDefinitionType.OFFSET_DEFINITION_TYPE_RELATIVE;
                         components[i][7] (float): Multiple Offset Value (value must be between 0.0 and 1.0)
-            user_defined_name (str): User Defined  Member Local Section Reduction Name
+            name (str): User Defined  Member Local Section Reduction Name
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
@@ -49,27 +49,28 @@ class SteelMemberLocalSectionReduction():
         # Clears object atributes | Sets all atributes to None
         clearAttributes(clientObject)
 
-        #Local Section Reduction No.
+        # Local Section Reduction No.
         clientObject.no = no
 
-        #Local Section Reduction Assigned Members
+        # Local Section Reduction Assigned Members
         clientObject.members = ConvertToDlString(members)
 
-        #Local Section Reduction Assigned Member Sets
+        # Local Section Reduction Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets)
 
-        #Local Section Reduction User defined Name
+        # Local Section Reduction User defined Name
         if user_defined_name:
             clientObject.user_defined_name_enabled = True
             clientObject.name = user_defined_name
 
-        #Local Section Reduction Components
+        # Local Section Reduction Components
         clientObject.components = model.clientModel.factory.create('ns0:array_of_steel_member_local_section_reduction_components')
 
         for i,j in enumerate(components):
             smlsr = model.clientModel.factory.create('ns0:steel_member_local_section_reduction_components_row')
-            clearAttributes(smlsr.row)
             smlsr.no = i+1
+            smlsr.row = model.clientModel.factory.create('ns0:steel_member_local_section_reduction_components')
+            clearAttributes(smlsr.row)
             smlsr.row.reduction_type = components[i][0].name
             smlsr.row.position = components[i][1]
             smlsr.row.multiple = components[i][2]

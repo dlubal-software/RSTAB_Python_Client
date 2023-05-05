@@ -1,5 +1,4 @@
 from RSTAB.initModel import Model, clearAttributes
-from enum import Enum
 
 class LoadCasesAndCombinations():
 
@@ -18,6 +17,7 @@ class LoadCasesAndCombinations():
         """
         Args:
             params(dict, optional): Combination Wizard Parameters
+            model (RSTAB Class, optional): Model to be edited
 
                         National Annex                                      Codes
                        ----------------                                     -----

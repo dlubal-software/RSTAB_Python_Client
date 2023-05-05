@@ -54,9 +54,9 @@ class StaticAnalysisSettings():
     def GeometricallyLinear(
                   no: int = 1,
                   name: str = None,
-                  load_modification = [False, 1, False],
+                  load_modification: list = [False, 1, False],
                   bourdon_effect: bool = False,
-                  mass_conversion = [False, 0, 0, 0],
+                  mass_conversion: list = [False, 0, 0, 0],
                   comment: str = '',
                   params: dict = None,
                   model = Model):
@@ -69,9 +69,9 @@ class StaticAnalysisSettings():
                 load_modification = [loading_by_multiplier_factor, multiplier_factor, dividing_results]
             mass_conversion (list): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
-            comment (str): Comments
-            params (dict): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RSTAB Class): Model to be edited
+            comment (str, optional): Comments
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
+            model (RSTAB Class, optional): Model to be edited
         """
 
         # Client model
@@ -128,9 +128,9 @@ class StaticAnalysisSettings():
                   precision_of_convergence_criteria_for_nonlinear_calculation: float = 0,
                   max_number_of_iterations: float = 100,
                   number_of_load_increments: float = 1,
-                  load_modification = [False, 1, False],
+                  load_modification: list = [False, 1, False],
                   bourdon_effect: bool = True,
-                  mass_conversion = [False, 0, 0, 1],
+                  mass_conversion: list = [False, 0, 0, 1],
                   comment: str = '',
                   params: dict = {'save_results_of_all_load_increments': False},
                   model = Model):
@@ -148,9 +148,9 @@ class StaticAnalysisSettings():
             bourdon_effect (bool): Bourdon Effect Boolean
             mass_conversion (list): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
-            comment (str): Comments
-            params (dict): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RSTAB Class): Model to be edited
+            comment (str, optional): Comments
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
+            model (RSTAB Class, optional): Model to be edited
         """
 
         # Client model
@@ -174,8 +174,7 @@ class StaticAnalysisSettings():
         clientObject.displacements_due_to_bourdon_effect = bourdon_effect
 
         # Iterative Method
-        # TODO: bug 32711
-        #clientObject.iterative_method_for_nonlinear_analysis = iterative_method.name
+        clientObject.iterative_method_for_nonlinear_analysis = iterative_method.name
 
         clientObject.max_number_of_iterations = max_number_of_iterations
         clientObject.number_of_load_increments = number_of_load_increments
@@ -221,12 +220,12 @@ class StaticAnalysisSettings():
                   name: str = None,
                   max_number_of_iterations: int = 100,
                   number_of_load_increments: int = 1,
-                  load_modification = [False, 0, False],
+                  load_modification: list = [False, 0, False],
                   precision_of_convergence_criteria_for_nonlinear_calculation: float = 0,
                   favorable_effect_due_to_tension_in_members : bool = False,
                   bourdon_effect: bool = True,
-                  internal_forces_to_deformed_structure = [True, True, True, True],
-                  mass_conversion = [False, 0, 0, 1],
+                  internal_forces_to_deformed_structure: list = [True, True, True, True],
+                  mass_conversion: list = [False, 0, 0, 1],
                   comment: str = '',
                   params: dict = None,
                   model = Model):
@@ -245,9 +244,9 @@ class StaticAnalysisSettings():
                 internal_forces_to_deformed_structure = [refer_internal_forces_to_deformed_structure, internal_forces_to_deformed_structure_for_moments, internal_forces_to_deformed_structure_for_normal_forces, internal_forces_to_deformed_structure_for_shear_forces]
             mass_conversion (list): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
-            comment (str): Comments
-            params (dict): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RSTAB Class): Model to be edited
+            comment (str, optional): Comments
+            params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
+            model (RSTAB Class, optional): Model to be edited
         """
 
         # Client model

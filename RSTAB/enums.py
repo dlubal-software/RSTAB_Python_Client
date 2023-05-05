@@ -40,6 +40,20 @@ class WeldType(Enum):
     WELD_SINGLE_FILLET, WELD_SINGLE_J, WELD_SINGLE_SQUARE, WELD_SINGLE_U, WELD_SINGLE_V, WELD_V_AND_FILLET = range(15)
 
 
+class WeldComponentType(Enum):
+    '''
+    Aluminum Member Transverse Weld Component | Enum
+    '''
+    WELD_COMPONENT_TYPE_BUTT, WELD_COMPONENT_TYPE_FILLET = range(2)
+
+
+class WeldingMethod(Enum):
+    '''
+    Aluminum Member Transverse Weld Welding Method | Enum
+    '''
+    WELDING_METHOD_TIG, WELDING_METHOD_MIG = range(2)
+
+
 class WeldLongitudalArrangement(Enum):
     """
     Weld Longitudat Arrangement Type | Enum
@@ -239,7 +253,7 @@ class NodalLoadSpecificDirectionType(Enum):
     '''
     Nodal Load Specific Direction Type
     '''
-    DIRECTION_TYPE_DIRECTED_TO_NODE, DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, DIRECTION_TYPE_ROTATED_VIA_3_ANGLES = range(5)
+    DIRECTION_TYPE_DIRECTED_TO_NODE, DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, DIRECTION_TYPE_ROTATED_VIA_3_ANGLES = range(4)
 
 
 class NodalLoadAxesSequence(Enum):
@@ -832,7 +846,8 @@ class StabilityAnalysisSettingsEigenvalueMethod(Enum):
     '''
     Stability Analysis Settings Eigenvalue Method | Enum
     '''
-    EIGENVALUE_METHOD_SUBSPACE_ITERATION, E_EIGENVALUE_METHOD_SHIFTED_INVERSE_POWER_METHOD = range(2)
+    EIGENVALUE_METHOD_ICG_ITERATION, EIGENVALUE_METHOD_LANCZOS, EIGENVALUE_METHOD_ROOTS_OF_CHARACTERISTIC_POLYNOMIAL, \
+    EIGENVALUE_METHOD_SUBSPACE_ITERATION, EIGENVALUE_METHOD_SHIFTED_INVERSE_POWER_METHOD = range(5)
 
 
 class StabilityAnalysisSettingsMatrixType(Enum):
@@ -862,8 +877,7 @@ class ObjectTypes(Enum):
     '''
     Object Types
     '''
-    E_OBJECT_TYPE_ACTION, E_OBJECT_TYPE_ACTION_COMBINATION, E_OBJECT_TYPE_ALUMINUM_EFFECTIVE_LENGTHS, E_OBJECT_TYPE_ALUMINUM_MEMBER_LOCAL_SECTION_REDUCTION, \
-    E_OBJECT_TYPE_ALUMINUM_MEMBER_ROTATIONAL_RESTRAINT, E_OBJECT_TYPE_ALUMINUM_MEMBER_SHEAR_PANEL, E_OBJECT_TYPE_ALUMINUM_MEMBER_TRANSVERSE_WELD, E_OBJECT_TYPE_BOREHOLE, \
+    E_OBJECT_TYPE_ACTION, E_OBJECT_TYPE_ACTION_COMBINATION, E_OBJECT_TYPE_ALUMINUM_EFFECTIVE_LENGTHS, E_OBJECT_TYPE_ALUMINUM_MEMBER_LOCAL_SECTION_REDUCTION, E_OBJECT_TYPE_ALUMINUM_MEMBER_TRANSVERSE_WELD, E_OBJECT_TYPE_BOREHOLE, \
     E_OBJECT_TYPE_BUILDING_STORY, E_OBJECT_TYPE_CLIPPING_BOX, E_OBJECT_TYPE_CLIPPING_PLANE, E_OBJECT_TYPE_COMBINATION_WIZARD, E_OBJECT_TYPE_CONSTRUCTION_STAGE,  \
     E_OBJECT_TYPE_COORDINATE_SYSTEM, E_OBJECT_TYPE_DESIGN_SITUATION, E_OBJECT_TYPE_DESIGN_SUPPORT, E_OBJECT_TYPE_DIMENSION, E_OBJECT_TYPE_DXF_FILE_MODEL_OBJECT,  \
     E_OBJECT_TYPE_DXF_MODEL_OBJECT, E_OBJECT_TYPE_FREE_CIRCULAR_LOAD, E_OBJECT_TYPE_FREE_CONCENTRATED_LOAD, E_OBJECT_TYPE_FREE_LINE_LOAD, E_OBJECT_TYPE_FREE_POLYGON_LOAD,  \
@@ -878,13 +892,13 @@ class ObjectTypes(Enum):
     E_OBJECT_TYPE_RESULT_COMBINATION, E_OBJECT_TYPE_RESULT_SECTION, E_OBJECT_TYPE_RIGID_LINK, E_OBJECT_TYPE_SECTION, E_OBJECT_TYPE_SOIL_MASSIF, E_OBJECT_TYPE_SOLID, E_OBJECT_TYPE_SOLID_CONTACTS, \
     E_OBJECT_TYPE_SOLID_GAS, E_OBJECT_TYPE_SOLID_LOAD, E_OBJECT_TYPE_SOLID_MESH_REFINEMENT, E_OBJECT_TYPE_SOLID_SET, E_OBJECT_TYPE_SOLID_SET_LOAD, E_OBJECT_TYPE_SPECTRAL_ANALYSIS_SETTINGS, \
     E_OBJECT_TYPE_STABILITY_ANALYSIS_SETTINGS, E_OBJECT_TYPE_STATIC_ANALYSIS_SETTINGS, E_OBJECT_TYPE_STEEL_BOUNDARY_CONDITIONS, E_OBJECT_TYPE_STEEL_EFFECTIVE_LENGTHS, \
-    E_OBJECT_TYPE_STEEL_MEMBER_LOCAL_SECTION_REDUCTION, E_OBJECT_TYPE_STEEL_MEMBER_ROTATIONAL_RESTRAINT, E_OBJECT_TYPE_STEEL_MEMBER_SHEAR_PANEL, E_OBJECT_TYPE_STRUCTURE_MODIFICATION, \
+    E_OBJECT_TYPE_STEEL_MEMBER_LOCAL_SECTION_REDUCTION, E_OBJECT_TYPE_STRUCTURE_MODIFICATION, \
     E_OBJECT_TYPE_SURFACE, E_OBJECT_TYPE_SURFACES_CONTACT, E_OBJECT_TYPE_SURFACES_CONTACT_TYPE, E_OBJECT_TYPE_SURFACE_ECCENTRICITY, E_OBJECT_TYPE_SURFACE_IMPERFECTION, E_OBJECT_TYPE_SURFACE_LOAD, \
     E_OBJECT_TYPE_SURFACE_MESH_REFINEMENT, E_OBJECT_TYPE_SURFACE_RESULTS_ADJUSTMENT, E_OBJECT_TYPE_SURFACE_SET, E_OBJECT_TYPE_SURFACE_SET_IMPERFECTION, E_OBJECT_TYPE_SURFACE_SET_LOAD, \
     E_OBJECT_TYPE_SURFACE_STIFFNESS_MODIFICATION, E_OBJECT_TYPE_SURFACE_SUPPORT, E_OBJECT_TYPE_TERRAIN, E_OBJECT_TYPE_THICKNESS, E_OBJECT_TYPE_TIMBER_EFFECTIVE_LENGTHS, \
-    E_OBJECT_TYPE_TIMBER_MEMBER_LOCAL_SECTION_REDUCTION, E_OBJECT_TYPE_TIMBER_MEMBER_ROTATIONAL_RESTRAINT, E_OBJECT_TYPE_TIMBER_MEMBER_SHEAR_PANEL, E_OBJECT_TYPE_TIMBER_MOISTURE_CLASS, \
-    E_OBJECT_TYPE_TIMBER_SERVICE_CLASS, E_OBJECT_TYPE_TIMBER_SERVICE_CONDITIONS, E_OBJECT_TYPE_VISUAL_OBJECT, E_OBJECT_TYPE_WIND_PROFILE, E_OBJECT_TYPE_WIND_SIMULATION, E_OBJECT_TYPE_WIND_SIMULATION_ANALYSIS_SETTINGS = range(115)
-
+    E_OBJECT_TYPE_TIMBER_MEMBER_LOCAL_SECTION_REDUCTION, E_OBJECT_TYPE_TIMBER_MOISTURE_CLASS, \
+    E_OBJECT_TYPE_TIMBER_SERVICE_CLASS, E_OBJECT_TYPE_TIMBER_SERVICE_CONDITIONS, E_OBJECT_TYPE_VISUAL_OBJECT, E_OBJECT_TYPE_WIND_PROFILE, E_OBJECT_TYPE_WIND_SIMULATION, E_OBJECT_TYPE_WIND_SIMULATION_ANALYSIS_SETTINGS,\
+    E_OBJECT_TYPE_RESPONSE_SPECTRUM, E_OBJECT_TYPE_MEMBER_ROTATIONAL_RESTRAINT, E_OBJECT_TYPE_MEMBER_SHEAR_PANEL = range(112)
 
 class export_to_ifc_axis_rotation_sequence_type(Enum):
     '''
@@ -1125,7 +1139,7 @@ class ModalSolutionMethod(Enum):
     '''
     Modal Analysis Settings Solution Method
     '''
-    METHOD_ICG_ITERATION, METHOD_LANCZOS, METHOD_ROOT_OF_CHARACTERISTIC_POLYNOMIAL, METHOD_SUBSPACE_ITERATION, SOLUTION_METHOD_SHIFTED_INVERSE_POWER_METHOD = range(5)
+    METHOD_LANCZOS, METHOD_ROOT_OF_CHARACTERISTIC_POLYNOMIAL, METHOD_SHIFTED_INVERSE_POWER_METHOD, METHOD_SUBSPACE_ITERATION = range(4)
 
 
 class ModalMassConversionType(Enum):
@@ -1524,9 +1538,9 @@ class AddOn(Enum):
     stress_analysis_active, concrete_design_active, steel_design_active, timber_design_active, aluminum_design_active, \
     steel_joints_active, timber_joints_active, craneway_design_active, masonry_design_active, multilayer_surfaces_design_active, \
     material_nonlinear_analysis_active, structure_stability_active, construction_stages_active, time_dependent_active, \
-    form_finding_active, cutting_patterns_active, torsional_warping_active, cost_estimation_active, modal_active, spectral_active, \
-    time_history_active, pushover_active, harmonic_response_active, building_model_active, wind_simulation_active, \
-    geotechnical_analysis_active = range(26)
+    influence_lines_areas_active, form_finding_active, cutting_patterns_active, torsional_warping_active, cost_estimation_active, modal_active, equivalent_lateral_forces_active, spectral_active, \
+    time_history_active, pushover_active, harmonic_response_active, building_model_active, wind_simulation_active, tower_wizard_active, tower_equipment_wizard_active, piping_active, air_cushions_active,\
+    geotechnical_analysis_active = range(32)
 
 
 class IFCExportType(Enum):
@@ -1668,48 +1682,6 @@ class AluminumEffectiveLengthsDeterminationMcrEurope(Enum):
     '''
     DETERMINATION_EUROPE_EIGENVALUE, DETERMINATION_EUROPE_USER_DEFINED = range(2)
 
-class AluminumMemberRotationalRestraintType(Enum):
-    '''
-    Aluminum Member Rotational Restraint Type
-    '''
-    TYPE_CONTINUOUS, TYPE_DISCRETE, TYPE_MANUALLY = range(3)
-
-class AluminumMemberRotationalRestraintContinuousBeamEffect(Enum):
-    '''
-    Aluminum Member Rotational Restraint Continuous Beam Effect
-    '''
-    CONTINUOUS_BEAM_EFFECT_END_PANEL, CONTINUOUS_BEAM_EFFECT_INTERNAL_PANEL = range(2)
-
-class AluminumMemberRotationalRestraintPositionofSheeting(Enum):
-    '''
-    Aluminum Member Rotational Restraint Position of Sheeting
-    '''
-    SHEETING_POSITION_NEGATIVE, SHEETING_POSITION_POSITIVE = range(2)
-
-class AluminumMemberRotationalRestraintRotationalStiffness(Enum):
-    '''
-    Steel Member Rotational Restraint Rotational Stiffness
-    '''
-    ROTATIONAL_STIFFNESS_INFINITELY, ROTATIONAL_STIFFNESS_MANUALLY = range(2)
-
-class AluminumMemberShearPanelDefinitionType(Enum):
-    '''
-    Aluminum Member Shear Panel Definition Type
-    '''
-    DEFINITION_TYPE_BRACING, DEFINITION_TYPE_DEFINE_S_PROV, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING_AND_BRACING = range(4)
-
-class AluminumMemberShearPanelPositionOnSection(Enum):
-    '''
-    Aluminum Member Shear Panel Position On Section
-    '''
-    POSITION_DEFINE, POSITION_IN_CENTROID, POSITION_ON_LOWER_FLANGE, POSITION_ON_UPPER_FLANGE = range(4)
-
-class AluminumMemberShearPanelFasteningArrangement(Enum):
-    '''
-    Aluminum Member Shear Panel Fastening Arrangement
-    '''
-    FASTENING_ARRANGEMENT_EVERY_RIB, FASTENING_ARRANGEMENT_EVERY_SECOND_RIB = range(2)
-
 class SteelEffectiveLengthsDeterminationMcrIs800(Enum):
     '''
     Steel Effective Lengths Determination MCR IS 800
@@ -1814,48 +1786,6 @@ class SteelEffectiveLengthsMemberTypeZZ(Enum):
     Steel Effective Lengths Member Type ZZ
     '''
     MEMBER_TYPE_BEAM, MEMBER_TYPE_CANTILEVER = range(2)
-
-class SteelMemberShearPanelDefinitionType(Enum):
-    '''
-    Steel Member Shear Panel Definition Type
-    '''
-    DEFINITION_TYPE_BRACING, DEFINITION_TYPE_DEFINE_S_PROV, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING_AND_BRACING = range(4)
-
-class SteelMemberShearPanelPositionOnSection(Enum):
-    '''
-    Steel Member Shear Panel Position On Section
-    '''
-    POSITION_DEFINE, POSITION_IN_CENTROID, POSITION_ON_LOWER_FLANGE, POSITION_ON_UPPER_FLANGE = range(4)
-
-class SteelMemberShearPanelFasteningArrangement(Enum):
-    '''
-    Steel Member Shear Panel Fastening Arrangement
-    '''
-    FASTENING_ARRANGEMENT_EVERY_RIB, FASTENING_ARRANGEMENT_EVERY_SECOND_RIB = range(2)
-
-class SteelMemberRotationalRestraintType(Enum):
-    '''
-    Steel Member Rotational Restraint Type
-    '''
-    TYPE_CONTINUOUS, TYPE_DISCRETE, TYPE_MANUALLY = range(3)
-
-class SteelMemberRotationalRestraintContinuousBeamEffect(Enum):
-    '''
-    Steel Member Rotational Restraint Continuous Beam Effect
-    '''
-    CONTINUOUS_BEAM_EFFECT_END_PANEL, CONTINUOUS_BEAM_EFFECT_INTERNAL_PANEL = range(2)
-
-class SteelMemberRotationalRestraintPositionofSheeting(Enum):
-    '''
-    Steel Member Rotational Restraint Position of Sheeting
-    '''
-    SHEETING_POSITION_NEGATIVE, SHEETING_POSITION_POSITIVE = range(2)
-
-class SteelMemberRotationalRestraintRotationalStiffness(Enum):
-    '''
-    Steel Member Rotational Restraint Rotational Stiffness
-    '''
-    ROTATIONAL_STIFFNESS_INFINITELY, ROTATIONAL_STIFFNESS_MANUALLY = range(2)
 
 class SteelBoundaryConditionsSupportType(Enum):
     '''
@@ -2298,3 +2228,244 @@ class ResponseSpectrumDefinitionType(Enum):
     Response Spectrum Definition Type
     '''
     ACCORDING_TO_STANDARD, GENERATED_FROM_ACCELEROGRAM, USER_DEFINED, USER_DEFINED_IN_G_FACTOR = range(4)
+
+class WindSimulationAnalysisSettingsSimulationType(Enum):
+    '''
+    Wind Simulation Analysis Settings Simulation Type
+    '''
+    STEADY_FLOW, TRANSIENT_FLOW = range(2)
+
+class WindSimulationAnalysisSettingsMemberLoadDistribution(Enum):
+    '''
+    Wind Simulation Analysis Settings Member Load Distribution
+    '''
+    CONCENTRATED, TRAPEZODIAL, UNIFORM = range(3)
+
+class WindSimulationAnalysisSettingsMeshRefinementType(Enum):
+    '''
+    Wind Simulation Analysis Settings Mesh Refinement Type
+    '''
+    DISTANCE_FROM_SURFACE, SURFACE_CURVATURE = range(2)
+
+class WindSimulationAnalysisSettingsNumericalSolver(Enum):
+    '''
+    Wind Simulation Analysis Settings Numerical Solver
+    '''
+    OPEN_FOAM = range(1)
+
+class WindSimulationAnalysisSettingsTurbulenceModelType(Enum):
+    '''
+    Wind Simulation Analysis Settings Turbulence Model Type
+    '''
+    TURBULENCE_TYPE_EPSILON, TURBULENCE_TYPE_LES, TURBULENCE_TYPE_OMEGA = range(3)
+
+class TranslationalReleaseNonlinearity(Enum):
+    '''
+    Translational Release Nonlinearity Enumeration
+    '''
+    NONLINEARITY_TYPE_NONE, NONLINEARITY_TYPE_FAILURE_IF_NEGATIVE, NONLINEARITY_TYPE_FAILURE_IF_POSITIVE, \
+    NONLINEARITY_TYPE_DIAGRAM, NONLINEARITY_TYPE_PARTIAL_ACTIVITY = range(5)
+
+class RotationalReleaseNonlinearity(Enum):
+    '''
+    Rotational Release Nonlinearity Enumeration
+    '''
+    NONLINEARITY_TYPE_NONE, NONLINEARITY_TYPE_FAILURE_IF_NEGATIVE, NONLINEARITY_TYPE_FAILURE_IF_POSITIVE, \
+    NONLINEARITY_TYPE_DIAGRAM, NONLINEARITY_TYPE_PARTIAL_ACTIVITY, NONLINEARITY_TYPE_FORCE_MOMENT_DIAGRAM = range(6)
+
+class LineReleaseLocalAxisSystem(Enum):
+    '''
+    Line Release Local Axis System Enumeration
+    '''
+    LOCAL_AXIS_SYSTEM_TYPE_ORIGINAL_LINE, LOCAL_AXIS_SYSTEM_TYPE_MEMBER_ON_ORIGINAL_LINE, \
+    LOCAL_AXIS_SYSTEM_TYPE_Z_AXIS_PERPENDICULAR_TO_SURFACE, E_LOCAL_AXIS_SYSTEM_TYPE_HELP_NODE= range(4)
+
+class LocalAxisSystemObjectInPlane(Enum):
+    '''
+    Line Release Local Axis System Object In Plane Enumeration
+    '''
+    LOCAL_AXIS_SYSTEM_IN_PLANE_XY, LOCAL_AXIS_SYSTEM_IN_PLANE_XZ = range(2)
+
+class PartialActivityAlongType(Enum):
+    '''
+    Partial Activity Along Type Enumeration
+    '''
+    PARTIAL_ACTIVITY_TYPE_COMPLETE, PARTIAL_ACTIVITY_TYPE_FIXED, PARTIAL_ACTIVITY_TYPE_FAILURE_FROM_FORCE, \
+    PARTIAL_ACTIVITY_TYPE_YIELDING_FROM_FORCE, PARTIAL_ACTIVITY_TYPE_INEFFECTIVNESS = range(5)
+
+class PartialActivityAroundType(Enum):
+    '''
+    Partial Activity Around Type Enumeration
+    '''
+    PARTIAL_ACTIVITY_TYPE_COMPLETE, PARTIAL_ACTIVITY_TYPE_FIXED, PARTIAL_ACTIVITY_TYPE_FAILURE_FROM_MOMENT, \
+    PARTIAL_ACTIVITY_TYPE_YIELDING_FROM_MOMENT, PARTIAL_ACTIVITY_TYPE_INEFFECTIVNESS = range(5)
+
+class LineReleaseDiagram(Enum):
+    '''
+    Line Release Diagram Type Enumeration
+    '''
+    DIAGRAM_ENDING_TYPE_CONTINUOUS, DIAGRAM_ENDING_TYPE_FAILURE, DIAGRAM_ENDING_TYPE_STOP, DIAGRAM_ENDING_TYPE_YIELDING = range(4)
+
+class LineReleaseForceMomentDiagram(Enum):
+    '''
+    Line Release Force Moment Diagram Enumeration
+    '''
+    FORCE_MOMENT_DIAGRAM_ENDING_TYPE_CONTINUOUS, FORCE_MOMENT_DIAGRAM_ENDING_TYPE_FAILURE, FORCE_MOMENT_DIAGRAM_ENDING_TYPE_YIELDING = range(3)
+
+class LineReleaseForceMomentDepend(Enum):
+    '''
+    Line Release Force Moment Depend Enumeration
+    '''
+    FORCE_MOMENT_DIAGRAM_DEPENDS_ON_N, FORCE_MOMENT_DIAGRAM_DEPENDS_ON_VY, FORCE_MOMENT_DIAGRAM_DEPENDS_ON_VZ = range(3)
+
+class LineReleaseReleaseLocation(Enum):
+    '''
+    Line Release Release Location Enumeration
+    '''
+    RELEASE_LOCATION_ORIGIN, RELEASE_LOCATION_RELEASED = range(2)
+
+class LoadWizardType(Enum):
+    ''''
+    Types of Loading Wizards
+    '''
+    GENERATE_LOAD_COMBINATIONS, GENERATE_RESULT_COMBINATIONS = range(2)
+
+class InitialStateDefintionType(Enum):
+    '''
+    Types of Initial States
+    '''
+    DEFINITION_TYPE_FINAL_STATE, DEFINITION_TYPE_STIFFNESS, DEFINITION_TYPE_STRAINS, DEFINITION_TYPE_STRAINS_WITH_USER_DEFINED_FACTORS = range(4)
+
+class NodalReleaseReleaseLocation(Enum):
+    '''
+    Nodal Release Release Location
+    '''
+    RELEASE_LOCATION_ORIGIN, RELEASE_LOCATION_RELEASED = range(2)
+
+class NodalReleaseTypeReleaseNonlinearity(Enum):
+    '''
+    Nodal Release Type Release Nonlinearity
+    '''
+    NONLINEARITY_TYPE_DIAGRAM, NONLINEARITY_TYPE_FAILURE_ALL_IF_NEGATIVE, NONLINEARITY_TYPE_FAILURE_ALL_IF_POSITIVE, \
+    NONLINEARITY_TYPE_FAILURE_IF_NEGATIVE, NONLINEARITY_TYPE_FAILURE_IF_POSITIVE, NONLINEARITY_TYPE_FORCE_MOMENT_DIAGRAM, \
+    NONLINEARITY_TYPE_FRICTION_DIRECTION_1, NONLINEARITY_TYPE_FRICTION_DIRECTION_1_2, NONLINEARITY_TYPE_FRICTION_DIRECTION_1_PLUS_2,\
+    NONLINEARITY_TYPE_FRICTION_DIRECTION_2, NONLINEARITY_TYPE_NONE, NONLINEARITY_TYPE_PARTIAL_ACTIVITY,\
+    NONLINEARITY_TYPE_STIFFNESS_DIAGRAM = range(13)
+
+class NodalReleaseTypeDiagram(Enum):
+    '''
+    Nodal Release Type Diagram
+    '''
+    DIAGRAM_ENDING_TYPE_CONTINUOUS, DIAGRAM_ENDING_TYPE_FAILURE, DIAGRAM_ENDING_TYPE_STOP, \
+    DIAGRAM_ENDING_TYPE_YIELDING = range(4)
+
+class NodalReleaseTypePartialActivityAlong(Enum):
+    '''
+    Nodal Release Type Partial Activity Along
+    '''
+    PARTIAL_ACTIVITY_TYPE_COMPLETE, PARTIAL_ACTIVITY_TYPE_FAILURE_FROM_FORCE, PARTIAL_ACTIVITY_TYPE_FIXED, \
+    PARTIAL_ACTIVITY_TYPE_INEFFECTIVNESS, PARTIAL_ACTIVITY_TYPE_YIELDING_FROM_FORCE = range(5)
+
+class NodalReleaseTypePartialActivityAround(Enum):
+    '''
+    Nodal Release Type Partial Activity Around
+    '''
+    PARTIAL_ACTIVITY_TYPE_COMPLETE, PARTIAL_ACTIVITY_TYPE_FAILURE_FROM_MOMENT, PARTIAL_ACTIVITY_TYPE_FIXED, \
+    PARTIAL_ACTIVITY_TYPE_INEFFECTIVNESS, PARTIAL_ACTIVITY_TYPE_YIELDING_FROM_MOMENT = range(5)
+
+class NodalReleaseTypeLocalAxisSystemObjectType(Enum):
+    '''
+    Nodal Release Type Local Axis System Object Type
+    '''
+    LOCAL_AXIS_SYSTEM_OBJECT_TYPE_LINE, LOCAL_AXIS_SYSTEM_OBJECT_TYPE_MEMBER = range(2)
+
+class MaterialModel(Enum):
+    '''
+    Types of Material Models
+    '''
+    MODEL_ISOTROPIC_DAMAGE_2D_3D, MODEL_ISOTROPIC_LINEAR_ELASTIC, MODEL_ISOTROPIC_MASONRY_PLASTIC_2D,MODEL_ISOTROPIC_NONLINEAR_ELASTIC_1D, MODEL_ISOTROPIC_NONLINEAR_ELASTIC_2D_3D, MODEL_ISOTROPIC_PLASTIC_1D, MODEL_ISOTROPIC_PLASTIC_2D_3D,MODEL_ISOTROPIC_SOIL_NONLINEAR_ELASTIC_3D,  MODEL_ISOTROPIC_SOIL_PLASTIC_3D, \
+    MODEL_ISOTROPIC_TIMBER_LINEAR_ELASTIC_MEMBERS, MODEL_ORTHOTROPIC_2D, MODEL_ORTHOTROPIC_3D, MODEL_ORTHOTROPIC_MASONRY_PLASTIC_2D,MODEL_ORTHOTROPIC_PLASTIC_2D, MODEL_ORTHOTROPIC_PLASTIC_3D, MODEL_ORTHOTROPIC_TIMBER_LINEAR_ELASTIC_SURFACES = range(16)
+
+class ThicknessIntegrationMethod(Enum):
+    '''
+    Types of Integration Methods
+    '''
+    INTEGRATION_METHOD_TYPE_GAUSS_LOBATTO_QUADRATURE, INTEGRATION_METHOD_TYPE_SIMPSONS_RULE, INTEGRATION_METHOD_TYPE_TRAPEZOIDAL_RULE = range(3)
+
+class MemberShearPanelDefinitionType(Enum):
+    '''
+    Member Shear Panel Definition Type
+    '''
+    DEFINITION_TYPE_BRACING, DEFINITION_TYPE_DEFINE_S_PROV, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING, DEFINITION_TYPE_TRAPEZOIDAL_SHEETING_AND_BRACING = range(4)
+
+class MemberShearPanelFasteningArrangement(Enum):
+    '''
+    Member Shear Panel Fastening Arrangement
+    '''
+    FASTENING_ARRANGEMENT_EVERY_RIB, FASTENING_ARRANGEMENT_EVERY_SECOND_RIB = range(2)
+
+class MemberShearPanelPositionOnSection(Enum):
+    '''
+    Member Shear Panel Position On Section
+    '''
+    POSITION_DEFINE, POSITION_IN_CENTROID, POSITION_ON_LOWER_FLANGE, POSITION_ON_UPPER_FLANGE = range(4)
+
+class MemberRotationalRestraintSheetingPosition(Enum):
+    '''
+    Member Rotational Restraint Position of Sheeting
+    '''
+    SHEETING_POSITION_NEGATIVE, SHEETING_POSITION_POSITIVE = range(2)
+
+class MemberRotationalRestraintRotationalStiffness(Enum):
+    '''
+    Member Rotational Restraint Rotational Stiffness
+    '''
+    ROTATIONAL_STIFFNESS_INFINITELY, ROTATIONAL_STIFFNESS_MANUALLY = range(2)
+
+class MemberRotationalRestraintType(Enum):
+    '''
+    Member Rotational Restraint Type
+    '''
+    TYPE_CONTINUOUS, TYPE_DISCRETE, TYPE_MANUALLY = range(3)
+
+class MemberRotationalRestraintContinousBeamEffect(Enum):
+    '''
+    Member Rotational Restraint Continous Beam Effect
+    '''
+    CONTINUOUS_BEAM_EFFECT_END_PANEL, CONTINUOUS_BEAM_EFFECT_INTERNAL_PANEL = range(2)
+
+class ModelHistoryStatusType(Enum):
+    '''
+    Model History Status Type Enumeration
+    '''
+    E_HISTORY_RECORD_STATUS_CREATED, E_HISTORY_RECORD_STATUS_MODIFIED, E_HISTORY_RECORD_STATUS_VERSIONED = range(3)
+
+class ModelLocationRowType(Enum):
+    '''
+    Model Location Row Type Enumeration
+    '''
+    E_ROW_ALTITUDE, E_ROW_CITY, E_ROW_COUNTRY_ISO, E_ROW_LATITUDE, E_ROW_LONGITUDE, E_ROW_STATE, E_ROW_STREET, E_ROW_ZIP = range(8)
+
+class NoteType(Enum):
+    '''
+    Note Type Enumeration
+    '''
+    NOTE_TYPE_MEMBER, NOTE_TYPE_NODE, NOTE_TYPE_POINT = range(3)
+
+class NoteOffsetType(Enum):
+    '''
+    Note Offset Type Enumeration
+    '''
+    OFFSET_TYPE_XY, OFFSET_TYPE_XYZ, OFFSET_TYPE_XZ, OFFSET_TYPE_YZ = range(4)
+
+class NoteMemberReferenceType(Enum):
+    '''
+    Note Member Reference Type Enumeration
+    '''
+    REFERENCE_TYPE_L, REFERENCE_TYPE_XY, REFERENCE_TYPE_XZ, REFERENCE_TYPE_YZ = range(4)
+
+class NoteSurfaceReferenceType(Enum):
+    '''
+    Note Surface Reference Type Enumeration
+    '''
+    OFFSET_TYPE_XY, OFFSET_TYPE_XZ, OFFSET_TYPE_YZ = range(3)

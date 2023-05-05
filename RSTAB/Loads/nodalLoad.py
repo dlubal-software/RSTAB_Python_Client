@@ -93,8 +93,6 @@ class NodalLoad():
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_DIRECTED_TO_NODE, nodes_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_TWO_NODES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, nodes_no]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For force_eccentricity;
@@ -125,10 +123,10 @@ class NodalLoad():
         load_type = NodalLoadType.LOAD_TYPE_FORCE
         clientObject.load_type = load_type.name
 
-        ## Force Magnitude
+        # Force Magnitude
         clientObject.force_magnitude = magnitude
 
-        #Option Check
+        # Option Check
         if force_eccentricity and shifted_display:
             raise ValueError("Only one of force_eccentiricity and shifted_display could be TRUE")
 
@@ -159,13 +157,10 @@ class NodalLoad():
                 clientObject.parallel_to_two_nodes_first_node = params_s[1]
                 clientObject.parallel_to_two_nodes_second_node = params_s[2]
 
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
-
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]
 
-        #Force Eccentiricity
+        # Force Eccentiricity
         if force_eccentricity:
 
             if 'force_eccentricity' not in list(params.keys()):
@@ -179,7 +174,7 @@ class NodalLoad():
             clientObject.force_eccentricity_y = params_e[1]
             clientObject.force_eccentricity_z = params_e[2]
 
-        #Shifted Display
+        # Shifted Display
         if shifted_display:
 
             if 'shifted_display' not in list(params.keys()):
@@ -239,8 +234,6 @@ class NodalLoad():
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_DIRECTED_TO_NODE, nodes_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_TWO_NODES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_TWO_NODES, nodes_no]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For shifted_display;
@@ -269,7 +262,7 @@ class NodalLoad():
         load_type = NodalLoadType.LOAD_TYPE_MOMENT
         clientObject.load_type = load_type.name
 
-        ## Force Magnitude
+        # Force Magnitude
         clientObject.moment_magnitude = moment_magnitude
 
         # Specific Direction
@@ -299,13 +292,10 @@ class NodalLoad():
                 clientObject.parallel_to_two_nodes_first_node = params_s[1]
                 clientObject.parallel_to_two_nodes_second_node = params_s[2]
 
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
-
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]
 
-        #Shifted Display
+        # Shifted Display
         if shifted_display:
 
             if 'shifted_display' not in list(params.keys()):
@@ -361,8 +351,6 @@ class NodalLoad():
             params (dict, optional):
                 For specific_direction type DIRECTION_TYPE_ROTATED_VIA_3_ANGLES;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_ROTATED_VIA_3_ANGLES, NodalLoadAxesSequence, angle_1, angle_2, angle_3, angle_x, angle_y, angle_z]}
-                For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE;
-                    params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE, line_no]}
                 For specific_direction type DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER;
                     params={'specific_direction' : [NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER, member_no]}
                 For force_eccentricity;
@@ -391,7 +379,7 @@ class NodalLoad():
         load_type = NodalLoadType.LOAD_TYPE_COMPONENTS
         clientObject.load_type = load_type.name
 
-        #Load Magnitudes
+        # Load Magnitudes
         if len(components) == 6:
             clientObject.components_force_x = components[0]
             clientObject.components_force_y = components[1]
@@ -403,7 +391,7 @@ class NodalLoad():
         else:
             raise ValueError("WARNING: The components must contain 6 elements. Kindly check list inputs for completeness and correctness.")
 
-        #Option Check
+        # Option Check
         if force_eccentricity and shifted_display:
             raise ValueError("WARNING: Only one of force_eccentiricity and shifted_display could be TRUE")
 
@@ -427,13 +415,10 @@ class NodalLoad():
                 clientObject.rotated_about_angle_y = params_s[6]
                 clientObject.rotated_about_angle_z = params_s[7]
 
-            elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_LINE:
-                clientObject.parallel_to_line = params_s[1]
-
             elif params_s[0] == NodalLoadSpecificDirectionType.DIRECTION_TYPE_PARALLEL_TO_CS_OF_MEMBER:
                 clientObject.parallel_to_member = params_s[1]
 
-        #Force Eccentiricity
+        # Force Eccentiricity
         if force_eccentricity:
 
             if 'force_eccentricity' not in list(params.keys()):
@@ -447,7 +432,7 @@ class NodalLoad():
             clientObject.force_eccentricity_y = params_e[1]
             clientObject.force_eccentricity_z = params_e[2]
 
-        #Shifted Display
+        # Shifted Display
         if shifted_display:
 
             if 'shifted_display' not in list(params.keys()):

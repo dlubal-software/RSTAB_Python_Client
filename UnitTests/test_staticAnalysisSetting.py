@@ -21,7 +21,7 @@ def test_StaticAnalysisSettings():
     # Set Static Analysis Settings
     StaticAnalysisSettings(1, 'Geometrisch-linear', StaticAnalysisType.GEOMETRICALLY_LINEAR)
     StaticAnalysisSettings.GeometricallyLinear(2,'Geometric-linear',[True, 1.5, True],True,[True,0,0,2.0])
-    StaticAnalysisSettings.LargeDeformation(3)
+    StaticAnalysisSettings.LargeDeformation(3,precision_of_convergence_criteria_for_nonlinear_calculation = 0.02)
     StaticAnalysisSettings.SecondOrderPDelta(4)
 
     Model.clientModel.service.finish_modification()
@@ -30,7 +30,10 @@ def test_StaticAnalysisSettings():
     assert linear['modify_loading_by_multiplier_factor'] == True
     assert linear['loading_multiplier_factor'] == 1.5
     assert linear['divide_results_by_loading_factor'] == True
+
     largeDef= Model.clientModel.service.get_static_analysis_settings(3)
-    assert largeDef['standard_precision_and_tolerance_settings_enabled'] == False
+    assert largeDef['standard_precision_and_tolerance_settings_enabled'] == True
+    assert largeDef['precision_of_convergence_criteria_for_nonlinear_calculation'] == 0.02
+
     secondOrder = Model.clientModel.service.get_static_analysis_settings(4)
     assert secondOrder['analysis_type'] == StaticAnalysisType.SECOND_ORDER_P_DELTA.name

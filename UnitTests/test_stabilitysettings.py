@@ -28,6 +28,7 @@ def test_stability_analysis_settings_init():
     assert stability_analysis_settings.calculate_without_loading_for_instability == False
     assert stability_analysis_settings.considered_favored_effect == True
     assert stability_analysis_settings.display_local_torsional_rotations == False
+    #assert stability_analysis_settings.find_eigenvectors_beyond_critical_load_factor == False
     assert stability_analysis_settings.matrix_type == 'MATRIX_TYPE_STANDARD'
     assert stability_analysis_settings.minimum_initial_strain == 1e-05
     assert stability_analysis_settings.number_of_lowest_eigenvalues == 4
@@ -47,7 +48,7 @@ def test_stability_analysis_settings_eigenvalue_method():
                                             critical_load_factor= 10,
                                             minimum_initial_strain= 0.000025,
                                             local_torsional_rotations= 0.2,
-                                            eigenvalue_method= StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_SUBSPACE_ITERATION,
+                                            eigenvalue_method= StabilityAnalysisSettingsEigenvalueMethod.EIGENVALUE_METHOD_SHIFTED_INVERSE_POWER_METHOD,
                                             matrix_type= StabilityAnalysisSettingsMatrixType.MATRIX_TYPE_UNIT,
                                             comment= 'Test Comment')
 
@@ -57,10 +58,12 @@ def test_stability_analysis_settings_eigenvalue_method():
 
     assert stability_analysis_settings.analysis_type == 'EIGENVALUE_METHOD'
     assert stability_analysis_settings.activate_minimum_initial_prestress == True
-    assert stability_analysis_settings.eigenvalue_method == 'EIGENVALUE_METHOD_SUBSPACE_ITERATION'
+    assert stability_analysis_settings.eigenvalue_method == 'EIGENVALUE_METHOD_SHIFTED_INVERSE_POWER_METHOD'
     assert stability_analysis_settings.calculate_without_loading_for_instability == False
     assert stability_analysis_settings.considered_favored_effect == False
     assert stability_analysis_settings.display_local_torsional_rotations == True
+    assert stability_analysis_settings.find_eigenvectors_beyond_critical_load_factor == True
+    assert stability_analysis_settings.critical_load_factor == 10
     assert stability_analysis_settings.matrix_type == 'MATRIX_TYPE_UNIT'
     assert stability_analysis_settings.minimum_initial_strain == 2.5e-05
     assert stability_analysis_settings.number_of_lowest_eigenvalues == 5
@@ -98,6 +101,8 @@ def test_stability_analysis_settings_incrementaly_method_with_eigenvalue():
     assert stability_analysis_settings.calculate_without_loading_for_instability == False
     assert stability_analysis_settings.considered_favored_effect == True
     assert stability_analysis_settings.display_local_torsional_rotations == False
+    #assert stability_analysis_settings.find_eigenvectors_beyond_critical_load_factor == True
+    #assert stability_analysis_settings.critical_load_factor == 11
     assert stability_analysis_settings.initial_load_factor == 2
     assert stability_analysis_settings.load_factor_increment == 0.2
     assert stability_analysis_settings.matrix_type == 'MATRIX_TYPE_STANDARD'

@@ -6,8 +6,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalNumberOfModes
-from RSTAB.enums import AddOn, AnalysisType
+from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, AddOn, AnalysisType
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
@@ -49,11 +48,7 @@ def test_modal_analysis_settings():
 
     # Modal Analysis Settings
     ModalAnalysisSettings(acting_masses=[True, False, True, False, True, False])
-    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', ModalNumberOfModes.NUMBER_OF_MODES_METHOD_MAXIMUM_FREQUENCY, maxmimum_natural_frequency=1800,
-                          acting_masses=[False, False, False, False, True, True])
-    ModalAnalysisSettings.UserDefined(3)
-    ModalAnalysisSettings.EffectiveMass(4)
-    ModalAnalysisSettings.MaximumFrequency(5)
+    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', number_of_modes=2, solution_method=ModalSolutionMethod.METHOD_SUBSPACE_ITERATION, mass_matrix_type=ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, mass_conversion_type=ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS, acting_masses=[False, False, False, False, True, True])
 
     # Load Case Static
     LoadCase(1, 'DEAD', [True, 0, 0, 1])
@@ -82,5 +77,7 @@ def test_modal_analysis_settings():
     assert actingMasses.acting_masses_in_direction_x_enabled == False
     assert actingMasses.acting_masses_in_direction_y_enabled == True
     assert actingMasses.acting_masses_in_direction_z_enabled == True
-    #assert actingMasses.maxmimum_natural_frequency == 1800
-    assert actingMasses.name == 'Modal Analysis Settings 1'
+    assert actingMasses.solution_method == 'METHOD_SUBSPACE_ITERATION'
+    assert actingMasses.mass_conversion_type == 'MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS'
+    assert actingMasses.mass_matrix_type == 'MASS_MATRIX_TYPE_DIAGONAL'
+    assert actingMasses.number_of_modes == 2
