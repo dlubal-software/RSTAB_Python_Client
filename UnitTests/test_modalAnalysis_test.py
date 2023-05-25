@@ -6,7 +6,8 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType, AddOn, AnalysisType
+from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalSolutionMethod
+from RSTAB.enums import ModalMassConversionType, ModalMassMatrixType, AnalysisType, AddOn
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
@@ -48,7 +49,9 @@ def test_modal_analysis_settings():
 
     # Modal Analysis Settings
     ModalAnalysisSettings(acting_masses=[True, False, True, False, True, False])
-    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', number_of_modes=2, solution_method=ModalSolutionMethod.METHOD_SUBSPACE_ITERATION, mass_matrix_type=ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, mass_conversion_type=ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS, acting_masses=[False, False, False, False, True, True])
+    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', number_of_modes=2, solution_method=ModalSolutionMethod.METHOD_SUBSPACE_ITERATION, 
+						  mass_matrix_type=ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, mass_conversion_type=ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS, 
+						  acting_masses=[False, False, False, False, True, True])
 
     # Load Case Static
     LoadCase(1, 'DEAD', [True, 0, 0, 1])

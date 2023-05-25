@@ -9,6 +9,7 @@ class NodalRelease():
                  release_location = NodalReleaseReleaseLocation.RELEASE_LOCATION_ORIGIN,
                  released_members: str = '1',
                  deactivate_release: bool = False,
+                 name: str = '',
                  comment: str = '',
                  params: dict = None,
                  model = Model):
@@ -16,11 +17,12 @@ class NodalRelease():
         '''
          Args:
             no (int): Nodal Release Tag
-            nodes (str): Nodes
-            nodal_release_type (int): Nodale Release Type
-            release_location (enums): Nodal Release Release Location
-            released_members (str): Released Members
-            deactivate_release (bool): Deactivate Release
+            nodes (str): Assigned Nodes
+            nodal_release_type (int): Nodale Release Type Number
+            release_location (enums): Nodal Release Release Location Enumeration
+            released_members (str): Assigned Released Members
+            deactivate_release (bool): Activate/Deactivate Nodal Release
+            name (str, optional): User Defined Nodal Release Name
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
@@ -43,11 +45,16 @@ class NodalRelease():
         # Released Members
         clientObject.released_members = ConvertToDlString(released_members)
 
-        # Nodal Release
+        # Nodal Release Location
         clientObject.release_location = release_location.name
 
         # Deactivate Release
         clientObject.deactivated = deactivate_release
+
+        # Nodal Release User defined name
+        if name:
+            clientObject.user_defined_name_enabled = True
+            clientObject.name = name
 
         # Comment
         clientObject.comment = comment
@@ -60,5 +67,5 @@ class NodalRelease():
         # Delete None attributes for improved performance
         deleteEmptyAttributes(clientObject)
 
-        # Add Node to client model
+        # Add Nodal Release to client model
         model.clientModel.service.set_nodal_release(clientObject)

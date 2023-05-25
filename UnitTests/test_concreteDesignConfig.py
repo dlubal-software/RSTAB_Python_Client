@@ -6,7 +6,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.enums import AddOn, NodalSupportType, LoadDirectionType
+from RSTAB.enums import AddOn, NodalSupportType, NodalLoadDirection
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
@@ -43,7 +43,7 @@ def test_concrete_design_uls():
 
     LoadCase(1, 'Self-Weight', [True, 0.0, 0.0, 1.0])
 
-    NodalLoad(1, 1, '2', LoadDirectionType.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 1*1000)
+    NodalLoad(1, 1, '2', NodalLoadDirection.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 1*1000)
     Model.clientModel.service.finish_modification()
 
     ConcreteUltimateConfiguration(1, 'ULS', '1')
@@ -77,7 +77,7 @@ def test_concrete_design_sls():
 
     LoadCase(1, 'Self-Weight', [True, 0.0, 0.0, 1.0])
 
-    NodalLoad(1, 1, '2', LoadDirectionType.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 1*1000)
+    NodalLoad(1, 1, '2', NodalLoadDirection.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 1*1000)
     Model.clientModel.service.finish_modification()
 
     ConcreteServiceabilityConfiguration(1, 'SLS', '1')
