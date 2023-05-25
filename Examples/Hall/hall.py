@@ -11,7 +11,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 
 sys.path.append(os.path.dirname(PROJECT_ROOT))
-from RSTAB.enums import NodalSupportType, StaticAnalysisType, LoadDirectionType, MemberLoadDistribution, MemberLoadDirection, MemberRotationSpecificationType
+from RSTAB.enums import NodalSupportType, StaticAnalysisType, NodalLoadDirection, MemberLoadDistribution, MemberLoadDirection, MemberRotationSpecificationType
 from window import window
 from RSTAB.dataTypes import inf
 from RSTAB.initModel import Model, Calculate_all, modelLst
@@ -146,7 +146,7 @@ def main(hall_width_L, hall_height_h_o, hall_height_h_m, number_frames, frame_sp
 
 # -------------------------------------------------------------
     # Nodal Forces
-    NodalLoad(1, 3, "9 4 7 2", LoadDirectionType.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 2000.0)
+    NodalLoad(1, 3, "9 4 7 2", NodalLoadDirection.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 2000.0)
 
 # -------------------------------------------------------------
     # Member Loads

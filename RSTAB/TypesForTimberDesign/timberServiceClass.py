@@ -9,7 +9,9 @@ class TimberServiceClass():
                 member_sets: str = '',
                 service_class = TimberServiceClassServiceClass.TIMBER_SERVICE_CLASS_TYPE_1,
                 comment: str = '',
-                params: dict = None):
+                params: dict = None,
+                model = Model):
+
         """
         Args:
             no (int): Timber Service Class Tag
@@ -19,10 +21,11 @@ class TimberServiceClass():
             service_class (enum): Timber Service Class Service Class
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
+            model (RFEM Class, optional): Model to be edited
         """
 
          # Client Model | Types For Timber Design Service Class
-        clientObject = Model.clientModel.factory.create('ns0:timber_service_class')
+        clientObject = model.clientModel.factory.create('ns0:timber_service_class')
 
         # Clears object atributes | Sets all atributes to None
         clearAttributes(clientObject)
@@ -56,4 +59,4 @@ class TimberServiceClass():
         deleteEmptyAttributes(clientObject)
 
         # Add Service Class to client model
-        Model.clientModel.service.set_timber_service_class(clientObject)
+        model.clientModel.service.set_timber_service_class(clientObject)

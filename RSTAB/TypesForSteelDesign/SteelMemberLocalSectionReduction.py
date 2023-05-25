@@ -12,7 +12,7 @@ class SteelMemberLocalSectionReduction():
                      FastenerDefinitionType.DEFINITION_TYPE_ABSOLUTE, 0.5, 2,\
                      MultipleOffsetDefinitionType.OFFSET_DEFINITION_TYPE_ABSOLUTE, 1.0]
                                     ],
-                 user_defined_name: str = '',
+                 name: str = '',
                  comment: str = '',
                  params: dict = None,
                  model = Model):
@@ -59,9 +59,9 @@ class SteelMemberLocalSectionReduction():
         clientObject.member_sets = ConvertToDlString(member_sets)
 
         # Local Section Reduction User defined Name
-        if user_defined_name:
+        if name:
             clientObject.user_defined_name_enabled = True
-            clientObject.name = user_defined_name
+            clientObject.name = name
 
         # Local Section Reduction Components
         clientObject.components = model.clientModel.factory.create('ns0:array_of_steel_member_local_section_reduction_components')

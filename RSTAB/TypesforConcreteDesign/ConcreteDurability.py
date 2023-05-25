@@ -7,7 +7,6 @@ class ConcreteDurability():
                 name: str = "XC 1",
                 members_no: str = "1",
                 member_sets_no: str = "1",
-                surfaces_no: str = "1",
                 exposure_classes_reinforcement: list = [True, False, False, False],
                 exposure_classes_reinforcement_types: list = None,
                 exposure_classes_concrete: list = [False, False, False],
@@ -25,7 +24,6 @@ class ConcreteDurability():
             name (str): User Defined Name
             members_no (str): Assigned Members
             member_sets_no (str): Assigned Member Sets
-            surfaces_no (str): Assigned Surfaces
             exposure_classes_reinforcement (list): Exposure Classes Reinforcement Parameters
             exposure_classes_reinforcement_types (list of enum): Exposure Classes Reinforcement Type List of Enumeration
             exposure_classes_concrete (list): Exposure Classes Concrete Parameters
@@ -58,9 +56,6 @@ class ConcreteDurability():
 
         # Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets_no)
-
-        # Assigned Surfaces
-        clientObject.surfaces = ConvertToDlString(surfaces_no)
 
         # Exposure Classes for Reinforcement
         clientObject.no_risk_of_corrosion_or_attack_enabled = exposure_classes_reinforcement[0]

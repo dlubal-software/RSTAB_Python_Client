@@ -8,6 +8,7 @@ from RSTAB.enums import ObjectTypes, ModelType, AddOn
 from RSTAB.suds_requests import RequestsTransport
 from suds.cache import DocumentCache
 from tempfile import gettempdir
+import time
 
 # Connect to server
 # Check server port range set in "Program Options & Settings"
@@ -35,9 +36,18 @@ else:
     a_socket.close()
     sys.exit()
 
+# Delete cached WSDL older than 1 day to reflect newer version of RFEM
+cacheLoc = os.path.join(gettempdir(), 'WSDL')
+currentTime = time.time()
+if os.path.exists(cacheLoc):
+    for file in os.listdir(cacheLoc):
+        filePath = os.path.join(cacheLoc, file)
+        if (currentTime - os.path.getmtime(filePath)) > 86400:
+            os.remove(filePath)
+
 # Check for issues locally and remotely
 try:
-    ca = DocumentCache(location=os.path.join(gettempdir(), 'WSDL'))
+    ca = DocumentCache(location=cacheLoc)
     client = Client(urlAndPort+'/wsdl', location = urlAndPort, cache=ca)
 except:
     print('Error: Connection to server failed!')
@@ -108,7 +118,10 @@ class Model():
                 modelPath = ''
                 # Requested new model, model with given name was NOT connected yet but file with the same name was opened
                 if model_name in modelLst:
-                    id = modelLst.index(model_name)
+                    id = 0
+                    for i,j in enumerate(modelLst):
+                        if modelLst[i] == model_name:
+                            id = i
                     modelPath =  client.service.get_model(id)
                 else:
                     modelPath =  client.service.new_model(original_model_name)
@@ -116,21 +129,18 @@ class Model():
                 modelUrlPort = url+':'+modelPort
                 modelCompletePath = modelUrlPort+'/wsdl'
 
-                if self.clientModelDct:
-                    cModel = Client(modelCompletePath, location = modelUrlPort, cache=ca)
-                else:
-                    session = requests.Session()
-                    adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
-                    session.mount('http://', adapter)
-                    trans = RequestsTransport(session)
+                session = requests.Session()
+                adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
+                session.mount('http://', adapter)
+                trans = RequestsTransport(session)
 
-                    cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
 
                 self.clientModelDct[model_name] = cModel
 
         else:
             # Requested model which was already connected
-            assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +'is not connected neither opened in RSTAB.'
+            assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RFEM.'
 
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]
@@ -144,15 +154,12 @@ class Model():
                 modelUrlPort = url+':'+modelPort
                 modelCompletePath = modelUrlPort+'/wsdl'
 
-                if self.clientModelDct:
-                    cModel = Client(modelCompletePath, location = modelUrlPort, cache=ca)
-                else:
-                    session = requests.Session()
-                    adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
-                    session.mount('http://', adapter)
-                    trans = RequestsTransport(session)
+                session = requests.Session()
+                adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
+                session.mount('http://', adapter)
+                trans = RequestsTransport(session)
 
-                    cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca)
 
                 self.clientModelDct[model_name] = cModel
             else:
@@ -203,6 +210,7 @@ def clearAttributes(obj):
     '''
     Clears object attributes.
     Sets all attributes to None.
+    Use it whenever you create new (sub)object.
 
     Args:
         obj: object to clear
@@ -212,6 +220,7 @@ def clearAttributes(obj):
     it = iter(obj)
     for i in it:
         obj[i[0]] = None
+
     return obj
 
 def deleteEmptyAttributes(obj):
@@ -221,12 +230,29 @@ def deleteEmptyAttributes(obj):
     Args:
         obj: object to clear
     '''
+    it = [] # iterator
+    try:
+        it = iter(obj)
+    except:
+        ValueError('WARNING: Object feeded to deleteEmptyAttributes function is not iterable. It is type: '+str(type(obj)+'.'))
 
-    # iterator
-    it = iter(obj)
     for i in it:
-        if obj[i[0]] is None:
+        if isinstance(i, str) or isinstance(i, int) or isinstance(i, float) or isinstance(i, bool):
+            continue
+        if len(i) > 2:
+            i = deleteEmptyAttributes(i)
+        elif i[1] is None or i[1] == "":
             delattr(obj, i[0])
+        elif isinstance(i[1], str) or isinstance(i[1], int) or isinstance(i[1], float) or isinstance(i[1], bool):
+            pass
+        else:
+            if isinstance(i, tuple):
+                i = list(i)
+                i[1] = deleteEmptyAttributes(i[1])
+                i = tuple(i)
+            else:
+                i[1] = deleteEmptyAttributes(i[1])
+
     return obj
 
 def openFile(model_path):
@@ -266,9 +292,9 @@ def closeModel(index_or_name, save_changes = False):
         if '.rs9' in index_or_name:
             index_or_name = index_or_name[:-4]
 
-        modelLs = client.service.get_model_list()
+        modelLs = client.service.get_model_list().name
         Model.__delete__(Model, index_or_name)
-        client.service.close_model(modelLs.name.index(index_or_name), save_changes)
+        client.service.close_model(modelLs.index(index_or_name), save_changes)
     else:
         assert False, 'Parameter index_or_name must be int or string.'
 
@@ -279,10 +305,9 @@ def closeAllModels(save_changes = False):
     Args:
         save_changes (bool): Enable/Disable Save Changes Option
     '''
-    modelLs = client.service.get_model_list()
-    if modelLs:
-        for j in reversed(modelLs.name):
-            closeModel(j, save_changes)
+    modelLs = client.service.get_model_list().name
+    for j in reversed(modelLs):
+        closeModel(j, save_changes)
 
 def saveFile(model_path):
     '''
@@ -578,7 +603,6 @@ def SetModelType(model_type = ModelType.E_MODEL_TYPE_3D, model = Model):
     model.clientModel.service.set_model_type(model_type.name)
 
 def GetModelType(model = Model):
-
     '''
     The method returns a string of the current model type.
 
