@@ -36,7 +36,7 @@ else:
     a_socket.close()
     sys.exit()
 
-# Delete cached WSDL older than 1 day to reflect newer version of RFEM
+# Delete cached WSDL older than 1 day to reflect newer version of RSTAB
 cacheLoc = os.path.join(gettempdir(), 'WSDL')
 currentTime = time.time()
 if os.path.exists(cacheLoc):
@@ -140,7 +140,7 @@ class Model():
 
         else:
             # Requested model which was already connected
-            assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RFEM.'
+            assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RSTAB.'
 
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]

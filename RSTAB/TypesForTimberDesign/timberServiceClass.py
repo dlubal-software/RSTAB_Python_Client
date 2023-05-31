@@ -21,7 +21,7 @@ class TimberServiceClass():
             service_class (enum): Timber Service Class Service Class
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
         """
 
          # Client Model | Types For Timber Design Service Class
