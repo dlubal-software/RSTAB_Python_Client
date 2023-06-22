@@ -40,23 +40,3 @@ def GetPartsListMembersByMaterial(model = Model):
     except:
         model.clientModel.service.generate_parts_lists()
         return model.clientModel.service.get_parts_list_members_by_material()
-
-def GetPartsListSolidsByMaterial(model = Model):
-    '''
-    Returns Parts List Solids By Material
-    '''
-    try:
-        return model.clientModel.service.get_parts_list_solids_by_material()
-    except:
-        model.clientModel.service.generate_parts_lists()
-        return model.clientModel.service.get_parts_list_solids_by_material()
-
-def GetPartsListSurfacessByMaterial(model = Model):
-    '''
-    Returns Parts List Surfaces By Material
-    '''
-    try:
-        return model.clientModel.service.get_parts_list_surfaces_by_material()
-    except:
-        model.clientModel.service.generate_parts_lists()
-        return model.clientModel.service.get_parts_list_surfaces_by_material()
