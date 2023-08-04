@@ -7,9 +7,8 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import SurfacesShapeOfFiniteElements, OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
 from RSTAB.initModel import Model, client, SetAddonStatus,Calculate_all, CalculateSelectedCases
-from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision, GetMeshStatistics, GenerateMesh
+from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings
-# from UnitTests.test_solids import test_solids_and_solid_sets
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.node import Node
