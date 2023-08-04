@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import SurfacesShapeOfFiniteElements, OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
 from RSTAB.initModel import Model, client, SetAddonStatus,Calculate_all, CalculateSelectedCases
-from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision, GetModelInfo
+from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision, GetMeshStatistics, GenerateMesh
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings
 # from UnitTests.test_solids import test_solids_and_solid_sets
 from RSTAB.BasicObjects.material import Material
@@ -78,9 +78,6 @@ def test_mesh_settings():
     assert control_mesh.number_of_divisions_for_special_types_of_members == 10
 
     Model.clientModel.service.finish_modification()
-
-    count = GetModelInfo()
-    assert count['property_node_count'] == 0
 
 def test_optimization_settings():
 

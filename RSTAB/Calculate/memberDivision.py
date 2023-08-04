@@ -39,19 +39,5 @@ class MemberDivision():
         # Add Mesh Settings to client model
         model.clientModel.service.set_member_divisions(clientObject)
 
-
-# def set_member_divisions(all_settings, model = Model):
-#     model.clientModel.service.set_member_divisions(all_settings)
-
-def GetModelInfo(model = Model):
-    return model.clientModel.service.get_model_info()
-
-def GetMeshStatistics(model = Model):
-    mesh_stats = model.clientModel.service.get_mesh_statistics()
-    return model.clientModel.dict(mesh_stats)
-
-def GenerateMesh(model = Model, skip_warnings = True):
-    model.clientModel.service.generate_mesh(skip_warnings)
-
 def GetMemberDivisions(model = Model):
     return model.clientModel.service.get_member_divisions()
