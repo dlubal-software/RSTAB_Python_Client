@@ -14,11 +14,11 @@ class MemberDivision():
         Only posititve values are recognized.
 
         Args:
-            number_of_divisions_for_result_diagram: int = 10,
-            number_of_divisions_for_special_types_of_members: int = 10,
-            number_of_divisions_for_determination_of_max_min_values: int = 10,
-            activate_member_divisions: bool = True,
-            model = Model
+            number_of_divisions_for_result_diagram (int): Number of divisions for result diagram,
+            number_of_divisions_for_special_types_of_members (int): Number of divisions for Special Types of Members  ,
+            number_of_divisions_for_determination_of_max_min_values (int): Number of divisions for determination of max min values ,
+            activate_member_divisions (bool): Activate member division,
+            model (RSTAB Class, optional): Model to be edited
 
         """
         # Get current member divisions
