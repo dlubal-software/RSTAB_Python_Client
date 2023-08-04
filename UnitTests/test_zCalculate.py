@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-from RSTAB.enums import SurfacesShapeOfFiniteElements, OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
+from RSTAB.enums import OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
 from RSTAB.initModel import Model, client, SetAddonStatus,Calculate_all, CalculateSelectedCases
 from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings

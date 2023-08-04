@@ -1,5 +1,4 @@
-from RSTAB.initModel import Model, GetAddonStatus
-from RSTAB.enums import AddOn
+from RSTAB.initModel import Model
 
 class MemberDivision():
 
