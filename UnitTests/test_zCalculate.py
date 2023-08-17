@@ -7,6 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
 from RSTAB.initModel import Model, client, SetAddonStatus,Calculate_all, CalculateSelectedCases
+from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
@@ -64,6 +65,18 @@ def test_calculate_all():
 
 # CAUTION:
 # These tests needs to be executed last because they change global settings
+
+def test_mesh_settings():
+
+    Model.clientModel.service.delete_all()
+    Model.clientModel.service.begin_modification()
+
+    MemberDivision()
+
+    control_mesh = GetMemberDivisions()
+    assert control_mesh.number_of_divisions_for_special_types_of_members == 10
+
+    Model.clientModel.service.finish_modification()
 
 def test_optimization_settings():
 
