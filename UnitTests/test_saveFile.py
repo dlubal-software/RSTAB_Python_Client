@@ -15,17 +15,21 @@ if Model.clientModel is None:
 
 def test_SaveFile():
 
-    if (os.path.isfile("/testResults/save.rs9")):
-        os.remove("/testResults/save.rs9")
+    savePath = r"\testResults\save.rs9"
+    filepath = dirName + savePath
+
+    if (os.path.isfile(savePath)):
+        os.remove(savePath)
 
     Model(True, 'save.rs9')
     Model.clientModel.service.delete_all()
 
     Material(1, 'S235')
 
-    saveFile(dirName + '/testResults/save.rs9')
+    saveFile(filepath)
 
     closeModel('save.rs9')
 
-    assert os.path.isfile(dirName + "/testResults/save.rs9")
-    os.remove(dirName + '/testResults/save.rs9')
+    assert os.path.isfile(filepath)
+    os.remove(filepath)
+
