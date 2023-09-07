@@ -18,6 +18,7 @@ from RSTAB.LoadCasesAndCombinations.staticAnalysisSettings import StaticAnalysis
 from RSTAB.LoadCasesAndCombinations.loadCase import LoadCase
 from RSTAB.LoadCasesAndCombinations.loadCasesAndCombinations import LoadCasesAndCombinations
 from RSTAB.Loads.nodalLoad import NodalLoad
+import pytest
 
 if Model.clientModel is None:
     Model()
@@ -66,6 +67,7 @@ def test_calculate_all():
 # CAUTION:
 # These tests needs to be executed last because they change global settings
 
+@pytest.mark.skip(reason="Function disappeared from RSTAB.")
 def test_mesh_settings():
 
     Model.clientModel.service.delete_all()
