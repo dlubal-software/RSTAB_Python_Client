@@ -305,9 +305,12 @@ def closeAllModels(save_changes = False):
     Args:
         save_changes (bool): Enable/Disable Save Changes Option
     '''
-    modelLs = client.service.get_model_list().name
-    for j in reversed(modelLs):
-        closeModel(j, save_changes)
+    try:
+        modelLs = client.service.get_model_list().name
+        for j in reversed(modelLs):
+            closeModel(j, save_changes)
+    except:
+        print('No models opened.')
 
 def saveFile(model_path):
     '''
