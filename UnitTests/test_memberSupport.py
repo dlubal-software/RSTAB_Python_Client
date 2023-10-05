@@ -7,6 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.initModel import Model, SetAddonStatus
+from RSTAB.dataTypes import inf
 from RSTAB.enums import AddOn
 from RSTAB.TypesForMembers.memberRotationalRestraint import MemberRotationalRestraint
 from RSTAB.TypesForMembers.memberShearPanel import MemberShearPanel
@@ -29,7 +30,7 @@ def test_memberSupport():
     MemberShearPanel.TrapezodialSheeting()
     MemberRotationalRestraint.Continuous()
 
-    MemberSupport(3, member_rotational_restraint=[1, 2000])
+    MemberSupport(3)
 
     Model.clientModel.service.finish_modification()
 
@@ -37,4 +38,4 @@ def test_memberSupport():
     assert memberSupport1.spring_translation_x == 3000
 
     memberSupport3 = Model.clientModel.service.get_member_support(3)
-    assert memberSupport3.load_introduced_from_sheeting_to_beam == 2000
+    assert memberSupport3.spring_translation_z == inf

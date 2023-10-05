@@ -289,12 +289,18 @@ def closeModel(index_or_name, save_changes = False):
         client.service.close_model(index_or_name, save_changes)
 
     elif isinstance(index_or_name, str):
-        if '.rs9' in index_or_name:
+        if index_or_name[-4:] == '.rs9':
             index_or_name = index_or_name[:-4]
 
         modelLs = client.service.get_model_list().name
-        Model.__delete__(Model, index_or_name)
-        client.service.close_model(modelLs.index(index_or_name), save_changes)
+        if index_or_name in modelLs:
+            try:
+                Model.__delete__(Model, index_or_name)
+                client.service.close_model(modelLs.index(index_or_name), save_changes)
+            except:
+                print('Model did NOT close closed properly.')
+        else:
+            print('\nINFO: Model "'+modelLs+'" is not opened.')
     else:
         assert False, 'Parameter index_or_name must be int or string.'
 
