@@ -10,6 +10,7 @@ from RSTAB.Reports.html import ExportResultTablesToHtml
 from RSTAB.initModel import Model, url, closeModel, openFile
 from shutil import rmtree
 import pytest
+import time
 
 if Model.clientModel is None:
     Model()
@@ -38,10 +39,13 @@ def test_printout_report():
     if not os.path.isdir(folderPath):
         os.mkdir(folderPath)
 
-    if os.path.exists(os.path.join(folderPath, 'printout.html')):
-        os.remove(os.path.join(folderPath, 'printout.html'))
-    if os.path.exists(os.path.join(folderPath, 'printout.pdf')):
-        os.remove(os.path.join(folderPath, 'printout.pdf'))
+    htmlPath = os.path.join(folderPath, 'printout.html')
+    pdfPath = os.path.join(folderPath, 'printout.pdf')
+
+    if os.path.exists(htmlPath):
+        os.remove(htmlPath)
+    if os.path.exists(pdfPath):
+        os.remove(pdfPath)
     if os.path.isdir(os.path.join(folderPath, 'printout_data')):
         rmtree(os.path.join(folderPath, 'printout_data'))
 
@@ -50,10 +54,12 @@ def test_printout_report():
     PrintoutReport.delete(3)
     assert len(PrintoutReport.getList()) == 2
 
-    PrintoutReport.exportToHTML(1, os.path.join(folderPath, 'printout.html'))
-    PrintoutReport.exportToPDF(2, os.path.join(folderPath, 'printout.pdf'))
+    PrintoutReport.exportToHTML(1, htmlPath)
+    PrintoutReport.exportToPDF(2, pdfPath)
 
-    #assert os.path.exists(os.path.join(folderPath, 'printout.html')) == True
-    #assert os.path.exists(os.path.join(folderPath, 'printout.pdf')) == True
+    time.sleep(3)
+
+    assert os.path.exists(htmlPath)
+    assert os.path.exists(pdfPath)
 
     closeModel('printout.rs9')

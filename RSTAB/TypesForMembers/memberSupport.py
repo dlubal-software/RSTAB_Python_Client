@@ -57,7 +57,6 @@ class MemberSupport():
         clientObject.spring_shear_y = spring_shear_y
         clientObject.spring_shear_z = spring_shear_z
 
-
         # Comment
         clientObject.comment = comment
 
