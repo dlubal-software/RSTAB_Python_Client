@@ -298,7 +298,7 @@ def closeModel(index_or_name, save_changes = False):
                 Model.__delete__(Model, index_or_name)
                 client.service.close_model(modelLs.index(index_or_name), save_changes)
             except:
-                print('Model did NOT close closed properly.')
+                print('Model did NOT close properly.')
         else:
             print('\nINFO: Model "'+modelLs+'" is not opened.')
     else:
