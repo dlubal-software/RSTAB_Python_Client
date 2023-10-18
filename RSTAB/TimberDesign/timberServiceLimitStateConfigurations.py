@@ -10,6 +10,7 @@ class TimberDesignServiceLimitStateConfigurations():
                  comment: str = '',
                  params: dict = None,
                  model = Model):
+
         """
         Args:
             no (int): Timber Design Service Limit State Configuration Tag

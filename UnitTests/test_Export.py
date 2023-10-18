@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import ObjectTypes
-from RSTAB.initModel import Model, url, closeModel
+from RSTAB.initModel import Model, url, closeModel, getPathToRunningRSTAB
 from RSTAB.ImportExport.exports import IFCExportSettings, ObjectLocation, ObjectLocations, ExportToIFC, GetTableExportConfigManager, SetTableExportConfigManager, ExportTo
 from RSTAB.ImportExport.imports import getConversionTables, setConversionTables, getSAFSettings, setSAFSettings, importFrom
 
@@ -20,7 +20,7 @@ if Model.clientModel is None:
 def test_export():
 
     Model.clientModel.service.delete_all()
-    Model.clientModel.service.run_script('..\\scripts\\internal\\Demos\\Demo-001 Hall.js')
+    Model.clientModel.service.run_script(os.path.join(getPathToRunningRSTAB(), 'scripts\\internal\\Demos\\Demo-001 Hall.js'))
 
     dirname = os.path.join(os.getcwd(), os.path.dirname(__file__), 'testResults')
     targetFile1 = os.path.join(dirname, 'test_ifcExport1.ifc')

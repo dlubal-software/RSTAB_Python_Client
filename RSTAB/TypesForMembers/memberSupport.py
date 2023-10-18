@@ -14,6 +14,7 @@ class MemberSupport():
                  spring_shear_x: float = 0.0,
                  spring_shear_y: float = 0.0,
                  spring_shear_z: float = 0.0,
+                 member_rotational_restraint: int = 1,
                  comment: str = '',
                  params: dict = None,
                  model = Model):
@@ -29,6 +30,7 @@ class MemberSupport():
             spring_shear_x (float): Shear X Spring Constant
             spring_shear_y (float): Shear Y Spring Constant
             spring_shear_z (float): Shear Z Spring Constant
+            member_rotational_restraint (int): Member Rotational Restraint Number
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
@@ -51,11 +53,15 @@ class MemberSupport():
         clientObject.spring_translation_x = spring_translation_x
         clientObject.spring_translation_y = spring_translation_y
         clientObject.spring_translation_z = spring_translation_z[0]
+        clientObject.nonlinearity_translational_z = spring_translation_z[1].name
 
         # Spring Shear
         clientObject.spring_shear_x = spring_shear_x
         clientObject.spring_shear_y = spring_shear_y
         clientObject.spring_shear_z = spring_shear_z
+
+        # Member Rotational Restraint
+        clientObject.member_rotational_restraint = member_rotational_restraint
 
         # Comment
         clientObject.comment = comment

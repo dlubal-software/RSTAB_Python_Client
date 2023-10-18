@@ -7,8 +7,8 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.initModel import Model, SetAddonStatus
-from RSTAB.dataTypes import inf
 from RSTAB.enums import AddOn
+from RSTAB.dataTypes import inf
 from RSTAB.TypesForMembers.memberRotationalRestraint import MemberRotationalRestraint
 from RSTAB.TypesForMembers.memberShearPanel import MemberShearPanel
 from RSTAB.TypesForMembers.memberSupport import MemberSupport

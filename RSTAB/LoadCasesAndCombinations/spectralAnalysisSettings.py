@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, GetAddonStatus, SetAddonStatus
+from RSTAB.initModel import Model, SetAddonStatus, clearAttributes, deleteEmptyAttributes
 from RSTAB.enums import DirectionalComponentCombinationRule, PeriodicResponseCombinationRule, CqsDampingRule, AddOn
 
 class SpectralAnalysisSettings():
