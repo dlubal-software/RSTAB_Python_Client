@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, ConvertStrToListOfInt
+from RSTAB.initModel import Model, ConvertStrToListOfInt, GetAllAddonStatuses
 from RSTAB.enums import ObjectTypes
 from suds.sax.text import Text
 import sys
@@ -25,7 +25,7 @@ class GetObjectNumbersByType:
 
         if len(ObjectNumber):
             for i in range(len(ObjectNumber.item)):
-                # this is used when requesting objects in loads (E_OBJECT_TYPE_NODAL_LOAD, E_OBJECT_TYPE_LINE_LOAD etc.)
+                # this is used when requesting objects in loads (E_OBJECT_TYPE_NODAL_LOAD, E_OBJECT_TYPE_NODAL_LOAD etc.)
                 try:
                     children = ConvertStrToListOfInt(ObjectNumber.item[i].children)
                     for c in children:
@@ -61,7 +61,8 @@ class GetAllObjects:
         # For each of these steps individual record is made (4 total).
 
         # Vector of all function
-        func_vec = [[ObjectTypes.E_OBJECT_TYPE_MATERIAL, lambda i: model.clientModel.service.get_material(i), 'from RSTAB.BasicObjects.material import Material\n', 'Material'],
+        func_vec = [[ObjectTypes.E_OBJECT_TYPE_COORDINATE_SYSTEM, lambda i: model.clientModel.service.get_coordinate_system(i), 'from RFEM.BasicObjects.coordinateSystem import CoordinateSystem\n', 'CoordinateSystem'],
+			[ObjectTypes.E_OBJECT_TYPE_MATERIAL, lambda i: model.clientModel.service.get_material(i), 'from RSTAB.BasicObjects.material import Material\n', 'Material'],
             [ObjectTypes.E_OBJECT_TYPE_SECTION, lambda i: model.clientModel.service.get_section(i), 'from RSTAB.BasicObjects.section import Section\n', 'Section'],
             [ObjectTypes.E_OBJECT_TYPE_NODE, lambda i: model.clientModel.service.get_node(i), 'from RSTAB.BasicObjects.node import Node\n', 'Node'],
             [ObjectTypes.E_OBJECT_TYPE_MEMBER, lambda i: model.clientModel.service.get_member(i), 'from RSTAB.BasicObjects.member import Member\n', 'Member'],
@@ -175,13 +176,15 @@ class GetAllObjects:
         # Load Cases and Combinations setup
         loadCasesAndCombinations = convertSubclases(dict(model.clientModel.service.get_load_cases_and_combinations()))
         settingsAndOptions = dict(model.clientModel.service.get_model_settings_and_options())
+        addonStatuses = GetAllAddonStatuses(model.clientModel)
         del settingsAndOptions['date_of_zero_day']
         settingsAndOptions = convertSubclases(settingsAndOptions)
 
         objects.append('LoadCasesAndCombinations(params='+str(loadCasesAndCombinations)+')\n')
         objects.append('BaseSettings(params='+str(settingsAndOptions)+')\n')
+        objects.append('SetAddonStatuses('+str(addonStatuses)+')\n')
         imports.append('from RSTAB.LoadCasesAndCombinations.loadCasesAndCombinations import LoadCasesAndCombinations\n')
-        imports.append('from RSTAB.baseSettings import BaseSettings\n')
+        imports.append('from RSTAB.baseSettings import BaseSettings, MainObjectsToActivate\n')
 
         # Get number of every type of object supported by Client.
         # Get info of each existing object.

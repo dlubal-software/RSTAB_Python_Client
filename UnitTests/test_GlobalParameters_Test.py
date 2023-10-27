@@ -9,9 +9,9 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.enums import GlobalParameterUnitGroup, GlobalParameterDefinitionType
+from RSTAB.enums import GlobalParameterUnitGroup, GlobalParameterDefinitionType, ObjectTypes
 from RSTAB.globalParameter import GlobalParameter
-from RSTAB.initModel import Model
+from RSTAB.initModel import Model, getPathToRunningRSTAB
 
 if Model.clientModel is None:
     Model()
@@ -77,3 +77,34 @@ def test_global_parameters():
     assert gp_2.max == 100
     assert gp_2.steps == 4
     assert gp_2.unit_group == 'LOADS_DENSITY'
+
+def test_set_and_get_formula():
+
+    Model.clientModel.service.delete_all()
+    Model.clientModel.service.reset()
+    Model.clientModel.service.run_script(os.path.join(getPathToRunningRSTAB(), 'scripts\\internal\\Demos\\Demo-001 Hall.js'))
+
+    GlobalParameter.AddParameter(
+        no=1,
+        name='Test_1',
+        symbol='Test_1',
+        unit_group=GlobalParameterUnitGroup.LOADS_FORCE,
+        definition_type=GlobalParameterDefinitionType.DEFINITION_TYPE_FORMULA,
+        definition_parameter=['1+1'],
+        comment='Comment_1')
+
+    GlobalParameter.AddParameter(
+        no=2,
+        name='Test_2',
+        symbol='Test_2',
+        unit_group=GlobalParameterUnitGroup.LOADS_FORCE,
+        definition_type=GlobalParameterDefinitionType.DEFINITION_TYPE_VALUE,
+        definition_parameter=[2000],
+        comment='Comment_2')
+
+
+    result = GlobalParameter.IsFormulaAllowed(ObjectTypes.E_OBJECT_TYPE_NODAL_LOAD,1,2,"components_force_x")
+    assert result == True
+
+    result = GlobalParameter.SetFormula(ObjectTypes.E_OBJECT_TYPE_NODAL_LOAD,1,2,"components_force_x","4 + Test_2")
+    assert result == True

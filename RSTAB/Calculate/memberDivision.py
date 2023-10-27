@@ -1,5 +1,7 @@
 from RSTAB.initModel import Model
 
+# WARNING:
+# These functions were discontinued in RSTAB
 class MemberDivision():
 
     def __init__(self,

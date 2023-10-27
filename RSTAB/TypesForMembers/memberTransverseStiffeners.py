@@ -1,7 +1,7 @@
 from RSTAB.initModel import Model, SetAddonStatus, clearAttributes, ConvertToDlString, deleteEmptyAttributes
 from RSTAB.enums import MemberTransverseStiffenerType, MemberTransverseStiffenerPosition, MemberTransverseStiffenerOffsetType, MemberTransverseStiffenerDefinitionType, AddOn
 
-class MemberTransverseStiffeners():
+class MemberTransverseStiffener():
 
     # Member Transverse Component
     component = {'no' : 1,

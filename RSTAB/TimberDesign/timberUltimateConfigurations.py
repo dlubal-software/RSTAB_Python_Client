@@ -10,6 +10,7 @@ class TimberDesignUltimateConfigurations():
                  comment: str = '',
                  params: dict = None,
                  model = Model):
+
         """
         Args:
             no (int): Timber Design Ultimate Configuration Tag

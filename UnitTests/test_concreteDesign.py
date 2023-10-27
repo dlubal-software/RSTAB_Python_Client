@@ -55,9 +55,30 @@ def test_concrete_design():
 
     ConcreteDurability(10, "XC 10", '1', '', [True, False, False, False], [], [False, False, False], [], [DurabilityStructuralClassType.STANDARD, False, False, False, False], [True, DurabilityStainlessSteelType.DEFINED, 0.012], [True, DurabilityAdditionalProtectionType.DEFINED, 0.02], [DurabilityAllowanceDeviationType.STANDARD, True, DurabilityConcreteCast.AGAINST_PREPARED_GROUND])
 
-    ConcreteDurability(11, "XC 11", '1', '', [True, False, False, False], [], [False, False, False], [], [DurabilityStructuralClassType.STANDARD, False, False, False, False], [True, DurabilityStainlessSteelType.DEFINED, 0.012], [True, DurabilityAdditionalProtectionType.DEFINED, 0.02], [DurabilityAllowanceDeviationType.DEFINED, 0.008])
+    ConcreteDurability(11, "XC 11", '1', '',[True, False, False, False], [], [False, False, False], [], [DurabilityStructuralClassType.STANDARD, False, False, False, False], [True, DurabilityStainlessSteelType.DEFINED, 0.012], [True, DurabilityAdditionalProtectionType.DEFINED, 0.02], [DurabilityAllowanceDeviationType.DEFINED, 0.008])
 
     # Concrete Effective Lengths
     ConcreteEffectiveLength()
 
     Model.clientModel.service.finish_modification()
+
+    cd = Model.clientModel.service.get_concrete_durability(1)
+    assert cd.no == 1
+    assert cd.user_defined_name_enabled == True
+    assert cd.name == "XC 1"
+    assert cd.members == ""
+    assert cd.member_sets == ""
+    assert cd.no_risk_of_corrosion_or_attack_enabled == True
+    assert cd.no_risk_of_corrosion_or_attack == "VERY_DRY"
+    assert cd.freeze_thaw_attack_enabled == False
+    assert cd.chemical_attack_enabled == False
+    assert cd.concrete_corrosion_induced_by_wear_enabled == False
+    assert cd.structural_class_type == "STANDARD"
+    assert cd.increase_design_working_life_from_50_to_100_years_enabled == False
+    assert cd.position_of_reinforcement_not_affected_by_construction_process_enabled == False
+    assert cd.special_quality_control_of_production_enabled == False
+    assert cd.air_entrainment_of_more_than_4_percent_enabled == False
+    assert cd.stainless_steel_enabled == False
+    assert cd.additional_protection_enabled == False
+    assert cd.allowance_of_deviation_type == "STANDARD"
+    assert cd.concrete_cast_enabled == False
