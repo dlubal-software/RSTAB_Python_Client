@@ -7,7 +7,7 @@ readme = (here/"README.md").read_text(encoding="utf-8")
 
 setup(
     name='RSTAB',
-    version='1.09.0',
+    version='1.09.1',
     description='Python Framework for RSTAB9 Web Services',
     long_description=readme,
     long_description_content_type = "text/markdown",
@@ -23,6 +23,6 @@ setup(
     packages=find_packages(),
     package_dir={"RSTAB":"RSTAB"},
     include_package_data=True,
-    install_requires=["requests", "six", "suds-py3", "xmltodict", "pytest", "mock", "setuptools"],
+    install_requires=["requests", "six", "suds-py3", "xmltodict", "pytest", "psutil", "mock", "setuptools"],
     zip_safe = False
 )
