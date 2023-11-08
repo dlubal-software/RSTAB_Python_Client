@@ -10,6 +10,7 @@ from RSTAB.Reports.html import ExportResultTablesToHtml
 from RSTAB.initModel import Model, url, closeModel, openFile, getPathToRunningRSTAB
 from shutil import rmtree
 import pytest
+import time
 
 if Model.clientModel is None:
     Model()
@@ -57,7 +58,10 @@ def test_printout_report():
     PrintoutReport.exportToHTML(1, htmlPath)
     PrintoutReport.exportToPDF(2, pdfPath)
 
-    #assert os.path.exists(htmlPath)
-    #assert os.path.exists(pdfPath) # this check creates timeouts
+    time.sleep(1)
+
+    assert os.path.exists(htmlPath)
+    assert os.path.exists(pdfPath) # this check creates timeouts
 
     closeModel('printout.rs9')
+    time.sleep(1)
