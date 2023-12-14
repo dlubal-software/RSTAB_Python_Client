@@ -2247,6 +2247,18 @@ class ModelLocationRowType(Enum):
     '''
     E_ROW_ALTITUDE, E_ROW_CITY, E_ROW_COUNTRY_ISO, E_ROW_LATITUDE, E_ROW_LONGITUDE, E_ROW_STATE, E_ROW_STREET, E_ROW_ZIP = range(8)
 
+class CoordinateSystemType(Enum):
+    '''
+    Coordinate System Type Enumeration
+    '''
+    TYPE_2_POINTS_AND_ANGLE, TYPE_3_POINTS, TYPE_GLOBAL_XYZ, TYPE_OFFSET_XYZ, TYPE_POINT_AND_3_ANGLES  = range(5)
+
+class CoordinateSystemAxesSequence(Enum):
+    '''
+    Coordinate System Axes Sequence
+    '''
+    SEQUENCE_XYZ, SEQUENCE_XZY, SEQUENCE_YXZ, SEQUENCE_YZX, SEQUENCE_ZXY, SEQUENCE_ZYX = range(6)
+
 class NoteType(Enum):
     '''
     Note Type Enumeration
