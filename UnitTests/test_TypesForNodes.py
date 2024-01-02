@@ -100,7 +100,7 @@ def test_nodalsupportnonlinearity():
 
     nsn2 = Model.clientModel.service.get_nodal_support(2)
     assert nsn2.name == 'Nonlinearity2'
-    assert nsn2.partial_activity_around_x_negative_type == 'PARTIAL_ACTIVITY_TYPE_COMPLETE'
+    assert nsn2.partial_activity_around_x_negative_type == 'PARTIAL_ACTIVITY_TYPE_FIXED'
 
     #nsn3 = Model.clientModel.service.get_nodal_support(3)
     #assert nsn3.name == 'Nonlinearity3'

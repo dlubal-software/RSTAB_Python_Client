@@ -61,7 +61,7 @@ class GetAllObjects:
         # For each of these steps individual record is made (4 total).
 
         # Vector of all function
-        func_vec = [[ObjectTypes.E_OBJECT_TYPE_COORDINATE_SYSTEM, lambda i: model.clientModel.service.get_coordinate_system(i), 'from RFEM.BasicObjects.coordinateSystem import CoordinateSystem\n', 'CoordinateSystem'],
+        func_vec = [[ObjectTypes.E_OBJECT_TYPE_COORDINATE_SYSTEM, lambda i: model.clientModel.service.get_coordinate_system(i), 'from RSTAB.BasicObjects.coordinateSystem import CoordinateSystem\n', 'CoordinateSystem'],
 			[ObjectTypes.E_OBJECT_TYPE_MATERIAL, lambda i: model.clientModel.service.get_material(i), 'from RSTAB.BasicObjects.material import Material\n', 'Material'],
             [ObjectTypes.E_OBJECT_TYPE_SECTION, lambda i: model.clientModel.service.get_section(i), 'from RSTAB.BasicObjects.section import Section\n', 'Section'],
             [ObjectTypes.E_OBJECT_TYPE_NODE, lambda i: model.clientModel.service.get_node(i), 'from RSTAB.BasicObjects.node import Node\n', 'Node'],

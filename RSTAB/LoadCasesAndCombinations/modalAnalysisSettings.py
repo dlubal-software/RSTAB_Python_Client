@@ -73,13 +73,16 @@ class ModalAnalysisSettings():
                 clientObject.frequency = frequency_f
 
         # Acting Masses
-        if acting_masses and len(acting_masses) == 6:
-            clientObject.acting_masses_about_axis_x_enabled = acting_masses[0]
-            clientObject.acting_masses_about_axis_y_enabled = acting_masses[1]
-            clientObject.acting_masses_about_axis_z_enabled = acting_masses[2]
-            clientObject.acting_masses_in_direction_x_enabled = acting_masses[3]
-            clientObject.acting_masses_in_direction_y_enabled = acting_masses[4]
-            clientObject.acting_masses_in_direction_z_enabled = acting_masses[5]
+        if acting_masses:
+            if len(acting_masses) == 6:
+                clientObject.acting_masses_about_axis_x_enabled = acting_masses[0]
+                clientObject.acting_masses_about_axis_y_enabled = acting_masses[1]
+                clientObject.acting_masses_about_axis_z_enabled = acting_masses[2]
+                clientObject.acting_masses_in_direction_x_enabled = acting_masses[3]
+                clientObject.acting_masses_in_direction_y_enabled = acting_masses[4]
+                clientObject.acting_masses_in_direction_z_enabled = acting_masses[5]
+            else:
+                raise ValueError('WARNING: The acting masses array needs to be of length 6. Kindly check list inputs for completeness and correctness.')
 
         # Name
         if name:

@@ -1,4 +1,4 @@
-from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
 from RSTAB.enums import MemberRotationalRestraintContinousBeamEffect, MemberRotationalRestraintRotationalStiffness, MemberRotationalRestraintSheetingPosition, MemberRotationalRestraintType
 
 class MemberRotationalRestraint():
