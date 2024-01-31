@@ -7,8 +7,6 @@ class TimberMoistureClass():
                 name: str = '',
                 members: str = '',
                 member_sets: str = '',
-                surfaces: str = '',
-                surface_sets: str = '',
                 moisture_class = TimberMoistureClassType.TIMBER_MOISTURE_CLASS_TYPE_1,
                 comment: str = '',
                 params: dict = None,
@@ -19,8 +17,6 @@ class TimberMoistureClass():
             name (str): User Defined Moisture Class Name
             members (str): Assigned Members
             member_sets (str): Assigned Member Sets
-            surfaces (str): Assigned Surfaces
-            surface_sets (str): Assigned Surface Sets
             moisture_class (enum): Timber Moisture Class Enumeration
             comment (str, optional): Comment
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
@@ -41,12 +37,6 @@ class TimberMoistureClass():
 
         # Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets)
-
-        # Assigned Surfaces
-        clientObject.surfaces = ConvertToDlString(surfaces)
-
-        # Assigned Surface Sets
-        clientObject.surface_sets = ConvertToDlString(surface_sets)
 
         # Moisture Class
         clientObject.moisture_class = moisture_class.name

@@ -9,8 +9,6 @@ class TimberServiceConditions():
                 name: str = '',
                 members: str = '',
                 member_sets: str = '',
-                surfaces: str = '',
-                surface_sets: str = '',
                 standard: int = 6336,
                 moisture_service_condition = TimberServiceConditionsMoistureType.TIMBER_MOISTURE_SERVICE_CONDITION_TYPE_DRY,
                 temperature = TimberServiceConditionsTemperatureType.TEMPERATURE_TYPE_TEMPERATURE_ZONE_1,
@@ -27,8 +25,6 @@ class TimberServiceConditions():
             name (str): User Defined Timber Service Condition Name
             members (str): Assigned Members
             member_sets (str): Assigned Member Sets
-            surfaces (str): Assigned Surfaces
-            surface_sets (str): Assigned Surface Sets
             standard (int): Code Number
             moisture_service_condition (enum): Timber Moisture Service Condition Enumeration
             temperature (enum): Timber Service Conditions Temperature Enumeration
@@ -57,12 +53,6 @@ class TimberServiceConditions():
 
         # Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets)
-
-        # Assigned Surfaces
-        clientObject.surfaces = ConvertToDlString(surfaces)
-
-        # Assigned Surface Sets
-        clientObject.surface_sets = ConvertToDlString(surface_sets)
 
         if standard in [6336, 6579, 6514, 6516]:
             LoadCasesAndCombinations(params = {"current_standard_for_combination_wizard": standard,
