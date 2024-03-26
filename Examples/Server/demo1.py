@@ -35,8 +35,8 @@ from RSTAB.LoadCasesAndCombinations.loadCase import LoadCase
 from RSTAB.Loads.nodalLoad import NodalLoad
 
 if __name__ == '__main__':
-    l = 10# float(input('Length of the cantilever in m: '))
-    f = 1#float(input('Force in kN: '))
+    l = float(input('Length of the cantilever in m: '))
+    f = float(input('Force in kN: '))
 
     Model(True, "Demo1") # crete new model called Demo1
     SetAddonStatus(Model.clientModel, AddOn.steel_design_active)
@@ -62,6 +62,5 @@ if __name__ == '__main__':
     Model.clientModel.service.finish_modification()
 
     Calculate_all()
-    #result = ConvertResultsToListOfDct(Model.clientModel.service.get_results_for_members_internal_forces('E_OBJECT_TYPE_LOAD_CASE', 1,1))
     result = ConvertResultsToListOfDct(Model.clientModel.service.get_results_for_steel_design_overview_errors_and_warnings())
     print(result)
