@@ -64,10 +64,10 @@ class StaticAnalysisSettings():
         """
         Args:
             no (int): Static Analysis Setting Tag
-            name (str): Static Analysis Setting Name
-            load_modification (list): Load Modification Parameters
+            name (str, optional): Static Analysis Setting Name
+            load_modification (list, optional): Load Modification Parameters
                 load_modification = [loading_by_multiplier_factor, multiplier_factor, dividing_results]
-            mass_conversion (list): Mass Conversion Parameters
+            mass_conversion (list, optional): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
@@ -138,15 +138,15 @@ class StaticAnalysisSettings():
         """
         Args:
             no (int): Static Analysis Setting Tag
-            name (str):  Static Analysis Setting Name
+            name (str, optional):  Static Analysis Setting Name
             iterative_method (enum): Static Analysis Settings Iterative Method for Non-linear Analysis Enumeration
             precision_of_convergence_criteria_for_nonlinear_calculation (float): Precision of Convergence defaults to 0
             max_number_of_iterations (float): Maximum Number of Iterations
             number_of_load_increments (float): Number of Load Increments
-            load_modification (list): Load Modification Parameters
+            load_modification (list, optional): Load Modification Parameters
                 load_modification = [loading_by_multiplier_factor, multiplier_factor, dividing_results]
-            bourdon_effect (bool): Bourdon Effect Boolean
-            mass_conversion (list): Mass Conversion Parameters
+            bourdon_effect (bool, optional): Bourdon Effect Boolean
+            mass_conversion (list, optional): Mass Conversion Parameters
                 mass_conversion = [mass_conversion_enabled, mass_conversion_factor_in_direction_x, mass_conversion_factor_in_direction_y, mass_conversion_factor_in_direction_z]
             comment (str, optional): Comments
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary

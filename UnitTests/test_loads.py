@@ -19,6 +19,7 @@ from RSTAB.Loads.nodalLoad import NodalLoad
 if Model.clientModel is None:
     Model()
 
+### Nodal Load Unit Tests ###
 def test_nodal_load_init():
 
     Model.clientModel.service.delete_all()

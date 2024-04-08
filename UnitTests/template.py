@@ -11,7 +11,6 @@
 
 # import only used modules
 # avoid wild-card import (from RSTAB.enums import *) if possible
-from RSTAB.enums import MemberType
 from RSTAB.initModel import Model, CheckIfMethodOrTypeExists
 import pytest
 import os
