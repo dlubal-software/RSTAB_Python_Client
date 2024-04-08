@@ -1,204 +1,139 @@
-import sys
 import os
+import sys
 baseName = os.path.basename(__file__)
 dirName = os.path.dirname(__file__)
 print('basename:    ', baseName)
 print('dirname:     ', dirName)
-
 sys.path.append(dirName + r'/../..')
-
-from RSTAB.enums import NodalSupportType, StaticAnalysisType, NodalLoadDirection, MemberLoadDistribution, MemberLoadDirection, MemberRotationSpecificationType
-from window import window
-from RSTAB.dataTypes import inf
-from RSTAB.initModel import Model, Calculate_all, insertSpaces, GetListOfOpenedModels
+from RSTAB.enums import NodalSupportType, MemberRotationSpecificationType
+from RSTAB.initModel import Model, insertSpaces
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
-from RSTAB.TypesForMembers.memberHinge import MemberHinge
-from RSTAB.LoadCasesAndCombinations.staticAnalysisSettings import StaticAnalysisSettings
-from RSTAB.LoadCasesAndCombinations.loadCase import LoadCase
-from RSTAB.Loads.nodalLoad import NodalLoad
-from RSTAB.Loads.memberLoad import MemberLoad
 
-def main(hall_width_L, hall_height_h_o, hall_height_h_m, number_frames, frame_spacing, new_model, model_name, delete_res, delete_all):
-# -------------------------------------------------------------
-    Model(new_model, model_name, delete_res, delete_all)
+if __name__ == '__main__':
+
+    l = float(input('Length of the clear span in m: '))
+    n = int(input('Number of frames: '))
+    d = float(input('Distance between frames in m: '))
+    h = float(input('Height of frame in m: '))
+
+    Model()
     Model.clientModel.service.begin_modification()
-# -------------------------------------------------------------
-    # Materials
-    Material(1)
-    Material(2, "S275", "Test")
-    Material(3, "Concrete f'c = 20 MPa | CSA A23.3-19", "Test")
 
-# -------------------------------------------------------------
-    # Sections
-    Section(1, "HEB 220")
-    Section(2, "IPE 300")
-    Section(3, "U 100", 2)
-    Section(4, "Cable 14.00", 2)
+    # nodes
+    for i in range(n):
+        j = i * 5
+        Node(j+1, 0.0, -i*d, 0.0)
+        Node(j+2, 0.0, -i*d, -h)
+        Node(j+3, l/2, -i*d, -h)
+        Node(j+4, l, -i*d, -h)
+        Node(j+5, l, -i*d, 0.0)
 
-# -------------------------------------------------------------
-    # Nodes
-    i = 1
-    while i <= number_frames:
-        j = (i-1) * 5
-        Node(j+1, 0.0           , -(i-1) * frame_spacing)
-        Node(j+2, 0.0           , -(i-1) * frame_spacing, -hall_height_h_o)
-        Node(j+3, hall_width_L/2, -(i-1) * frame_spacing, -hall_height_h_m)
-        Node(j+4, hall_width_L  , -(i-1) * frame_spacing, -hall_height_h_o)
-        Node(j+5, hall_width_L  , -(i-1) * frame_spacing)
-        i += 1
+    # nodal supports
+    nodes_no = []
+    for i in range(n):
+        j = 5*i
+        nodes_no.extend([j+1, j+5])
+    NodalSupport(1, insertSpaces(nodes_no), NodalSupportType.HINGED, "Hinged support")
 
-# -------------------------------------------------------------
+    # members
+    Material(1, 'S235')
 
-    # Member Hinges
-    MemberHinge(1, "Local", rotational_release_mz=inf)
+    # sections
+    Section(1, 'HEM 700', 1)
+    Section(2, 'IPE 500', 1)
 
-# -------------------------------------------------------------
-    # Members
-
-    member = Member()
-    # Frames
-    i = 1
-    while i <= number_frames:
-        j = (i-1) * 5
-        k = (i-1) * 4
+    # members x direction
+    for i in range(n):
+        j = i * 5
+        k = i * 4
         Member(k+1,  j+1, j+2, 0.0,  1, 1)
         Member(k+2,  j+2, j+3, 0.0,  2, 2)
         Member(k+3,  j+3, j+4, 0.0,  2, 2)
         Member(k+4,  j+4, j+5, 0.0,  1, 1)
-        i += 1
 
-    # Purlins
-    i = 1
-    while i <= number_frames-1:
+    # members y direction
+    for i in range(1,n):
         j = (i-1) * 5
-        Member(4*number_frames+i                    ,  j+2, j+7,   0.0,  3, 3,  1, 1)
-        Member(4*number_frames+i +   number_frames-1,  j+3, j+8,   0.0,  3, 3)
-        Member(4*number_frames+i + 2*number_frames-2,  j+4, j+9, 180.0,  3, 3,  1, 1)
-        i += 1
+        Member(4*n+i,  j+2, j+7, 0.0, 2, 2)
+        Member(4*n+i + n-1,  j+4, j+9, 0.0, 2, 2)
 
-    # Diagonals on the wall
-    i = 1
-    j = 4*number_frames + 3*(number_frames-1)
-    while i <= number_frames-1:
-        k = j + (i-1)*4
-        member.Tension(k+1, (i-1)*5+1, (i-1)*5+7 , MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(k+2, (i-1)*5+2, (i-1)*5+6 , MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(k+3, (i-1)*5+5, (i-1)*5+9 , MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(k+4, (i-1)*5+4, (i-1)*5+10, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        i += 1
+    # vertical bracing
+    # add a question about repeating in every block, one yes one no, only beginning and end
 
-    # Diagonals on the roof
-    j += 4*(number_frames-1)
-    if number_frames > 1:
-        member.Tension(j+1, 2, 8, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(j+2, 7, 3, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(j+3, 3, 9, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
-        member.Tension(j+4, 4, 8, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 4)
+    BracingV = input('Would you like to include vertical bracing? (Y/N)')
+    if BracingV.lower() == 'yes' or BracingV.lower() == 'y':
+        BracingV_C1 = input(
+            'Would you like to repeat a vertical bracing in every block? (Y/N)')
+        if BracingV_C1.lower() == 'yes' or BracingV_C1.lower() == 'y':
+            Material(3, 'EN AW-3004 H14')
+            Section(3, 'IPE 80', 3)
+            j = 4*n + 3*(n-1)
+            k = 4*n + 2*(n-1)
+            for i in range(n):
+                Member(k+1+4*i, i*5+1, i*5+7, 0.0, 3, 3)
+                Member(k+2+4*i, i*5+2, i*5+6, 0.0, 3, 3)
+                Member(k+3+4*i, i*5+5, i*5+9, 0.0, 3, 3)
+                Member(k+4+4*i, i*5+4, i*5+10, 0.0, 3, 3)
 
-# -------------------------------------------------------------
+        BracingV_C2 = input(
+            'Would you like to repeat a vertical bracing only in the first and last block? (Y/N)')
+        if BracingV_C2.lower() == 'yes' or BracingV_C2.lower() == 'y':
+            Material(3, 'EN AW-3004 H14')
+            Section(3, 'IPE 80', 3)
 
-    # Nodal Supports
+            k = n*4+(n-1)*2
+            for i in range(n):
+                if i in (0, n-2):
+                    Member.Tension(k+1+4*i, i*5+1, i*5+7,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+2+4*i, i*5+2, i*5+6,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+3+4*i, i*5+5, i*5+9,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+4+4*i, i*5+4, i*5+10,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
 
-    # List (str) of supported nodes
-    i = 1
-    nodes_no = ""
-    while i <= number_frames:
-        j = (i-1) * 5
-        nodes_no += str(j+1) + " "
-        nodes_no += str(j+5) + " "
-        i += 1
-    nodes_no = nodes_no.rstrip(nodes_no[-1])    # Removes one character from the end of the string
+        # MAKE IT MORE GENERAL!
+        BracingV_C3 = input(
+            'Would you like to repeat a vertical bracing in even/odd blocks? (Y/N)')
+        if BracingV_C3.lower() == 'yes' or BracingV_C3.lower() == 'y':
+            Material(3, 'EN AW-3004 H14')
+            Section(3, 'IPE 80', 3)
 
-    NodalSupport(1, nodes_no, NodalSupportType.HINGED, "Hinged support")
+            j = 4*n + 3*(n-1)
+            k = 4*n + 2*(n-1)
+            for i in range(n):
+                if i % 2 == 0:
+                    Member.Tension(k+1+4*i, i*5+1, i*5+7,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+2+4*i, i*5+2, i*5+6,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+3+4*i, i*5+5, i*5+9,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
+                    Member.Tension(k+4+4*i, i*5+4, i*5+10,
+                                   MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0], 3)
 
-# -------------------------------------------------------------
+    # horizontal bracing
+    # add a question about repeating in every block, one yes one no, only beginning and end
 
-    print('Load Cases/Loads...')
+    member_count = n*4+(n-1)*2
+    BracingH = input('Would you like to include horizontal bracing? (Y/N)')
+    if BracingV.lower() == 'yes' or BracingV.lower() == 'y':
+        member_count += (n-1)*4
+        BracingH = 'yes'
+        if BracingH.lower() == 'yes' or BracingH.lower() == 'y':
 
-# -------------------------------------------------------------
-    # Static Analysis Settings
-    StaticAnalysisSettings(1, "Linear calculation", StaticAnalysisType.GEOMETRICALLY_LINEAR)
+            for i in range(n-1):
+                j = i * 5
+                Member(int(member_count+1+4*i), j+2, j+8, 0.0, 3, 3)
+                Member(int(member_count+2+4*i), j+3, j+7, 0.0, 3, 3)
+                Member(int(member_count+3+4*i), j+3, j+9, 0.0, 3, 3)
+                Member(int(member_count+4+4*i), j+4, j+8, 0.0, 3, 3)
 
-# -------------------------------------------------------------
-    # Load Cases
-    LoadCase(1 , "Self-weight",[True, 0.0, 0.0, 10.0])
-    LoadCase(2 , "Live loads")
-    LoadCase(3 , "Test 1" )
-    LoadCase(4 , "Test 2" )
-    LoadCase(5 , "Test 3" )
-    LoadCase(6 , "Test 4" )
-    LoadCase(7 , "Test 5" )
-    LoadCase(8 , "Test 6" )
-    LoadCase(9 , "Test 7" )
-    LoadCase(10, "Test 8" )
-    LoadCase(11, "Test 9" )
-    LoadCase(12, "Test 10")
-    LoadCase(13, "Test 11")
-    LoadCase(14, "Test 12")
-
-# -------------------------------------------------------------
-    # Nodal Forces
-    NodalLoad(1, 3, "9 4 7 2", NodalLoadDirection.LOAD_DIRECTION_GLOBAL_Z_OR_USER_DEFINED_W, 2000.0)
-
-# -------------------------------------------------------------
-    # Member Loads
-    memberLoad = MemberLoad()
-
-    memberLoad.Force(2, 1, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_UNIFORM, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[5000])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_UNIFORM with Eccentricity ##
-    memberLoad.Force(3, 2, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_UNIFORM, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[5000], force_eccentricity=True, params={'eccentricity_y_at_start' : 0.01, 'eccentricity_z_at_start': 0.02})
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_UNIFORM_TOTAL ##
-    memberLoad.Force(4, 3, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_UNIFORM_TOTAL, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[5000])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_CONCENTRATED_1 ##
-    memberLoad.Force(5, 4, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_CONCENTRATED_1, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, 5000, 1.2])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_CONCENTRATED_N ##
-    memberLoad.Force(6, 5, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_CONCENTRATED_N, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, False, 5000, 2, 1, 2])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_CONCENTRATED_2x2 ##
-    memberLoad.Force(7, 6, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_CONCENTRATED_2x2, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, False, False, 5000, 1, 2, 3])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_CONCENTRATED_2x ##
-    memberLoad.Force(8, 7, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_CONCENTRATED_2, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, False, 5000, 6000, 1, 2])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_CONCENTRATED_VARYING ##
-    memberLoad.Force(9, 8, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_CONCENTRATED_VARYING, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[[ 1, 4000], [2, 5000]])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_TRAPEZOIDAL ##
-    memberLoad.Force(10, 9, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_TRAPEZOIDAL, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, False, 4000, 8000, 1, 2])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_TAPERED ##
-    memberLoad.Force(11, 10, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_TAPERED, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[False, False, 4000, 8000, 1, 2])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_PARABOLIC ##
-    memberLoad.Force(12, 11, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_PARABOLIC, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[4000, 8000, 12000])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_VARYING ##
-    memberLoad.Force(13, 12, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_VARYING, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[[1, 4000], [2, 5000]])
-
-    ## Force Type Member Load with LOAD_DISTRIBUTION_VARYING_IN_Z ##
-    memberLoad.Force(14, 13, "2 3 6 7", MemberLoadDistribution.LOAD_DISTRIBUTION_VARYING_IN_Z, MemberLoadDirection.LOAD_DIRECTION_LOCAL_Z, load_parameter=[[1, 4000], [2, 5000]])
-
-# -------------------------------------------------------------
-
-    # Finish client model
-    print("Calculating...")
+    print("Preparing...")
+    print('Ready!')
     Model.clientModel.service.finish_modification()
-
-# -------------------------------------------------------------
-    # Calculate all
-    Calculate_all()
-
-    print("Done")
-    sys.exit()
-
-if __name__ == '__main__':
-    modelLst = GetListOfOpenedModels()
-    window(main, modelLst)
