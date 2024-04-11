@@ -110,7 +110,7 @@ class GlobalParameter():
             parent_no (int): Id of parent of object - e.g. Id of load case for loads
             attribute (str): attribute of object where formula is going to be applied
             formula (str): formula
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
 
         Returns:
             bool: True if formula was successfuly set
@@ -149,7 +149,7 @@ class GlobalParameter():
             no (int): ID of object
             parent_no (int): Id of parent of object - e.g. Id of load case for loads
             attribute (str): attribute of object where formula is applied
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
 
         Returns:
             dict: Formula
@@ -183,7 +183,7 @@ class GlobalParameter():
             no (int): Id of object
             parent_no (int): Id of parent of object - e.g. Id of load case for loads
             attribute (str): attribute of object where formula is applied eg. 'magnitude'
-            model (RFEM Class, optional): Model to be edited
+            model (RSTAB Class, optional): Model to be edited
 
         Returns:
             bool: True if formula is allowed for attribute of the object

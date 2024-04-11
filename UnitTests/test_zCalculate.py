@@ -6,8 +6,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import OptimizationTargetValueType, AddOn, NodalSupportType, NodalLoadDirection, ActionCategoryType, ObjectTypes
-from RSTAB.initModel import Model, client, SetAddonStatus,Calculate_all, CalculateSelectedCases
-from RSTAB.Calculate.memberDivision import GetMemberDivisions, MemberDivision
+from RSTAB.initModel import Model, SetAddonStatus,Calculate_all, CalculateSelectedCases
 from RSTAB.Calculate.optimizationSettings import OptimizationSettings
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
@@ -18,7 +17,9 @@ from RSTAB.LoadCasesAndCombinations.staticAnalysisSettings import StaticAnalysis
 from RSTAB.LoadCasesAndCombinations.loadCase import LoadCase
 from RSTAB.LoadCasesAndCombinations.loadCasesAndCombinations import LoadCasesAndCombinations
 from RSTAB.Loads.nodalLoad import NodalLoad
-import pytest
+
+sys.path.append('..')
+from RSTAB import connectionGlobals
 
 if Model.clientModel is None:
     Model()
@@ -51,7 +52,7 @@ def test_calculate_specific():
     createmodel()
     messages = CalculateSelectedCases([1])
 
-    assert messages
+    assert not messages
     assert  Model.clientModel.service.has_results(ObjectTypes.E_OBJECT_TYPE_LOAD_CASE.name, 1)
     assert not Model.clientModel.service.has_results(ObjectTypes.E_OBJECT_TYPE_LOAD_CASE.name, 2)
 
@@ -65,21 +66,8 @@ def test_calculate_all():
     assert Model.clientModel.service.has_results(ObjectTypes.E_OBJECT_TYPE_LOAD_CASE.name, 2)
 
 # CAUTION:
-# These tests needs to be executed last because they change global settings
-
-@pytest.mark.skip(reason="Function disappeared from RSTAB.")
-def test_mesh_settings():
-
-    Model.clientModel.service.delete_all()
-    Model.clientModel.service.begin_modification()
-
-    MemberDivision()
-
-    control_mesh = GetMemberDivisions()
-    assert control_mesh.number_of_divisions_for_special_types_of_members == 10
-
-    Model.clientModel.service.finish_modification()
-
+# These tests needs to be executed last because they change global settings.
+# At the end of the script the model is closed.
 def test_optimization_settings():
 
     Model.clientModel.service.delete_all()
@@ -97,4 +85,4 @@ def test_optimization_settings():
     assert opt_sett.target_value_type == OptimizationTargetValueType.MIN_TOTAL_WEIGHT.name
 
     # Testing model is closed at the end of the testing session to enable easier and cleaned restart of the unit tests.
-    client.service.close_model(0, False)
+    connectionGlobals.client.service.close_model(0, False)

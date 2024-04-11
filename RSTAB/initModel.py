@@ -3,76 +3,95 @@ import sys
 import RSTAB.dependencies # dependency check ahead of imports
 import socket
 import requests
+import xmltodict
+from urllib import request
+from suds import WebFault
 from suds.client import Client
 from RSTAB.enums import ObjectTypes, ModelType, AddOn
 from RSTAB.suds_requests import RequestsTransport
 from suds.cache import DocumentCache
 from tempfile import gettempdir
 import time
+from RSTAB import connectionGlobals
 
-# Connect to server
-# Check server port range set in "Program Options & Settings"
-# By default range is set between 8081 ... 8089
-print('Connecting to server...')
+def connectToServer(url=connectionGlobals.url, port=connectionGlobals.port):
+    """
+    Function for connecting to the server - code moved to function,
+    so it is not executed on import of the module
+    """
+    # Check server port range set in "Program Options & Settings"
+    # By default range is set between 8081 ... 8089
+    if connectionGlobals.connected:
+        return
 
-# local machine url format: 'http://127.0.0.1'
-url = 'http://127.0.0.1'
-# port format: '8081'
-port = '8081'
-urlAndPort = url+':'+port
+    print('Connecting to server...')
 
-# Check if port is listening
-a_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # local machine url format: 'http://127.0.0.1'
+    urlAndPort = f'{url}:{port}'
 
-location = (url[7:], int(port))
-result_of_check = a_socket.connect_ex(location)
+    # Check if port is listening
+    a_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-if result_of_check == 0:
-    a_socket.close()
-else:
-    print('Error: Port '+urlAndPort+' is not open.')
-    print('Please check:')
-    print('- If you have started RSTAB application at the remote destination correctly.')
-    a_socket.close()
-    sys.exit()
+    location = (url[7:], int(port))
+    result_of_check = a_socket.connect_ex(location)
 
-# Delete cached WSDL older than 1 day to reflect newer version of RSTAB
-cacheLoc = os.path.join(gettempdir(), 'WSDL')
-currentTime = time.time()
-if os.path.exists(cacheLoc):
-    for file in os.listdir(cacheLoc):
-        filePath = os.path.join(cacheLoc, file)
-        if (currentTime - os.path.getmtime(filePath)) > 86400:
-            os.remove(filePath)
+    if result_of_check == 0:
+        a_socket.close()
+    else:
+        print(f'Error: Port {urlAndPort} is not open.')
+        print('Please check:')
+        print('- If you have started RSTAB application at the remote destination correctly.')
+        a_socket.close()
+        sys.exit()
 
-# Check for issues locally and remotely
-try:
-    ca = DocumentCache(location=cacheLoc)
-    client = Client(urlAndPort+'/wsdl', location = urlAndPort, cache=ca)
-except:
-    print('Error: Connection to server failed!')
-    print('Please check:')
-    print('- If you have started RSTAB application')
-    print('- If all RSTAB dialogs are closed')
-    print('- If server port range is set correctly')
-    print('- If you have a valid Web Services license')
-    print('- Check Program Options & Settings > Web Services')
-    print('On remote PC please check:')
-    print('- If the firewall enables you to listen to selected port.')
-    sys.exit()
+    # Delete old cache if the version or mode doesn't correlate
+    connectionGlobals.cacheLoc = os.path.join(gettempdir(), 'WSDL')
+    new_wsdl = request.urlopen(urlAndPort+'/wsdl')
+    new_wsdl_data = new_wsdl.read()
+    new_wsdl.close()
+    new_tns = xmltodict.parse(new_wsdl_data)['definitions']['@targetNamespace']
 
-try:
-    modelLst = client.service.get_model_list()
-except:
-    print('Error: Please check if all RSTAB dialogs are closed.')
-    input('Press Enter to exit...')
-    sys.exit()
+    if os.path.exists(connectionGlobals.cacheLoc):
+        for file in os.listdir(connectionGlobals.cacheLoc):
+            filePath = os.path.join(connectionGlobals.cacheLoc, file)
+            if file.endswith('.xml'):
+                with open(filePath,'r', encoding='utf-8') as old_wsdl:
+                    old_wsdl_data = old_wsdl.read()
+                    old_wsdl.close()
+                    old_tns = xmltodict.parse(old_wsdl_data)['definitions']['@targetNamespace']
+                    if new_tns != old_tns:
+                        os.remove(filePath)
 
-# Persistent connection
-# 'session' and 'trans'(port) enable Client to work within 1 session which is much faster to execute.
-# Without it the session lasts only one request which results in poor performance.
-# Assigning session to application Client (here client) instead of model Client
-# results also in poor performance.
+    # Check for issues locally and remotely
+    try:
+        connectionGlobals.ca = DocumentCache(location=connectionGlobals.cacheLoc)
+        connectionGlobals.client = Client(urlAndPort+'/wsdl', location = urlAndPort, cache=connectionGlobals.ca)
+        connectionGlobals.connected = True
+
+    except:
+        print('Error: Connection to server failed!')
+        print('Please check:')
+        print('- If you have started RSTAB application')
+        print('- If all RSTAB dialogs are closed')
+        print('- If server port range is set correctly')
+        print('- If you have a valid Web Services license')
+        print('- Check Program Options & Settings > Web Services')
+        print('On remote PC please check:')
+        print('- If the firewall enables you to listen to selected port.')
+        sys.exit()
+
+    try:
+        modelLst = connectionGlobals.client.service.get_model_list()
+    except:
+        print('Error: Please check if all RSTAB dialogs are closed.')
+        input('Press Enter to exit...')
+        sys.exit()
+
+    # Persistent connection
+    # 'session' and 'trans'(port) enable Client to work within 1 session which is much faster to execute.
+    # Without it the session lasts only one request which results in poor performance.
+    # Assigning session to application Client (here client) instead of model Client
+    # results also in poor performance.
 
 class Model():
     clientModel = None
@@ -82,7 +101,8 @@ class Model():
                  new_model: bool=True,
                  model_name: str="TestModel.rs9",
                  delete: bool=False,
-                 delete_all: bool=False):
+                 delete_all: bool=False,
+                 connect_to_server: bool=True):
         """
         Class object representing individual model in RSTAB.
         Class enables to edit multiple models in one session through holding
@@ -95,9 +115,15 @@ class Model():
             delete_all (bool, optional): Delete all objects in Model.
         """
 
+        # This condition is here so there is backward compatibility for test etc.
+        # But it is possible now to connect to server in different place
+        # and then use Model(connect_toserver=False)
+        if connect_to_server:
+            connectToServer()
+
         cModel = None
         modelLst = []
-        modelVct = client.service.get_model_list()
+        modelVct = connectionGlobals.client.service.get_model_list()
         if modelVct:
             modelLst = modelVct.name
 
@@ -107,65 +133,88 @@ class Model():
             model_name = model_name.split('.')[0]
 
         if new_model:
-            # Requested new model but the model with given name was already connected
+            # Requested new model but the model with given name is already connected
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]
+                # Asuming the existing model should be recycled everything have to be deleted,
+                # so the script won't add new objects on top of the old ones.
+                # Mainly used in cycles.
                 cModel.service.delete_all_results()
                 cModel.service.delete_all()
 
-            # Requested new model, model with given name DOESN'T exist yet
             else:
                 modelPath = ''
-                # Requested new model, model with given name was NOT connected yet but file with the same name was opened
+                # Requested new model, model with given name was NOT connected yet but file with the same name is opened in RSTAB
                 if model_name in modelLst:
                     id = 0
                     for i,j in enumerate(modelLst):
                         if modelLst[i] == model_name:
                             id = i
-                    modelPath =  client.service.get_model(id)
-                elif model_name == "":
-                    modelPath =  client.service.get_active_model()
+                    modelPath =  connectionGlobals.client.service.get_model(id)
+
+                # Requested new model, model with given name DOESN'T exist yet
                 else:
-                    modelPath =  client.service.new_model(original_model_name)
+                    # If name is empty, active will be selected
+                    if model_name == "":
+                        modelPath =  connectionGlobals.client.service.get_active_model()
+                    # If there is no nodel with given name, new RFEM model will be created
+                    else:
+                        modelPath =  connectionGlobals.client.service.new_model(original_model_name)
+
                 modelPort = modelPath[-5:-1]
-                modelUrlPort = url+':'+modelPort
+                modelUrlPort = connectionGlobals.url+':'+modelPort
                 modelCompletePath = modelUrlPort+'/wsdl'
 
-                session = requests.Session()
+                connectionGlobals.session = requests.Session()
                 adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
-                session.mount('http://', adapter)
-                trans = RequestsTransport(session)
+                connectionGlobals.session.mount('http://', adapter)
+                trans = RequestsTransport(connectionGlobals.session)
 
-                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca, timeout=360)
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=connectionGlobals.ca, timeout=360)
 
                 self.clientModelDct[model_name] = cModel
 
         else:
-            # Requested model which was already connected
-            #assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RSTAB.'
+            # Requested model is already opened in RFEM or even connected in self.clientModelDct.
+            # In this statement RFEM doesn't create new model in RFEM via new_model().
 
+            # assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RFEM.'
+
+            # If model with same name is opened and alredy in clientModelDct.
+            # This is typicaly model created by RFEM Python Client.
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]
+            # If opening new file.
+            # Model is opened in RFEM (model in modelLst) but it is not in clientModelDct yet to be edited or closed.
             elif model_name in modelLst:
                 id = 0
                 for i,j in enumerate(modelLst):
                     if modelLst[i] == model_name:
                         id = i
-                modelPath =  client.service.get_model(id)
+                modelPath =  connectionGlobals.client.service.get_model(id)
+                self.clientModelDct[model_name] = cModel
                 modelPort = modelPath[-5:-1]
-                modelUrlPort = url+':'+modelPort
+                modelUrlPort = connectionGlobals.url+':'+modelPort
                 modelCompletePath = modelUrlPort+'/wsdl'
 
-                session = requests.Session()
+                connectionGlobals.session = requests.Session()
                 adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
-                session.mount('http://', adapter)
-                trans = RequestsTransport(session)
+                connectionGlobals.session.mount('http://', adapter)
+                trans = RequestsTransport(connectionGlobals.session)
 
-                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=ca, timeout=360)
-
-                self.clientModelDct[model_name] = cModel
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=connectionGlobals.ca, timeout=360)
             elif model_name == "":
-                    modelPath =  client.service.get_active_model()
+                modelPath =  connectionGlobals.client.service.get_active_model()
+                modelPort = modelPath[-5:-1]
+                modelUrlPort = connectionGlobals.url+':'+modelPort
+                modelCompletePath = modelUrlPort+'/wsdl'
+
+                connectionGlobals.session = requests.Session()
+                adapter = requests.adapters.HTTPAdapter(pool_connections=1, pool_maxsize=1)
+                connectionGlobals.session.mount('http://', adapter)
+                trans = RequestsTransport(connectionGlobals.session)
+
+                cModel = Client(modelCompletePath, transport=trans, location = modelUrlPort, cache=connectionGlobals.ca, timeout=360)
             else:
                 print('Model name "'+model_name+'" is not created in RSTAB. Consider changing new_model parameter in Model class from False to True.')
                 sys.exit()
@@ -201,7 +250,7 @@ class Model():
                 self.clientModel = None
         if isinstance(index_or_name, int):
             assert index_or_name <= len(self.clientModelDct)
-            modelLs = client.service.get_model_list()
+            modelLs = connectionGlobals.client.service.get_model_list()
 
             if modelLs:
                 self.clientModelDct.pop(modelLs.name[index_or_name])
@@ -240,7 +289,7 @@ def deleteEmptyAttributes(obj):
     try:
         it = iter(obj)
     except:
-        ValueError('WARNING: Object feeded to deleteEmptyAttributes function is not iterable. It is type: '+str(type(obj)+'.'))
+        ValueError('WARNING: Object feeded to deleteEmptyAttributes function is not iterable. It is type: '+str(type(obj))+'.')
 
     for i in it:
         if isinstance(i, str) or isinstance(i, int) or isinstance(i, float) or isinstance(i, bool) or isinstance(i, Enum):
@@ -265,7 +314,7 @@ def openFile(model_path):
     '''
     Open file with a name.
     This routine primarily adds client instance into
-    Model.clientModelLst which manages all connections to the models.
+    Model.clientModelDct which manages all connections to the models.
     New Model class instance is invoked.
     It should be used when opening a file.
 
@@ -277,8 +326,8 @@ def openFile(model_path):
     assert os.path.exists(model_path)
 
     file_name = os.path.basename(model_path)
-    client.service.open_model(model_path)
-    return Model(True, file_name)
+    connectionGlobals.client.service.open_model(model_path)
+    return Model(False, file_name)
 
 def closeModel(index_or_name, save_changes = False):
     '''
@@ -292,17 +341,17 @@ def closeModel(index_or_name, save_changes = False):
     '''
     if isinstance(index_or_name, int):
         Model.__delete__(Model, index_or_name)
-        client.service.close_model(index_or_name, save_changes)
+        connectionGlobals.client.service.close_model(index_or_name, save_changes)
 
     elif isinstance(index_or_name, str):
         if index_or_name[-4:] == '.rs9':
             index_or_name = index_or_name[:-4]
 
-        modelLs = client.service.get_model_list().name
+        modelLs = connectionGlobals.client.service.get_model_list().name
         if index_or_name in modelLs:
             try:
                 Model.__delete__(Model, index_or_name)
-                client.service.close_model(modelLs.index(index_or_name), save_changes)
+                connectionGlobals.client.service.close_model(modelLs.index(index_or_name), save_changes)
             except:
                 print('Model did NOT close properly.')
         else:
@@ -318,7 +367,7 @@ def closeAllModels(save_changes = False):
         save_changes (bool): Enable/Disable Save Changes Option
     '''
     try:
-        modelLs = client.service.get_model_list().name
+        modelLs = connectionGlobals.client.service.get_model_list().name
         for j in reversed(modelLs):
             closeModel(j, save_changes)
     except:
@@ -344,7 +393,7 @@ def insertSpaces(lst: list):
     '''
     return ' '.join(str(item) for item in lst)
 
-def Calculate_all(generateXmlSolverInput: bool = False, model = Model):
+def Calculate_all(skipWarnings: bool = False, model = Model):
     '''
     Calculates model.
     CAUTION: Don't use it in unit tests!
@@ -352,11 +401,35 @@ def Calculate_all(generateXmlSolverInput: bool = False, model = Model):
     it causes RSTAB to stuck and generates failures, which are hard to investigate.
 
     Args:
-        generateXmlSolverInput (bool): Generate XML Solver Input
+        skipWarnings (bool): Warnings will be skipped
         model (RSTAB Class, optional): Model to be edited
     '''
-    calculationMessages = model.clientModel.service.calculate_all(generateXmlSolverInput)
+
+    from RSTAB.Tools.PlausibilityCheck import PlausibilityCheck
+    PlausibilityCheck()
+
+    calculationMessages = model.clientModel.service.calculate_all(skipWarnings)
     return calculationMessages
+
+def CalculateInCloud(machine_id, run_plausibility_check, calculate_despite_warnings_and_errors, email_notification, model = Model):
+    '''
+    Sends the current model to the defined server to be calculated in the cloud. Plausibility check before and email notification after the cloud calculation are optional.
+    CAUTION: Don't use it in unit tests!
+    It works when executing tests individually but when running all of them
+    it causes RFEM to stuck and generates failures, which are hard to investigate.
+
+    Args:
+        machine_id (str): virtual machine ID (Dlu_1, F4s_v2, F8s_v2, F16s_v2, F32s_v2)
+        run_plausibility_check (bool): Activate/Deactivate plausibility check of model before cloud calculation is started
+        calculate_despite_warnings_and_errors (bool): Activate/Deactivate to start cloud calculation despite warnings and errors during plausibility check
+        email_notification (bool): Activate/Deactivate email notification about start and end of cloud calculation
+    '''
+    try:
+        cloudCalculationResult = model.clientModel.service.calculate_all_in_cloud(machine_id, run_plausibility_check, calculate_despite_warnings_and_errors, email_notification)
+        print("Cloud calculation was started.")
+        return cloudCalculationResult # list
+    except WebFault as e:
+        print(f"Caught exception: {e.fault.faultstring}")
 
 def ConvertToDlString(s):
     '''
@@ -614,12 +687,24 @@ def CalculateSelectedCases(loadCases: list = None, designSituations: list = None
             specificObjectsToCalculateCC.no = loadCombination
             specificObjectsToCalculateCC.type = ObjectTypes.E_OBJECT_TYPE_LOAD_COMBINATION.name
             specificObjectsToCalculate.loading.append(specificObjectsToCalculateCC)
-    try:
-        calculationMessages = model.clientModel.service.calculate_specific(specificObjectsToCalculate,skipWarnings)
-    except Exception as exp:
-        calculationMessages = "Calculation was unsuccessful: " + repr(exp)
 
-    return calculationMessages
+    errors_and_warnings = []
+    calculationMessages = []
+
+    try:
+        calculationMessages = model.clientModel.service.calculate_specific(specificObjectsToCalculate, skipWarnings)
+    except Exception as exp:
+        errors_and_warnings = ["Calculation was unsuccessful: " + repr(exp)]
+
+    if calculationMessages["errors_and_warnings"] and calculationMessages["errors_and_warnings"]["message"]:
+        errors_and_warnings = ["".join([message.message_type,\
+                                        ": Input field: ", message.input_field,\
+                                            ", object: ", message.object,\
+                                                ", current value: ", message.current_value,\
+                                                    ". Message: ", message.message]) if message.message_type == "ERROR"\
+                                                        else "".join([message.message_type, ": ", message.message]) if not skipWarnings else None for message in calculationMessages["errors_and_warnings"]["message"]]
+
+    return errors_and_warnings
 
 def FirstFreeIdNumber(memType = ObjectTypes.E_OBJECT_TYPE_MEMBER, parent_no: int = 0, model = Model):
     '''
@@ -676,7 +761,7 @@ def NewModelAsCopy(old_model_name: str = '',
 
     # Old Model Name
     new_model_name = ''
-    if '.rf6' in old_model_name:
+    if '.rs9' in old_model_name:
         new_model_name = old_model_name[:-4] + '_copy'
 
     else:
@@ -685,7 +770,7 @@ def NewModelAsCopy(old_model_name: str = '',
     old_model_path = os.path.join(old_model_folder, old_model_name)
 
     # New Model Name
-    newModelAsCopy = client.service.new_model_as_copy(new_model_name, old_model_path)
+    newModelAsCopy = connectionGlobals.client.service.new_model_as_copy(new_model_name, old_model_path)
 
     return newModelAsCopy
 
@@ -739,7 +824,7 @@ def GetName():
     '''
 
     # Client Application | Get Information
-    return client.service.get_information().name
+    return connectionGlobals.client.service.get_information().name
 
 def GetVersion():
     '''
@@ -747,7 +832,7 @@ def GetVersion():
     '''
 
     # Client Application | Get Information
-    return client.service.get_information().version
+    return connectionGlobals.client.service.get_information().version
 
 def GetLanguage():
     '''
@@ -755,7 +840,7 @@ def GetLanguage():
     '''
 
     # Client Application | Get Information
-    return client.service.get_information().language_name
+    return connectionGlobals.client.service.get_information().language_name
 
 def GetAppSessionId():
     '''
@@ -763,7 +848,7 @@ def GetAppSessionId():
     '''
 
     # Client Application | Get Session ID
-    return client.service.get_session_id()
+    return connectionGlobals.client.service.get_session_id()
 
 def getPathToRunningRSTAB():
     '''
@@ -793,3 +878,10 @@ def getPathToRunningRSTAB():
         raise ValueError('Is it possible that RSTAB is not runnnning?')
 
     return path
+
+def GetListOfOpenedModels():
+
+    connectToServer()
+    models = connectionGlobals.client.service.get_model_list()
+
+    return models

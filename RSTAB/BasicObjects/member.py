@@ -286,55 +286,11 @@ class Member():
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
-
         # Start Section No.
         clientObject.section_start = start_section_no
 
         # End Section No.
         clientObject.section_end = end_section_no
-
-        # Update parameters
-        params_up: dict = {'member_hinge_start':0, 'member_hinge_end': 0,
-                        'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                        'support':0, 'member_nonlinearity': 0,
-                        'end_modifications_member_start_extension': 0,
-                        'end_modifications_member_start_slope_y': 0,
-                        'end_modifications_member_start_slope_z': 0,
-                        'end_modifications_member_end_extension': 0,
-                        'end_modifications_member_end_slope_y': 0,
-                        'end_modifications_member_end_slope_z': 0,
-                        'member_result_intermediate_point' : 0,
-                        'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Hinges
-        clientObject.member_hinge_start = params_up['member_hinge_start']
-        clientObject.member_hinge_end = params_up['member_hinge_end']
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Support
-        clientObject.support = params_up['support']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Result Intermediate Points
-        clientObject.member_result_intermediate_point = params_up['member_result_intermediate_point']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment
@@ -417,36 +373,6 @@ class Member():
         elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_SURFACE:
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
-
-        # Update parameters
-        params_up: dict = {'member_hinge_start':0, 'member_hinge_end': 0,
-                          'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                          'support':0, 'member_nonlinearity': 0,
-                          'member_result_intermediate_point' : 0,
-                          'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Hinges
-        clientObject.member_hinge_start = params_up['member_hinge_start']
-        clientObject.member_hinge_end = params_up['member_hinge_end']
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Support
-        clientObject.support = params_up['support']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # Result Intermediate Points
-        clientObject.member_result_intermediate_point = params_up['member_result_intermediate_point']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
 
         # Comment
         clientObject.comment = comment
@@ -544,38 +470,6 @@ class Member():
         # End Section No.
         clientObject.section_end = section_no
 
-        # Update parameters
-        params_up: dict = {'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                            'member_nonlinearity': 0,
-                            'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
-
         # Comment
         clientObject.comment = comment
 
@@ -671,37 +565,6 @@ class Member():
 
         # End Section No.
         clientObject.section_end = section_no
-
-        # Update parameters
-        params_up: dict = {'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                            'member_nonlinearity': 0,
-                            'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment
@@ -799,37 +662,6 @@ class Member():
         # End Section No.
         clientObject.section_end = section_no
 
-        # Update parameters
-        params_up: dict = {'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                            'member_nonlinearity': 0,
-                            'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
         # Comment
         clientObject.comment = comment
 
@@ -925,37 +757,6 @@ class Member():
 
         # End Section No.
         clientObject.section_end = section_no
-
-        # Update parameters
-        params_up: dict = {'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                            'member_nonlinearity': 0,
-                            'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment
@@ -1053,37 +854,6 @@ class Member():
         # End Section No.
         clientObject.section_end = section_no
 
-        # Update parameters
-        params_up: dict = {'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                            'member_nonlinearity': 0,
-                            'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
         # Comment
         clientObject.comment = comment
 
@@ -1177,28 +947,6 @@ class Member():
         # End Section No.
         clientObject.section_end = section_no
 
-        # Update parameters
-        params_up: dict = {'end_modifications_member_start_extension': 0,
-                            'end_modifications_member_start_slope_y': 0,
-                            'end_modifications_member_start_slope_z': 0,
-                            'end_modifications_member_end_extension': 0,
-                            'end_modifications_member_end_slope_y': 0,
-                            'end_modifications_member_end_slope_z': 0,
-                            'is_deactivated_for_calculation' : False }
-
-        params_up.update(params)
-
-        # End Modifications
-        clientObject.end_modifications_member_start_extension = params_up['end_modifications_member_start_extension']
-        clientObject.end_modifications_member_start_slope_y = params_up['end_modifications_member_start_slope_y']
-        clientObject.end_modifications_member_start_slope_z = params_up['end_modifications_member_start_slope_z']
-        clientObject.end_modifications_member_end_extension = params_up['end_modifications_member_end_extension']
-        clientObject.end_modifications_member_end_slope_y = params_up['end_modifications_member_end_slope_y']
-        clientObject.end_modifications_member_end_slope_z = params_up['end_modifications_member_end_slope_z']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
         # Comment
         clientObject.comment = comment
 
@@ -1289,32 +1037,6 @@ class Member():
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
-        # Update parameters
-        params_up: dict = {'member_hinge_start':0, 'member_hinge_end': 0,
-                        'member_eccentricity_start': 0, 'member_eccentricity_end': 0,
-                        'member_nonlinearity': 0,
-                        'member_result_intermediate_point' : 0,
-                        'is_deactivated_for_calculation' : False}
-
-        params_up.update(params)
-
-        # Member Hinges
-        clientObject.member_hinge_start = params_up['member_hinge_start']
-        clientObject.member_hinge_end = params_up['member_hinge_end']
-
-        # Member Eccentricity
-        clientObject.member_eccentricity_start = params_up['member_eccentricity_start']
-        clientObject.member_eccentricity_end = params_up['member_eccentricity_end']
-
-        # Member Nonlinearity
-        clientObject.member_nonlinearity = params_up['member_nonlinearity']
-
-        # Result Intermediate Points
-        clientObject.member_result_intermediate_point = params_up['member_result_intermediate_point']
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
         # Comment
         clientObject.comment = comment
 
@@ -1390,14 +1112,6 @@ class Member():
         elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_SURFACE:
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
-
-        # Update parameters
-        params_up: dict = {'is_deactivated_for_calculation' : False}
-
-        params_up.update(params)
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment
@@ -1475,14 +1189,6 @@ class Member():
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
-        # Update parameters
-        params_up: dict = {'is_deactivated_for_calculation' : False}
-
-        params_up.update(params)
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
-
         # Comment
         clientObject.comment = comment
 
@@ -1553,19 +1259,6 @@ class Member():
         elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_HELP_NODE:
             clientObject.rotation_help_node = rotation_parameters[0]
             clientObject.rotation_plane_type = rotation_parameters[1].name
-        elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_INSIDE_NODE:
-            clientObject.rotation_plane_type = rotation_parameters[0].name
-        elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_SURFACE:
-            clientObject.rotation_surface = rotation_parameters[0]
-            clientObject.rotation_surface_plane_type = rotation_parameters[1].name
-
-        # Update parameters
-        params_up: dict = {'is_deactivated_for_calculation' : False}
-
-        params_up.update(params)
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment
@@ -1642,14 +1335,6 @@ class Member():
         elif rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_SURFACE:
             clientObject.rotation_surface = rotation_parameters[0]
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
-
-        # Update parameters
-        params_up: dict = {'is_deactivated_for_calculation' : False}
-
-        params_up.update(params)
-
-        # Deactivation for Calculation
-        clientObject.is_deactivated_for_calculation = params_up['is_deactivated_for_calculation']
 
         # Comment
         clientObject.comment = comment

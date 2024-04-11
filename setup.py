@@ -7,7 +7,7 @@ readme = (here/"README.md").read_text(encoding="utf-8")
 
 setup(
     name='RSTAB',
-    version='1.09.1',
+    version='1.09.5',
     description='Python Framework for RSTAB9 Web Services',
     long_description=readme,
     long_description_content_type = "text/markdown",
@@ -18,7 +18,8 @@ setup(
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.10"
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11"
     ],
     packages=find_packages(),
     package_dir={"RSTAB":"RSTAB"},

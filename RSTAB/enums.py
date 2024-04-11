@@ -2041,7 +2041,7 @@ class ActionType(Enum):
     '''
     Action Type
     '''
-    ACTING_ALTERNATIVELY, ACTING_DIFFERENTLY, ACTING_SIMULTANEOUSLY, DYNAMIC_LOAD_CASE = range(4)
+    ACTING_ALTERNATIVELY, ACTING_DIFFERENTLY, ACTING_SIMULTANEOUSLY = range(3)
 
 class ImposedLoadCategory(Enum):
     '''
@@ -2329,6 +2329,18 @@ class TimberServiceConditionsTreatmentType(Enum):
     '''
     TREATMENT_TYPE_FIRE_RETARDANT, TREATMENT_TYPE_NONE, TREATMENT_TYPE_PRESERVATIVE = range(3)
 
+class CoordinateSystemType(Enum):
+    '''
+    Coordinate System Type
+    '''
+    TYPE_2_POINTS_AND_ANGLE, TYPE_3_POINTS, TYPE_GLOBAL_XYZ, TYPE_OFFSET_XYZ, TYPE_POINT_AND_3_ANGLES = range(5)
+
+class CoordinateSystemRotationAnglesSequence(Enum):
+    '''
+    Coordinate System Rotation Angles Sequence
+    '''
+    SEQUENCE_XYZ, SEQUENCE_XZY, SEQUENCE_YXZ, SEQUENCE_YZX, SEQUENCE_ZXY, SEQUENCE_ZYX = range(6)
+
 class NodalSupportNonlinearity(Enum):
     '''
     Nodal Support Nonlinearity Enumeration
@@ -2368,3 +2380,28 @@ class NodalSupportStiffnessDiagramType(Enum):
     Nodal Support Stiffness Diagram Type Enumeration
     '''
     STIFFNESS_DIAGRAM_ENDING_TYPE_CONTINUOUS, STIFFNESS_DIAGRAM_ENDING_TYPE_FAILURE, STIFFNESS_DIAGRAM_ENDING_TYPE_YIELDING = range(3)
+
+class MaterialType(Enum):
+    '''
+    Material Type Enumeration
+    '''
+    TYPE_ALUMINUM, TYPE_BASIC, TYPE_CONCRETE, TYPE_FABRIC, TYPE_FIBER_CONCRETE, TYPE_FOIL, TYPE_GAS, TYPE_GLASS,\
+    TYPE_MASONRY, TYPE_METAL, TYPE_REINFORCING_STEEL, TYPE_SOIL, TYPE_STEEL, TYPE_TIMBER, TYPE_VIRTUAL_JOIST_GIRDER = range(15)
+
+class MaterialDefinitionType(Enum):
+    '''
+    Material Definition Type Enumeration
+    '''
+    DERIVED_G, DERIVED_NU, E_G_NO_NU, E_G_NU, NONE = range(5)
+
+class MaterialStiffnessModificationType(Enum):
+    '''
+    Material Stiffness Modification Type Enumeration
+    '''
+    STIFFNESS_MODIFICATION_TYPE_DIVISION, STIFFNESS_MODIFICATION_TYPE_MULTIPLICATION = range(2)
+
+class PoissonRatioEditableGroupType(Enum):
+    '''
+    Poisson Ratio Editable Group Type
+    '''
+    POISSON_RATIOS_GROUP_MAJOR_2D, POISSON_RATIOS_GROUP_MAJOR_3D, POISSON_RATIOS_GROUP_MINOR_2D, POISSON_RATIOS_GROUP_MINOR_3D = range(4)

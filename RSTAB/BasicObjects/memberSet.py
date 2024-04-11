@@ -142,6 +142,19 @@ class MemberSet():
         model.clientModel.service.set_member_set(clientObject)
 
     @staticmethod
+    def DeleteMemberSet(members_no: str = '1 2', model = Model):
+
+        '''
+        Args:
+            members_no (str): Numbers of Members Sets to be deleted
+            model (RSTAB Class, optional): Model to be edited
+        '''
+
+        # Delete from client model
+        for member in ConvertStrToListOfInt(members_no):
+            model.clientModel.service.delete_object(ObjectTypes.E_OBJECT_TYPE_MEMBER_SET.name, member)
+
+    @staticmethod
     def GetMemberSet(object_index: int = 1, model = Model):
 
         '''

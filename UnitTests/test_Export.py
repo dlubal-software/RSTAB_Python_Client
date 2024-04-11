@@ -8,9 +8,11 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import ObjectTypes
-from RSTAB.initModel import Model, url, closeModel, getPathToRunningRSTAB
+from RSTAB.initModel import Model, closeModel, getPathToRunningRSTAB
 from RSTAB.ImportExport.exports import IFCExportSettings, ObjectLocation, ObjectLocations, ExportToIFC, GetTableExportConfigManager, SetTableExportConfigManager, ExportTo
 from RSTAB.ImportExport.imports import getConversionTables, setConversionTables, getSAFSettings, setSAFSettings, importFrom
+sys.path.append('..')
+from RSTAB import connectionGlobals
 
 
 if Model.clientModel is None:
@@ -43,6 +45,7 @@ def test_export():
     config = GetTableExportConfigManager()
     config[2][0][0][2][0]['property_export_target'] = 'E_EXPORT_TARGET_CSV'
     SetTableExportConfigManager(config)
+    config = GetTableExportConfigManager()
     assert config[2][0][0][2][0]['property_export_target'] == 'E_EXPORT_TARGET_CSV'
 
     # supported formats
@@ -55,11 +58,10 @@ def test_export():
 
     Model.clientModel.service.finish_modification()
 
-@pytest.mark.skipif(url != 'http://127.0.0.1', reason="This test fails on remote PC due to incorrect file paths. \
+@pytest.mark.skipif(connectionGlobals.url != 'http://127.0.0.1', reason="This test fails on remote PC due to incorrect file paths. \
                     Althought it is easy to change, it would not be easy to update on every remote computer.\
                     It is not necessary to evaluate Client as functional. Localy this tests still gets executed.")
 def test_import():
-
     Model.clientModel.service.delete_all()
     ct = getConversionTables()
     setConversionTables(ct)

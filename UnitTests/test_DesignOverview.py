@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import AddOn
-from RSTAB.initModel import Model, SetAddonStatus, openFile,closeModel
+from RSTAB.initModel import Model, SetAddonStatus, openFile, closeModel
 from RSTAB.Results.designOverview import GetDesignOverview, GetPartialDesignOverview
 from RSTAB.Reports.partsList import GetPartsListAllByMaterial, GetPartsListMemberRepresentativesByMaterial
 from RSTAB.Reports.partsList import GetPartsListMemberSetsByMaterial, GetPartsListMembersByMaterial
@@ -32,7 +32,7 @@ def test_designOverview():
     assert len(partialDesignOverview) == 0
 
     partialDesignOverview = GetPartialDesignOverview(True)
-    assert len(partialDesignOverview) == 3
+    assert len(partialDesignOverview) == 4
 
     a = GetPartsListAllByMaterial()
     assert len(a[0]) == 3

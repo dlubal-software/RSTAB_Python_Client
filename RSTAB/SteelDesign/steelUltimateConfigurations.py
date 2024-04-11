@@ -10,6 +10,7 @@ class SteelDesignUltimateConfigurations():
                  comment: str = '',
                  params: dict = None,
                  model = Model):
+
         """
         Args:
             no (int): Steel Design Ultimate Configuration Tag

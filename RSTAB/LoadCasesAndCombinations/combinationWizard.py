@@ -1,5 +1,5 @@
 from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes
-from RSTAB.enums import LoadWizardType, InitialStateDefintionType
+from RSTAB.enums import LoadWizardType
 
 class CombinationWizard():
     def __init__(self,
