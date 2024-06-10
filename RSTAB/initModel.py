@@ -110,6 +110,7 @@ class Model():
 
         Args:
             new_model (bool, optional): Set to True if new model is requested.
+                If model is opened in RSTAB, FALSE should be used.
             model_name (str, optional): Defaults to "TestModel". If "" call get_active_model.
             delete (bool, optional):  Delete results
             delete_all (bool, optional): Delete all objects in Model.
@@ -157,7 +158,7 @@ class Model():
                     # If name is empty, active will be selected
                     if model_name == "":
                         modelPath =  connectionGlobals.client.service.get_active_model()
-                    # If there is no nodel with given name, new RFEM model will be created
+                    # If there is no nodel with given name, new RSTAB model will be created
                     else:
                         modelPath =  connectionGlobals.client.service.new_model(original_model_name)
 
@@ -175,17 +176,17 @@ class Model():
                 self.clientModelDct[model_name] = cModel
 
         else:
-            # Requested model is already opened in RFEM or even connected in self.clientModelDct.
-            # In this statement RFEM doesn't create new model in RFEM via new_model().
+            # Requested model is already opened in RSTAB or even connected in self.clientModelDct.
+            # In this statement RSTAB doesn't create new model in RSTAB via new_model().
 
-            # assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RFEM.'
+            # assert model_name in self.clientModelDct or model_name in modelLst, 'WARNING: '+model_name +' is not connected neither opened in RSTAB.'
 
             # If model with same name is opened and alredy in clientModelDct.
-            # This is typicaly model created by RFEM Python Client.
+            # This is typicaly model created by RSTAB Python Client.
             if model_name in self.clientModelDct:
                 cModel = self.clientModelDct[model_name]
             # If opening new file.
-            # Model is opened in RFEM (model in modelLst) but it is not in clientModelDct yet to be edited or closed.
+            # Model is opened in RSTAB (model in modelLst) but it is not in clientModelDct yet to be edited or closed.
             elif model_name in modelLst:
                 id = 0
                 for i,j in enumerate(modelLst):
@@ -240,7 +241,7 @@ class Model():
         Args:
             index_or_name (str or int): Name of the index of model
         '''
-        if isinstance(index_or_name, str):
+        if isinstance(index_or_name, str) and index_or_name in self.clientModelDct:
             assert index_or_name in list(self.clientModelDct)
             self.clientModelDct.pop(index_or_name)
             if len(self.clientModelDct) > 0:
@@ -251,8 +252,7 @@ class Model():
         if isinstance(index_or_name, int):
             assert index_or_name <= len(self.clientModelDct)
             modelLs = connectionGlobals.client.service.get_model_list()
-
-            if modelLs:
+            if modelLs and (modelLs.name[index_or_name] in self.clientModelDct):
                 self.clientModelDct.pop(modelLs.name[index_or_name])
                 if len(self.clientModelDct) > 0:
                     model_key = list(self.clientModelDct)[-1]
@@ -326,6 +326,7 @@ def openFile(model_path):
     assert os.path.exists(model_path)
 
     file_name = os.path.basename(model_path)
+    connectToServer()
     connectionGlobals.client.service.open_model(model_path)
     return Model(False, file_name)
 
@@ -339,6 +340,8 @@ def closeModel(index_or_name, save_changes = False):
         index_or_name : Model Index or Name to be Close
         save_changes (bool): Enable/Disable Save Changes Option
     '''
+
+    connectToServer()
     if isinstance(index_or_name, int):
         Model.__delete__(Model, index_or_name)
         connectionGlobals.client.service.close_model(index_or_name, save_changes)
@@ -355,7 +358,7 @@ def closeModel(index_or_name, save_changes = False):
             except:
                 print('Model did NOT close properly.')
         else:
-            print('\nINFO: Model "'+modelLs+'" is not opened.')
+            print('\nINFO: Model "'+index_or_name+'" is not opened.')
     else:
         assert False, 'Parameter index_or_name must be int or string.'
 
@@ -416,7 +419,7 @@ def CalculateInCloud(machine_id, run_plausibility_check, calculate_despite_warni
     Sends the current model to the defined server to be calculated in the cloud. Plausibility check before and email notification after the cloud calculation are optional.
     CAUTION: Don't use it in unit tests!
     It works when executing tests individually but when running all of them
-    it causes RFEM to stuck and generates failures, which are hard to investigate.
+    it causes RSTAB to stuck and generates failures, which are hard to investigate.
 
     Args:
         machine_id (str): virtual machine ID (Dlu_1, F4s_v2, F8s_v2, F16s_v2, F32s_v2)
@@ -873,7 +876,7 @@ def getPathToRunningRSTAB():
             rfem6Server = True
 
     if rfem6 or rfem6Server:
-        raise ValueError('Careful! You are running RSTAB Python Client on RFEM.')
+        raise ValueError('Careful! You are running RSTAB Python Client on RSTAB.')
     if not path:
         raise ValueError('Is it possible that RSTAB is not runnnning?')
 

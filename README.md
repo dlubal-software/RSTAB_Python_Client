@@ -31,6 +31,12 @@ Python client (high-level functions) for [RSTAB 9](https://www.dlubal.com/en/pro
 ## Description
 This Python project is focused on opening RSTAB 9 to all of our customers, enabling them to interact with RSTAB 9 on a much higher level. If you are looking for a tool to help you solve parametric models or optimization tasks, you have come to the right place. This community serves as a support portal and base for all of your future projects. The goal is to create an easily expandable Python library, which communicates instructions to RSTAB 9 through WebServices (WS). WS enables access to RSTAB 9 either via a local instance or a remote internet connection.
 
+
+## Eyes on Upcoming Developmets! :eyes:
+
+As you may have already heard, brand new WS features are in the works. Having support for Python scripting directly in the RSTAB, we have foundations to build completely new WS API which will be faster, have better access to results, and will have full compatibility with RSTAB Console.
+
+
 ## Architecture
 
 * [![RSTAB](https://img.shields.io/badge/RSTAB-blue)](/RSTAB): folder following the structure of RSTAB 9 navigator containing individual types of objects

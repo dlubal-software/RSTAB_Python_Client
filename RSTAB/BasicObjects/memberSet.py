@@ -1,5 +1,5 @@
-from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString
-from RSTAB.enums import SetType
+from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertToDlString, ConvertStrToListOfInt
+from RSTAB.enums import SetType, ObjectTypes
 
 class MemberSet():
     def __init__(self,
