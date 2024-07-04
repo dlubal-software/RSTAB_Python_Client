@@ -24,3 +24,4 @@ def pytest_exception_interact():
                filePath = os.path.join(cacheLoc, file)
                os.remove(filePath)
     Model()
+

@@ -1,6 +1,7 @@
 from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, SetAddonStatus
 from RSTAB.enums import GlobalParameterUnitGroup, GlobalParameterDefinitionType, AddOn, ObjectTypes
 
+
 class GlobalParameter():
 
     @staticmethod

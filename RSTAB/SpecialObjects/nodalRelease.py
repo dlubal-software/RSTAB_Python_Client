@@ -27,16 +27,16 @@ class NodalRelease():
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
         '''
-        # Client model | Node
+        # Client model | Nodal Release
         clientObject = model.clientModel.factory.create('ns0:nodal_release')
 
         # Clears object atributes | Sets all atributes to None
         clearAttributes(clientObject)
 
-        # Node No.
+        # Nodal Release No.
         clientObject.no = no
 
-        # Assigned Node
+        # Assigned Nodes
         clientObject.nodes = ConvertToDlString(nodes)
 
         # Nodal Release Type

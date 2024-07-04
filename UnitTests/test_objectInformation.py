@@ -7,13 +7,13 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 # Import the relevant Libraries
-from RSTAB.enums import SelectedObjectInformation
+from RSTAB.enums import ObjectTypes
 from RSTAB.initModel import CheckIfMethodOrTypeExists, Model
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.section import Section
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
-from RSTAB.Tools.centreOfGravityAndObjectInfo import ObjectInformation
+from RSTAB.Tools.centreOfGravityAndObjectInfo import ObjectsInfo
 from math import sqrt
 import pytest
 
@@ -22,9 +22,10 @@ if Model.clientModel is None:
 
 # pytestmark sets same parameters (in this case skipif) to all functions in the module or class
 # TODO: US-8142
-pytestmark = pytest.mark.skipif(CheckIfMethodOrTypeExists(Model.clientModel,'ns0:array_of_get_center_of_gravity_and_objects_info_elements_type', True),
-             reason="ns0:array_of_get_center_of_gravity_and_objects_info_elements_type not in RSTAB GM yet")
-def test_centre_of_gravity():
+# pytestmark = pytest.mark.skipif(CheckIfMethodOrTypeExists(Model.clientModel,'ns0:array_of_get_center_of_gravity_and_objects_info_elements_type', True),
+#              reason="ns0:array_of_get_center_of_gravity_and_objects_info_elements_type not in RSTAB GM yet")
+
+def test_center_of_gravity():
 
     Model.clientModel.service.delete_all()
     Model.clientModel.service.begin_modification()
@@ -43,9 +44,11 @@ def test_centre_of_gravity():
     CoG_Y = (y2 - y1) / 2
     CoG_Z = (z2 - z1) / 2
 
-    assert CoG_X == ObjectInformation.CentreOfGravity(coord= 'X')
-    assert CoG_Y == ObjectInformation.CentreOfGravity(coord= 'Y')
-    assert CoG_Z == ObjectInformation.CentreOfGravity(coord= 'Z')
+    cog = ObjectsInfo.CenterofGravity([[ObjectTypes.E_OBJECT_TYPE_MEMBER, 1]])
+
+    assert cog['Center of gravity coordinate X'] == CoG_X
+    assert cog['Center of gravity coordinate Y'] == CoG_Y
+    assert cog['Center of gravity coordinate Z'] == CoG_Z
 
 def test_member_information():
 
@@ -67,6 +70,9 @@ def test_member_information():
     V = L * A
     M = (V * 7850) / 1000
 
-    assert round(L,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.LENGTH)
-    assert round(V,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.VOLUME)
-    assert round(M,3) == ObjectInformation.MemberInformation(information=SelectedObjectInformation.MASS)
+    info = ObjectsInfo.MembersInfo([[ObjectTypes.E_OBJECT_TYPE_MEMBER, 1]])
+
+    assert info['Length of members'] == round(L,3)
+    assert info['Volume'] == round(V,3)
+    assert info['Mass'] == round(M,3)
+

@@ -196,8 +196,9 @@ class NodalLoad():
         if 'specific_direction' or 'force_eccentricity' or 'force_eccentricity' in params.keys():
             pass
         else:
-            for key in params:
-                clientObject[key] = params[key]
+            if params:
+                for key in params:
+                    clientObject[key] = params[key]
 
         # Delete None attributes for improved performance
         deleteEmptyAttributes(clientObject)
@@ -317,8 +318,9 @@ class NodalLoad():
         if 'specific_direction' or 'force_eccentricity' in params.keys():
             pass
         else:
-            for key in params:
-                clientObject[key] = params[key]
+            if params:
+                for key in params:
+                    clientObject[key] = params[key]
 
         # Delete None attributes for improved performance
         deleteEmptyAttributes(clientObject)
@@ -336,7 +338,7 @@ class NodalLoad():
               force_eccentricity: bool= False,
               shifted_display: bool= False,
               comment: str= '',
-              params: dict= None,
+              params: dict = None,
               model = Model):
         """
         Args:
@@ -454,8 +456,9 @@ class NodalLoad():
         if 'specific_direction' or 'force_eccentricity' or 'force_eccentricity' in params.keys():
             pass
         else:
-            for key in params:
-                clientObject[key] = params[key]
+            if params:
+                for key in params:
+                    clientObject[key] = params[key]
 
         # Delete None attributes for improved performance
         deleteEmptyAttributes(clientObject)

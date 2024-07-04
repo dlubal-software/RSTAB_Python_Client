@@ -2,6 +2,7 @@ from RSTAB.initModel import Model
 from RSTAB.enums import GlobalAxesOrientationType, LocalAxesOrientationType
 
 class BaseSettings():
+
     def __init__(self,
                 gravitational_acceleration: int = 10,
                 global_axes_orientation = GlobalAxesOrientationType.E_GLOBAL_AXES_ORIENTATION_ZDOWN,
@@ -23,6 +24,7 @@ class BaseSettings():
             params (dict, optional): Any WS Parameter relevant to the object and its value in form of a dictionary
             model (RSTAB Class, optional): Model to be edited
         """
+
         # Client model | Get Model Settings
         clientObject = model.clientModel.service.get_model_settings_and_options()
 

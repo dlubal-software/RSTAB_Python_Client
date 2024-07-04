@@ -65,4 +65,3 @@ class TimberDesignServiceLimitStateConfigurations():
 
         # Add Global Parameters to Client Model
         model.clientModel.service.set_timber_design_sls_configuration(clientObject)
-
