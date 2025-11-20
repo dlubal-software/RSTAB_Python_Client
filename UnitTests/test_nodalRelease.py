@@ -10,7 +10,7 @@ from RSTAB.dataTypes import inf
 from RSTAB.initModel import Model
 from RSTAB.enums import NodalReleaseReleaseLocation
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForSpecialObjects.nodalReleaseType import NodalReleaseType
@@ -25,7 +25,7 @@ def test_NodalRelease():
     Model.clientModel.service.begin_modification()
 
     Material(1)
-    Section(1, 'IPE 120')
+    CrossSection(1, 'IPE 120')
 
     Node(1,0,0,0)
     Node(2,10,0,0)

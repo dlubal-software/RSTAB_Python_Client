@@ -23,7 +23,7 @@ sys.path.append(os.path.dirname(PROJECT_ROOT))
 from RSTAB.enums import NodalSupportType, NodalLoadDirection, ActionCategoryType, AddOn
 from RSTAB.initModel import CalculateSelectedCases, Model, SetAddonStatus, Calculate_all
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.Results.resultTables import ResultTables, ConvertResultsToListOfDct
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 200')
+    CrossSection(1, 'IPE 200')
     Node(1, 0.0, 0.0, 0.0)
     Node(2, l, 0.0, 0.0)
 

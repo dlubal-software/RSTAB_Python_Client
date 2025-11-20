@@ -10,7 +10,7 @@ from RSTAB.enums import *
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.memberSet import MemberSet
 from RSTAB.TypesForSteelDesign.steelEffectiveLengths import SteelEffectiveLengths
@@ -31,7 +31,7 @@ def test_steelEffectiveLengths():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Member(1, 1, 2, 0, 1, 1)
     Member(2, 2, 3, 0, 1, 1)

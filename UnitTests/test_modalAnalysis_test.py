@@ -10,7 +10,7 @@ from RSTAB.enums import NodalSupportType, StaticAnalysisType, ModalSolutionMetho
 from RSTAB.enums import ModalMassConversionType, ModalMassMatrixType, AnalysisType, AddOn
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
@@ -30,7 +30,7 @@ def test_modal_analysis_settings():
     Material(1, 'S235')
 
     # Crate Section
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     # Create Nodes
     Node(1, 0, 0, 0)
@@ -49,8 +49,8 @@ def test_modal_analysis_settings():
 
     # Modal Analysis Settings
     ModalAnalysisSettings(acting_masses=[True, False, True, False, True, False])
-    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', number_of_modes=2, solution_method=ModalSolutionMethod.METHOD_SUBSPACE_ITERATION, 
-						  mass_matrix_type=ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, mass_conversion_type=ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS, 
+    ModalAnalysisSettings(2, 'Modal Analysis Settings 1', number_of_modes=2, solution_method=ModalSolutionMethod.METHOD_SUBSPACE_ITERATION,
+						  mass_matrix_type=ModalMassMatrixType.MASS_MATRIX_TYPE_DIAGONAL, mass_conversion_type=ModalMassConversionType.MASS_CONVERSION_TYPE_Z_COMPONENTS_OF_LOADS,
 						  acting_masses=[False, False, False, False, True, True])
 
     # Load Case Static

@@ -9,7 +9,7 @@ class StructureModification():
     member_support_item = {'C_u_x': 1, 'C_u_y': 0, 'C_u_z': 0, 'C_s_x': 0, 'C_s_y': 0, 'C_s_z': 0, 'C_phi_x': 0}
     modify_stiffness = {'modify_stiffnesses_gamma_m': False,
                         'modify_stiffnesses_materials': False,
-                        'modify_stiffnesses_sections': False,
+                        'modify_stiffnesses_cross_sections': False,
                         'modify_stiffnesses_members': False,
                         'modify_stiffnesses_member_hinges': False,
                         'modify_stiffnesses_nodal_supports': False,
@@ -28,7 +28,7 @@ class StructureModification():
                  no: int = 1,
                  modify_stiffnesses: dict = modify_stiffness,
                  modify_stiffnesses_materials_list: list = None,
-                 modify_stiffnesses_sections_list: list = None,
+                 modify_stiffnesses_cross_sections_list: list = None,
                  modify_stiffnesses_members_list: list = None,
                  modify_stiffnesses_member_hinges_list: list = None,
                  modify_stiffnesses_nodal_supports_list: list = None,
@@ -44,7 +44,7 @@ class StructureModification():
             no (int, optional): Structure Modification Tag
             modify_stiffnesses (dict, optional): Modify Stiffnesses
             modify_stiffnesses_materials_list (list, optional): Modify Stiffnesses Materials List
-            modify_stiffnesses_sections_list (list, optional): Modify Stiffnesses Sections List
+            modify_stiffnesses_cross_sections_list (list, optional): Modify Stiffnesses Sections List
             modify_stiffnesses_members_list (list, optional): Modify Stiffnesses Members List
             modify_stiffnesses_member_hinges_list (list, optional): Modify Stiffnesses Member Hinges List
             modify_stiffnesses_nodal_supports_list (list, optional): Modify Stiffnesses Nodal Supports List
@@ -70,7 +70,7 @@ class StructureModification():
             # Modify Stiffneesses
             clientObject.modify_stiffnesses_gamma_m = modify_stiffnesses['modify_stiffnesses_gamma_m']
             clientObject.modify_stiffnesses_materials = modify_stiffnesses['modify_stiffnesses_materials']
-            clientObject.modify_stiffnesses_sections = modify_stiffnesses['modify_stiffnesses_sections']
+            clientObject.modify_stiffnesses_cross_sections = modify_stiffnesses['modify_stiffnesses_cross_sections']
             clientObject.modify_stiffnesses_members = modify_stiffnesses['modify_stiffnesses_members']
             clientObject.modify_stiffnesses_member_hinges = modify_stiffnesses['modify_stiffnesses_member_hinges']
             clientObject.modify_stiffnesses_nodal_supports = modify_stiffnesses['modify_stiffnesses_nodal_supports']
@@ -95,8 +95,8 @@ class StructureModification():
                 clientObject.modify_stiffnesses_material_table[0][idx].row.modification_type = i['modification_type']
                 clientObject.modify_stiffnesses_material_table[0][idx].row.E_and_G = i['E_and_G']
                 clientObject.modify_stiffnesses_material_table[0][idx].row.comment = i['comment']
-        if modify_stiffnesses['modify_stiffnesses_sections']:
-            for i in modify_stiffnesses_sections_list:
+        if modify_stiffnesses['modify_stiffnesses_cross_sections']:
+            for i in modify_stiffnesses_cross_sections_list:
                 idx = i['no']-1
                 clientObject.modify_stiffnesses_section_table[0][idx].row.A = i['A']
                 clientObject.modify_stiffnesses_section_table[0][idx].row.A_y = i['A_y']

@@ -40,7 +40,7 @@ class TimberServiceConditions():
         """
 
          # Client Model | Types For Timber Design Service Condition
-        clientObject = Model.clientModel.factory.create('ns0:timber_service_conditions')
+        clientObject = model.clientModel.factory.create('ns0:timber_service_conditions')
 
         # Clears object atributes | Sets all atributes to None
         clearAttributes(clientObject)
@@ -49,15 +49,15 @@ class TimberServiceConditions():
         clientObject.no = no
 
         # Assigned Members
-        clientObject.member = ConvertToDlString(members)
+        clientObject.members = ConvertToDlString(members)
 
         # Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets)
 
         if standard in [6336, 6579, 6514, 6516]:
             LoadCasesAndCombinations(params = {"current_standard_for_combination_wizard": standard,
-                                                "activate_combination_wizard_and_classification": True,
-                                                "activate_combination_wizard": True,
+                                                "combination_wizard_and_classification_active": True,
+                                                "combination_wizard_active": True,
                                                 "result_combinations_active": True,
                                                 "result_combinations_parentheses_active": False,
                                                 "result_combinations_consider_sub_results": False,

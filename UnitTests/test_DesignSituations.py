@@ -18,9 +18,7 @@ from RSTAB.LoadCasesAndCombinations.spectralAnalysisSettings import SpectralAnal
 from RSTAB.LoadCasesAndCombinations.combinationWizard import CombinationWizard
 from RSTAB.DynamicLoads.responseSpectrum import ResponseSpectrum
 from RSTAB.LoadCasesAndCombinations.resultCombination import ResultCombination
-from RSTAB.enums import DesignSituationType, StaticAnalysisSettingsIterativeMethodForNonlinearAnalysis, StaticAnalysisSettingsMethodOfEquationSystem
-from RSTAB.enums import StaticAnalysisSettingsPlateBendingTheory, ModalSolutionMethod, ModalMassConversionType, ModalMassMatrixType
-from RSTAB.enums import ModalNeglectMasses, DirectionalComponentCombinationRule, PeriodicResponseCombinationRule, InitialStateDefintionType
+from RSTAB.enums import DesignSituationType, InitialStateDefintionType
 from RSTAB.enums import ResultCombinationType, OperatorType, ActionLoadType, ResultCombinationExtremeValueSign
 
 
@@ -35,8 +33,8 @@ def test_design_situation():
     LoadCase()
 
     LoadCasesAndCombinations(params={"current_standard_for_combination_wizard": 6048,
-                                      "activate_combination_wizard_and_classification": True,
-                                      "activate_combination_wizard": True,
+                                      "combination_wizard_and_classification_active": True,
+                                      "combination_wizard_active": True,
                                       "result_combinations_active": True,
                                       "result_combinations_parentheses_active": True,
                                       "result_combinations_consider_sub_results": True,

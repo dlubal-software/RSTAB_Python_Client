@@ -6,11 +6,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 
-from RSTAB.initModel import Model, getPathToRunningRSTAB
+from RSTAB.initModel import Model
 from RSTAB.connectionGlobals import url
 from RSTAB.enums import NodalReleaseTypeReleaseNonlinearity, NodalReleaseTypePartialActivityAround, NodalReleaseTypeLocalAxisSystemObjectType
 from RSTAB.enums import NodalReleaseTypePartialActivityAlong, NodalReleaseTypeDiagram
 from RSTAB.TypesForSpecialObjects.nodalReleaseType import NodalReleaseType
+from tools import getPathToRunningRSTAB
 import pytest
 
 if Model.clientModel is None:

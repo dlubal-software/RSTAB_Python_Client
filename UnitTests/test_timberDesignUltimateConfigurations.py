@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import AddOn, NodalSupportType
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
@@ -27,7 +27,7 @@ def test_TimberDesignUltimateConfigurations():
 
     Material(1, 'C24 | EN 338:2016-04')
 
-    Section(1, 'R_M1 0.18/0.36')
+    CrossSection(1, 'R_M1 0.18/0.36')
 
     Node(1, 0.0, 0.0, 0.0)
     Node(2, 5, 0.0, 0.0)

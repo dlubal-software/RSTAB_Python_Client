@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import AddOn, NodalSupportType
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
@@ -27,7 +27,7 @@ def test_SteelDesignServiceabilityConfigurations():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 200')
+    CrossSection(1, 'IPE 200')
 
     Node(1, 0.0, 0.0, 0.0)
     Node(2, 5, 0.0, 0.0)

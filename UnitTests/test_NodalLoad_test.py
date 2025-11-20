@@ -11,7 +11,7 @@ from RSTAB.LoadCasesAndCombinations.staticAnalysisSettings import StaticAnalysis
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.material import Material
 from RSTAB.initModel import Model
 from RSTAB.enums import NodalSupportType, StaticAnalysisType, NodalLoadDirection
@@ -28,7 +28,7 @@ def test_nodal_load():
     Material(1, 'S235')
 
     # Create Section
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     # Create Nodes
     Node(1, 0, 0, 0)

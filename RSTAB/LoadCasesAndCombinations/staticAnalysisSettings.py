@@ -186,9 +186,6 @@ class StaticAnalysisSettings():
             clientObject.mass_conversion_factor_in_direction_y = mass_conversion[2]
             clientObject.mass_conversion_factor_in_direction_z = mass_conversion[3]
 
-        # Method for Equation System
-        #clientObject.method_of_equation_system = method_of_equation_system.name
-
         # Modify Loading by Multiplier Factor
         if load_modification[0]:
             clientObject.modify_loading_by_multiplier_factor = True
