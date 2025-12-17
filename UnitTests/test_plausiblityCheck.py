@@ -8,7 +8,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport, NodalSupportType
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.material import Material
 from RSTAB.initModel import Model
 from RSTAB.Tools.PlausibilityCheck import PlausibilityCheck
@@ -24,8 +24,8 @@ def test_plausibility_check():
     # Create Material
     Material(1, 'S235')
 
-    # Create Sections
-    Section(1, 'HEA 240', 1)
+    # Create Cross Sections
+    CrossSection(1, 'HEA 240', 1)
 
     # Create Nodes
     Node(1, 0, 0, 0)

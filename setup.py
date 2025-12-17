@@ -24,6 +24,6 @@ setup(
     packages=find_packages(),
     package_dir={"RSTAB":"RSTAB"},
     include_package_data=True,
-    install_requires=["requests", "six", "suds-py3", "xmltodict", "pytest", "psutil", "mock", "setuptools"],
+    install_requires=["requests", "six", "suds-py3", "xmltodict", "pytest", "mock", "setuptools"],
     zip_safe = False
 )

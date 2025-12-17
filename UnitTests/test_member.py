@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import *
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 
@@ -22,7 +22,7 @@ def test_init():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 5, 0, 0)
@@ -42,12 +42,12 @@ def test_member_beam():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 5, 0, 0)
 
-    Member.Beam(1, 1, 2, MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0.2618], 1, 1)
+    Member.Beam(1, 1, 2, MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM, MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE, [0.2618], 1, 1)
 
     Model.clientModel.service.finish_modification()
 
@@ -62,7 +62,7 @@ def test_member_rigid():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -82,7 +82,7 @@ def test_member_truss():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -102,7 +102,7 @@ def test_member_trussOnlyN():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -122,7 +122,7 @@ def test_member_tension():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -142,7 +142,7 @@ def test_member_compression():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -162,7 +162,7 @@ def test_member_buckling():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -182,7 +182,7 @@ def test_member_cable():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -202,7 +202,7 @@ def test_member_definableStiffness():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -222,7 +222,7 @@ def test_member_couplingRigidRigid():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -242,7 +242,7 @@ def test_member_couplingRigidHinge():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -262,7 +262,7 @@ def test_member_couplingHingeRigid():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, -3)
@@ -282,7 +282,7 @@ def test_member_couplingHingeHinge():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 3, 3, 3)

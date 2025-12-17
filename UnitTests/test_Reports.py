@@ -7,8 +7,9 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 from RSTAB.Reports.printoutReport import PrintoutReport
 from RSTAB.Reports.html import ExportResultTablesToHtml
-from RSTAB.initModel import Model, closeModel, openFile, getPathToRunningRSTAB
+from RSTAB.initModel import Model, closeModel, openFile
 from RSTAB.connectionGlobals import url
+from tools import getPathToRunningRSTAB
 from shutil import rmtree
 import pytest
 import time

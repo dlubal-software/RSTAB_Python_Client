@@ -11,7 +11,7 @@ from RSTAB.enums import ImperfectionType, SetType, ImperfectionCaseAssignmentTyp
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.material import Material
 from RSTAB.BasicObjects.memberSet import MemberSet
 from RSTAB.Imperfections.imperfectionCase import ImperfectionCase
@@ -33,8 +33,8 @@ def test_imperfection_case():
     Material(1, 'S235')
 
     # Create Section
-    Section(1, 'IPE 300')
-    Section(2, 'CHS 100x4')
+    CrossSection(1, 'IPE 300')
+    CrossSection(2, 'CHS 100x4')
 
     # Create Nodes
     Node(1, 0.0, 0.0, 0.0)

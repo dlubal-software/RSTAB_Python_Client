@@ -139,21 +139,21 @@ def GetMaxValue(structured_results, parameter):
 
 
 def CreateObjectLocation(
-        object_type = 'E_OBJECT_TYPE_NODE',
-        object_no = 1,
-        model = Model):
+    object_type = 'E_OBJECT_TYPE_NODE',
+    object_no = 1,
+    model = Model):
 
-        if object_no > 0:
-            object_locations = model.clientModel.factory.create('ns0:object_location_array')
+    if object_no > 0:
+        object_locations = model.clientModel.factory.create('ns0:object_location_array')
 
-            object = model.clientModel.factory.create('ns0:object_location')
-            object.type = object_type
-            object.no = object_no
-            object_locations.object_location.append(object)
+        object = model.clientModel.factory.create('ns0:object_location')
+        object.type = object_type
+        object.no = object_no
+        object_locations.object_location.append(object)
 
-            return object_locations
-        else:
-            return None
+        return object_locations
+    else:
+        return None
 
 
 class ResultTables():
@@ -169,7 +169,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -178,7 +178,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_building_stories_forces_in_shear_walls(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Shear Wall number
+            object_locations = None # TODO: add filtering by Shear Wall number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -194,7 +194,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -203,7 +203,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_building_stories_centres_mass_rigidity(
             loading_type.name,
             loading_no,
-            object_locations = None  # todo: add filtering by Story number
+            object_locations = None  # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -219,7 +219,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -228,7 +228,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_building_stories_interstory_drifts(
             loading_type.name,
             loading_no,
-            object_locations = None  # todo: add filtering by Story number
+            object_locations = None  # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -244,7 +244,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -253,7 +253,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_building_stories_story_actions(
             loading_type.name,
             loading_no,
-            object_locations = None  # todo: add filtering by Story number
+            object_locations = None  # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -269,7 +269,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -294,7 +294,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -303,7 +303,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_critical_load_factors(
             loading_type.name,
             loading_no,
-            object_locations = None  # todo: add filtering by mode shape number
+            object_locations = None  # TODO: add filtering by mode shape number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -319,7 +319,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -328,7 +328,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_efeective_lengths_and_critical_loads_by_eigenvector(
             loading_type.name,
             loading_no,
-            object_locations = None  # todo: add filtering by mode shape number
+            object_locations = None  # TODO: add filtering by mode shape number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -344,7 +344,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -371,7 +371,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -398,7 +398,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -425,7 +425,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -444,7 +444,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -471,7 +471,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -498,7 +498,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -525,7 +525,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -552,7 +552,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -579,7 +579,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -606,7 +606,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member Set number
             model (class, optional): Model instance
@@ -624,7 +624,7 @@ class ResultTables():
 
 
     @staticmethod
-    def MembersInternalForcesBySection(
+    def MembersInternalForcesByCrossSection(
         loading_type: enum = CaseObjectType.E_OBJECT_TYPE_LOAD_CASE,
         loading_no: int = 1,
         object_no: int = 0,
@@ -633,13 +633,13 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Section number
             model (class, optional): Model instance
         '''
 
-        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_SECTION.name, object_no)
+        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_CROSS_SECTION.name, object_no)
 
         results = model.clientModel.service.get_results_for_members_internal_forces_by_section(
             loading_type.name,
@@ -660,7 +660,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -688,7 +688,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -715,7 +715,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -724,7 +724,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_modal_analysis_effective_modal_masses(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by mode shape number
+            object_locations = None # TODO: add filtering by mode shape number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -740,7 +740,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -749,7 +749,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_modal_analysis_effective_modal_masses(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by mesh point number
+            object_locations = None # TODO: add filtering by mesh point number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -765,7 +765,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -792,7 +792,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -819,7 +819,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -846,7 +846,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -871,7 +871,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -898,7 +898,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -923,7 +923,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -950,7 +950,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -977,7 +977,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1004,7 +1004,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1029,7 +1029,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1054,7 +1054,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1079,7 +1079,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1104,7 +1104,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1131,7 +1131,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1158,7 +1158,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1185,7 +1185,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1212,7 +1212,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1239,7 +1239,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member Set number
             model (class, optional): Model instance
@@ -1257,7 +1257,7 @@ class ResultTables():
 
 
     @staticmethod
-    def SpectralAnalysisMembersInternalForcesBySection(
+    def SpectralAnalysisMembersInternalForcesByCrossSection(
         loading_type: enum = CaseObjectType.E_OBJECT_TYPE_LOAD_CASE,
         loading_no: int = 1,
         object_no: int = 0,
@@ -1266,13 +1266,13 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Section number
             model (class, optional): Model instance
         '''
 
-        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_SECTION.name, object_no)
+        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_CROSS_SECTION.name, object_no)
 
         results = model.clientModel.service.get_results_for_spectral_analysis_members_internal_forces_by_section(
             loading_type.name,
@@ -1293,7 +1293,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1320,7 +1320,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1347,7 +1347,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1374,7 +1374,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1401,7 +1401,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1428,7 +1428,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1455,7 +1455,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1474,7 +1474,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1483,7 +1483,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_building_stories_centres_mass_rigidity(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1499,7 +1499,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1508,7 +1508,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_building_stories_forces_in_shear_walls(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Shear Wall number
+            object_locations = None # TODO: add filtering by Shear Wall number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1524,7 +1524,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1533,7 +1533,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_building_stories_interstory_drifts(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1549,7 +1549,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1558,7 +1558,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_building_stories_story_actions(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1574,7 +1574,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1583,7 +1583,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_calculation_diagrams(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by ?
+            object_locations = None # TODO: add filtering by ?
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1599,7 +1599,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1626,7 +1626,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1653,7 +1653,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1680,7 +1680,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1707,7 +1707,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1734,7 +1734,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member Set number
             model (class, optional): Model instance
@@ -1752,7 +1752,7 @@ class ResultTables():
 
 
     @staticmethod
-    def StabilityIncrementalAnalysisMembersInternalForcesBySection(
+    def StabilityIncrementalAnalysisMembersInternalForcesByCrossSection(
         loading_type: enum = CaseObjectType.E_OBJECT_TYPE_LOAD_CASE,
         loading_no: int = 1,
         object_no: int = 0,
@@ -1761,13 +1761,13 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Section number
             model (class, optional): Model instance
         '''
 
-        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_SECTION.name, object_no)
+        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_CROSS_SECTION.name, object_no)
 
         results = model.clientModel.service.get_results_for_stability_incremental_analysis_members_internal_forces_by_section(
             loading_type.name,
@@ -1788,7 +1788,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1815,7 +1815,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -1842,7 +1842,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1869,7 +1869,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -1896,7 +1896,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1913,7 +1913,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1932,7 +1932,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1941,7 +1941,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_time_history_analysis_building_stories_centres_mass_rigidity(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1957,7 +1957,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1966,7 +1966,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_time_history_analysis_building_stories_forces_in_shear_walls(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Shear Wall number
+            object_locations = None # TODO: add filtering by Shear Wall number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -1982,7 +1982,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -1991,7 +1991,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_time_history_analysis_building_stories_interstory_drifts(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -2007,7 +2007,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -2016,7 +2016,7 @@ class ResultTables():
         results = model.clientModel.service.get_results_for_time_history_analysis_building_stories_story_actions(
             loading_type.name,
             loading_no,
-            object_locations = None # todo: add filtering by Story number
+            object_locations = None # TODO: add filtering by Story number
         )
 
         return ConvertResultsToListOfDct(results, include_base)
@@ -2032,7 +2032,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2059,7 +2059,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2086,7 +2086,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2113,7 +2113,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2140,7 +2140,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2167,7 +2167,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member Set number
             model (class, optional): Model instance
@@ -2185,7 +2185,7 @@ class ResultTables():
 
 
     @staticmethod
-    def TimeHistoryAnalysisMembersInternalForcesBySection(
+    def TimeHistoryAnalysisMembersInternalForcesByCrossSection(
         loading_type: enum = CaseObjectType.E_OBJECT_TYPE_LOAD_CASE,
         loading_no: int = 1,
         object_no: int = 0,
@@ -2194,13 +2194,13 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Section number
             model (class, optional): Model instance
         '''
 
-        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_SECTION.name, object_no)
+        object_locations = CreateObjectLocation(ObjectTypes.E_OBJECT_TYPE_CROSS_SECTION.name, object_no)
 
         results = model.clientModel.service.get_results_for_time_history_analysis_members_internal_forces_by_section(
             loading_type.name,
@@ -2221,7 +2221,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2248,7 +2248,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Member number
             model (class, optional): Model instance
@@ -2275,7 +2275,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -2302,7 +2302,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -2329,7 +2329,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -2356,7 +2356,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Node number
             model (class, optional): Model instance
@@ -2383,7 +2383,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             object_no (int): Object number
             model (class, optional): Model instance
@@ -2402,6 +2402,7 @@ class ResultTables():
 
         return model.clientModel.service.has_any_results()
 
+
     @staticmethod
     def HasResults(
         loading_type: enum = CaseObjectType.E_OBJECT_TYPE_LOAD_CASE,
@@ -2410,7 +2411,7 @@ class ResultTables():
 
         '''
          Args:
-            loading_type (emun): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
+            loading_type (enum): Loading type (LC2 = E_OBJECT_TYPE_LOAD_CASE)
             loading_no (int): Loading Number (CO2 = 2)
             model (class, optional): Model instance
         '''
@@ -2497,7 +2498,7 @@ class ResultTables():
 
 
     @staticmethod
-    def AluminumDesignDesignRatiosMemberRepresentativesBySection(
+    def AluminumDesignDesignRatiosMemberRepresentativesByCrossSection(
         include_base: bool = False,
         model = Model):
 
@@ -2588,7 +2589,7 @@ class ResultTables():
 
 
     @staticmethod
-    def AluminumDesignDesignRatiosMemberSetRepresentativesBySection(
+    def AluminumDesignDesignRatiosMemberSetRepresentativesByCrossSection(
         include_base: bool = False,
         model = Model):
 
@@ -2692,7 +2693,7 @@ class ResultTables():
 
 
     @staticmethod
-    def AluminumDesignDesignRatiosMembersBySection(
+    def AluminumDesignDesignRatiosMembersByCrossSection(
         include_base: bool = False,
         model = Model):
 

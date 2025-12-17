@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import *
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 
@@ -28,7 +28,7 @@ def test_node():
     Node.BetweenTwoPoints(5,0,0,0,6,0,0,NodeReferenceType.REFERENCE_TYPE_L, [True, 0.7], 1, 1)
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
     Member(1, 1, 2, 0, 1, 1)
     Node.OnMember(7,1,NodeReferenceType.REFERENCE_TYPE_L)
 

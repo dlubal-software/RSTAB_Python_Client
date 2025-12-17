@@ -10,7 +10,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import ObjectTypes
 from RSTAB.initModel import CheckIfMethodOrTypeExists, Model
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.Tools.centreOfGravityAndObjectInfo import ObjectsInfo
@@ -35,7 +35,7 @@ def test_center_of_gravity():
     Node(1, x1, y1, z1)
     Node(2, x2, y2, z2)
     Material(1, 'S235')
-    Section()
+    CrossSection()
     Member(1, start_node_no= 1, end_node_no= 2)
 
     Model.clientModel.service.finish_modification()
@@ -60,7 +60,7 @@ def test_member_information():
     Node(1, x1, y1, z1)
     Node(2, x2, y2, z2)
     Material(1, 'S235')
-    Section()
+    CrossSection()
     Member(1, start_node_no= 1, end_node_no= 2)
 
     Model.clientModel.service.finish_modification()

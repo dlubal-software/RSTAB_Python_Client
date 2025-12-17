@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import NoteType, NoteOffsetType, NoteMemberReferenceType
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.GuideObjects.note import Note
@@ -23,7 +23,7 @@ def test_note():
     Model.clientModel.service.begin_modification()
 
     Material()
-    Section()
+    CrossSection()
     Node(1, 0, 0, 0)
     Node(2, 10, 0, 0)
     Node(3, 10, 10, 0)

@@ -1,4 +1,4 @@
-from RSTAB.enums import MemberType, MemberRotationSpecificationType, MemberSectionDistributionType, ObjectTypes
+from RSTAB.enums import MemberType, MemberRotationSpecificationType, MemberCrossSectionDistributionType, ObjectTypes
 from RSTAB.initModel import Model, clearAttributes, deleteEmptyAttributes, ConvertStrToListOfInt
 
 class Member():
@@ -51,11 +51,10 @@ class Member():
         clientObject.rotation_angle = rotation_angle
 
         # Start Section No.
-        clientObject.section_start = start_section_no
+        clientObject.cross_section_start = start_section_no
 
         # End Section No.
-        clientObject.section_end = end_section_no
-
+        clientObject.cross_section_end = end_section_no
 
         # Start Member Hinge No.
         clientObject.member_hinge_start = start_member_hinge_no
@@ -82,7 +81,7 @@ class Member():
             no: int = 1,
             start_node_no: int = 1,
             end_node_no: int = 2,
-            section_distribution_type = MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM,
+            cross_section_distribution_type = MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_UNIFORM,
             rotation_specification_type = MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE,
             rotation_parameters = [0],
             start_section_no: int = 1,
@@ -106,27 +105,27 @@ class Member():
             no (int): Member Tag
             start_node_no (int): Tag of Start Node
             end_node_no (int): Tag of End Node
-            section_distribution_type (enum): Section Distribution Type Enumeration
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_LINEAR:
-                    distribution_parameters = [section_alignment]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_BOTH_SIDES:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_end_is_defined_as_relative,
-                                               section_distance_from_start_relative/absolute, section_distance_from_end_relative/absolute,
-                                               section_alignment, section_internal]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_START_OF_MEMBER:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, section_alignment]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_END_OF_MEMBER:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, section_alignment]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_SADDLE:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, section_alignment, section_internal]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_BOTH_SIDES:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_end_is_defined_as_relative,
-                                               section_distance_from_start_relative/absolute, section_distance_from_end_relative/absolute,
-                                               section_alignment, section_internal]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_START_OF_MEMBER:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, section_alignment]
-                for section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_END_OF_MEMBER:
-                    distribution_parameters = [section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, section_alignment]
+            cross_section_distribution_type (enum): Section Distribution Type Enumeration
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_LINEAR:
+                    distribution_parameters = [cross_section_alignment]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_BOTH_SIDES:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, cross_section_distance_from_end_is_defined_as_relative,
+                                               section_distance_from_start_relative/absolute, cross_section_distance_from_end_relative/absolute,
+                                               cross_section_alignment, cross_section_internal]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_START_OF_MEMBER:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, cross_section_alignment]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_END_OF_MEMBER:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, cross_section_alignment]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_SADDLE:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, cross_section_alignment, cross_section_internal]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_BOTH_SIDES:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, cross_section_distance_from_end_is_defined_as_relative,
+                                               section_distance_from_start_relative/absolute, cross_section_distance_from_end_relative/absolute,
+                                               cross_section_alignment, cross_section_internal]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_START_OF_MEMBER:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, cross_section_alignment]
+                for cross_section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_END_OF_MEMBER:
+                    distribution_parameters = [cross_section_distance_from_start_is_defined_as_relative, section_distance_from_start_relative/absolute, cross_section_alignment]
             rotation_specification_type (enum): Rotation Specification Type Enumeration
             rotation_parameters (list): Rotation Parameters; 1 or 2 params
                 for rotation_specification_type == MemberRotationSpecificationType.COORDINATE_SYSTEM_ROTATION_VIA_ANGLE:
@@ -170,108 +169,108 @@ class Member():
         clientObject.node_end = end_node_no
 
         # Section Distribution
-        clientObject.section_distribution_type = section_distribution_type.name
+        clientObject.cross_section_distribution_type = cross_section_distribution_type.name
 
-        if section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_LINEAR:
-            clientObject.section_alignment = distribution_parameters[0].name
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_BOTH_SIDES:
+        if cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_LINEAR:
+            clientObject.cross_section_alignment = distribution_parameters[0].name
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_BOTH_SIDES:
             try:
                 isinstance(distribution_parameters[0], bool)
                 isinstance(distribution_parameters[1], bool)
             except:
                 raise TypeError("WARNING: First two parameters should be type bool for SECTION_DISTRIBUTION_TYPE_TAPERED_AT_BOTH_SIDES. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
-            clientObject.section_distance_from_end_is_defined_as_relative = distribution_parameters[1]
+            clientObject.cross_section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_end_is_defined_as_relative = distribution_parameters[1]
             if distribution_parameters[0]:
                 clientObject.section_distance_from_start_relative = distribution_parameters[2]
             else:
                 clientObject.section_distance_from_start_absolute = distribution_parameters[2]
             if distribution_parameters[1]:
-                clientObject.section_distance_from_end_relative = distribution_parameters[3]
+                clientObject.cross_section_distance_from_end_relative = distribution_parameters[3]
             else:
                 clientObject.section_distance_from_end_absolute = distribution_parameters[3]
-            clientObject.section_alignment = distribution_parameters[4].name
-            clientObject.section_internal = distribution_parameters[5]
+            clientObject.cross_section_alignment = distribution_parameters[4].name
+            clientObject.cross_section_internal = distribution_parameters[5]
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_START_OF_MEMBER:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_START_OF_MEMBER:
             try:
                 isinstance(distribution_parameters[0], bool)
             except:
                 raise TypeError("WARNING: First parameter should be type bool for SECTION_DISTRIBUTION_TYPE_TAPERED_AT_START_OF_MEMBER. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
             if distribution_parameters[0]:
                 clientObject.section_distance_from_start_relative = distribution_parameters[1]
             else:
                 clientObject.section_distance_from_start_absolute = distribution_parameters[1]
-            clientObject.section_alignment = distribution_parameters[2].name
+            clientObject.cross_section_alignment = distribution_parameters[2].name
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_END_OF_MEMBER:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_TAPERED_AT_END_OF_MEMBER:
             try:
                 isinstance(distribution_parameters[0], bool)
             except:
                 raise TypeError("WARNING: First parameter should be type bool for SECTION_DISTRIBUTION_TYPE_TAPERED_AT_END_OF_MEMBER. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
             if distribution_parameters[0]:
-                clientObject.section_distance_from_end_relative = distribution_parameters[1]
+                clientObject.cross_section_distance_from_end_relative = distribution_parameters[1]
             else:
                 clientObject.section_distance_from_end_absolute = distribution_parameters[1]
-            clientObject.section_alignment = distribution_parameters[2].name
+            clientObject.cross_section_alignment = distribution_parameters[2].name
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_SADDLE:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_SADDLE:
             try:
                 isinstance(distribution_parameters[0], bool)
             except:
                 raise TypeError("WARNING: First parameter should be type bool for SECTION_DISTRIBUTION_TYPE_SADDLE. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
             if distribution_parameters[0]:
-                clientObject.section_distance_from_end_relative = distribution_parameters[1]
+                clientObject.cross_section_distance_from_end_relative = distribution_parameters[1]
             else:
                 clientObject.section_distance_from_end_absolute = distribution_parameters[1]
-            clientObject.section_alignment = distribution_parameters[2].name
-            clientObject.section_internal = distribution_parameters[3]
+            clientObject.cross_section_alignment = distribution_parameters[2].name
+            clientObject.cross_section_internal = distribution_parameters[3]
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_BOTH_SIDES:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_BOTH_SIDES:
             try:
                 isinstance(distribution_parameters[0], bool)
                 isinstance(distribution_parameters[1], bool)
             except:
                 raise TypeError("WARNING: First two parameters should be type bool for SECTION_DISTRIBUTION_TYPE_OFFSET_AT_BOTH_SIDES. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
-            clientObject.section_distance_from_end_is_defined_as_relative = distribution_parameters[1]
+            clientObject.cross_section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_end_is_defined_as_relative = distribution_parameters[1]
             if distribution_parameters[0]:
                 clientObject.section_distance_from_start_relative = distribution_parameters[2]
             else:
                 clientObject.section_distance_from_start_absolute = distribution_parameters[2]
             if distribution_parameters[1]:
-                clientObject.section_distance_from_end_relative = distribution_parameters[3]
+                clientObject.cross_section_distance_from_end_relative = distribution_parameters[3]
             else:
                 clientObject.section_distance_from_end_absolute = distribution_parameters[3]
-            clientObject.section_alignment = distribution_parameters[4].name
-            clientObject.section_internal = distribution_parameters[5]
+            clientObject.cross_section_alignment = distribution_parameters[4].name
+            clientObject.cross_section_internal = distribution_parameters[5]
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_START_OF_MEMBER:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_START_OF_MEMBER:
             try:
                 isinstance(distribution_parameters[0], bool)
             except:
                 raise TypeError("WARNING: First parameter should be type bool for SECTION_DISTRIBUTION_TYPE_OFFSET_AT_START_OF_MEMBER. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_start_is_defined_as_relative = distribution_parameters[0]
             if distribution_parameters[0]:
                 clientObject.section_distance_from_start_relative = distribution_parameters[1]
             else:
                 clientObject.section_distance_from_start_absolute = distribution_parameters[1]
-            clientObject.section_alignment = distribution_parameters[2].name
+            clientObject.cross_section_alignment = distribution_parameters[2].name
 
-        elif section_distribution_type == MemberSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_END_OF_MEMBER:
+        elif cross_section_distribution_type == MemberCrossSectionDistributionType.SECTION_DISTRIBUTION_TYPE_OFFSET_AT_END_OF_MEMBER:
             try:
                 isinstance(distribution_parameters[0], bool)
             except:
                 raise TypeError("WARNING: First parameter should be type bool for SECTION_DISTRIBUTION_TYPE_OFFSET_AT_END_OF_MEMBER. Kindly check list inputs completeness and correctness.")
-            clientObject.section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
+            clientObject.cross_section_distance_from_end_is_defined_as_relative = distribution_parameters[0]
             if distribution_parameters[0]:
-                clientObject.section_distance_from_end_relative = distribution_parameters[1]
+                clientObject.cross_section_distance_from_end_relative = distribution_parameters[1]
             else:
                 clientObject.section_distance_from_end_absolute = distribution_parameters[1]
-            clientObject.section_alignment = distribution_parameters[2].name
+            clientObject.cross_section_alignment = distribution_parameters[2].name
 
         # Member Rotation
         clientObject.rotation_specification_type = rotation_specification_type.name
@@ -287,10 +286,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = start_section_no
+        clientObject.cross_section_start = start_section_no
 
         # End Section No.
-        clientObject.section_end = end_section_no
+        clientObject.cross_section_end = end_section_no
 
         # Comment
         clientObject.comment = comment
@@ -465,10 +464,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -561,10 +560,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -657,10 +656,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -753,10 +752,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -849,10 +848,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -942,10 +941,10 @@ class Member():
             clientObject.rotation_surface_plane_type = rotation_parameters[1].name
 
         # Start Section No.
-        clientObject.section_start = section_no
+        clientObject.cross_section_start = section_no
 
         # End Section No.
-        clientObject.section_end = section_no
+        clientObject.cross_section_end = section_no
 
         # Comment
         clientObject.comment = comment
@@ -1019,7 +1018,7 @@ class Member():
         clientObject.node_end = end_node_no
 
         # Section Distribution
-        clientObject.section_distribution_type = "SECTION_DISTRIBUTION_TYPE_UNIFORM"
+        clientObject.cross_section_distribution_type = "SECTION_DISTRIBUTION_TYPE_UNIFORM"
 
         # Member Type Definable Stiffness
         clientObject.member_type_definable_stiffness = definable_stiffness

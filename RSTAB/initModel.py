@@ -366,6 +366,7 @@ def openFile(model_path):
     file_name = os.path.basename(model_path)
     connectToServer()
     connectionGlobals.client.service.open_model(model_path)
+
     return Model(False, file_name)
 
 def closeModel(index_or_name, save_changes = False):
@@ -447,7 +448,8 @@ def Calculate_all(skipWarnings: bool = False, model = Model):
     '''
 
     from RSTAB.Tools.PlausibilityCheck import PlausibilityCheck
-    PlausibilityCheck()
+    if not skipWarnings:
+        PlausibilityCheck()
 
     calculationMessages = model.clientModel.service.calculate_all(skipWarnings)
     return calculationMessages
@@ -696,7 +698,7 @@ def SetAddonStatuses(AddOnDict, model = Model):
     model.clientModel.service.set_addon_statuses(currentStatus)
 
 
-def CalculateSelectedCases(loadCases: list = None, designSituations: list = None, loadCombinations: list = None,skipWarnings = True, model = Model):
+def CalculateSelectedCases(loadCases: list = None, designSituations: list = None, loadCombinations: list = None, skipWarnings = True, model = Model):
     '''
     This method calculate just selected objects - load cases, designSituations, loadCombinations
 
@@ -890,35 +892,6 @@ def GetAppSessionId():
 
     # Client Application | Get Session ID
     return connectionGlobals.client.service.get_session_id()
-
-def getPathToRunningRSTAB():
-    '''
-    Find the path to the directory where RSTAB is currently running.
-    This is helpful when using server version, because it can't process relative paths.
-    '''
-    import psutil
-    rfem6 = False
-    rfem6Server = False
-    path = ''
-
-    for p in psutil.process_iter(['name', 'exe']):
-        if p.info['name'] == 'RSTAB9.exe':
-            idx = p.info['exe'].find('bin')
-            path = p.info['exe'][:idx]
-        elif p.info['name'] == 'RSTAB9Server.exe':
-            idx = p.info['exe'].find('bin')
-            path = p.info['exe'][:idx]
-        elif p.info['name'] == 'RFEM6.exe':
-            rfem6 = True
-        elif p.info['name'] == 'RFEM6Server.exe':
-            rfem6Server = True
-
-    if rfem6 or rfem6Server:
-        raise ValueError('Careful! You are running RSTAB Python Client on RSTAB.')
-    if not path:
-        raise ValueError('Is it possible that RSTAB is not runnnning?')
-
-    return path
 
 def GetListOfOpenedModels():
 

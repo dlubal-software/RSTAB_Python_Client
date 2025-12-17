@@ -1,8 +1,8 @@
 import sys
 import os
 PROJECT_ROOT = os.path.abspath(os.path.join(
-                  os.path.dirname(__file__),
-                  os.pardir)
+               os.path.dirname(__file__),
+               os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
 
@@ -10,7 +10,7 @@ from RSTAB.enums import *
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.material import Material
 from RSTAB.TypesforConcreteDesign.ConcreteDurability import ConcreteDurability
 from RSTAB.TypesforConcreteDesign.ConcreteEffectiveLength import ConcreteEffectiveLength
@@ -27,7 +27,7 @@ def test_concrete_design():
 
     Material(1, 'C30/37')
     Material(2, 'B550S(A)')
-    Section()
+    CrossSection()
 
     Node(1, 0, 0, 0)
     Node(2, 5, 0, 0)

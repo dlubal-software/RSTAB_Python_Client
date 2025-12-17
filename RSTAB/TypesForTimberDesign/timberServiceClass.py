@@ -34,7 +34,7 @@ class TimberServiceClass():
         clientObject.no = no
 
         # Assigned Members
-        clientObject.member = ConvertToDlString(members)
+        clientObject.members = ConvertToDlString(members)
 
         # Assigned Member Sets
         clientObject.member_sets = ConvertToDlString(member_sets)

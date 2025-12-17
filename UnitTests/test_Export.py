@@ -8,11 +8,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import ObjectTypes
-from RSTAB.initModel import Model, closeModel, getPathToRunningRSTAB
+from RSTAB.initModel import Model, closeModel
 from RSTAB.ImportExport.exports import IFCExportSettings, ObjectLocation, ObjectLocations, ExportToIFC, GetTableExportConfigManager, SetTableExportConfigManager, ExportTo
 from RSTAB.ImportExport.imports import getConversionTables, setConversionTables, getSAFSettings, setSAFSettings, importFrom
 sys.path.append('..')
 from RSTAB import connectionGlobals
+from tools import getPathToRunningRSTAB
 
 
 if Model.clientModel is None:

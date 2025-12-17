@@ -11,8 +11,9 @@ sys.path.append(PROJECT_ROOT)
 
 from RSTAB.enums import GlobalParameterUnitGroup, GlobalParameterDefinitionType, ObjectTypes
 from RSTAB.globalParameter import GlobalParameter
-from RSTAB.initModel import Model, getPathToRunningRSTAB
+from RSTAB.initModel import Model
 from RSTAB.connectionGlobals import url
+from tools import getPathToRunningRSTAB
 import pytest
 
 if Model.clientModel is None:

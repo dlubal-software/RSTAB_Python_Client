@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.path.dirname(__file__),
                   os.pardir)
 )
-sys.path.clear()
+
 sys.path.append(PROJECT_ROOT)
 from RSTAB.initModel import Model
 from RSTAB import connectionGlobals

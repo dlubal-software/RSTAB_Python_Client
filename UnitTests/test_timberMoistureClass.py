@@ -10,7 +10,7 @@ from RSTAB.enums import AddOn, TimberMoistureClassType
 from RSTAB.initModel import Model, SetAddonStatus, AddOn, openFile, closeModel
 from RSTAB.connectionGlobals import url
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForTimberDesign.timberMoistureClass import TimberMoistureClass
@@ -37,14 +37,14 @@ def test_timberMoistureClass():
     Node(1, 0, 0, 0)
     Node(2, 5, 0, 0)
     Material(1, 'KLH (20 mm) | KLH')
-    Section(1, 'R_M1 0.2/0.5', 1)
+    CrossSection(1, 'R_M1 0.2/0.5', 1)
     Member(1, 1, 2, 0, 1, 1)
 
     LoadCasesAndCombinations(
         params = {
         "current_standard_for_combination_wizard": 6226,
-        "activate_combination_wizard_and_classification": True,
-        "activate_combination_wizard": True,
+        "combination_wizard_and_classification_active": True,
+        "combination_wizard_active": True,
         "result_combinations_active": True,
         "result_combinations_parentheses_active": False,
         "result_combinations_consider_sub_results": False,
@@ -55,7 +55,7 @@ def test_timberMoistureClass():
     Model.clientModel.service.finish_modification()
 
     tmc = Model.clientModel.service.get_timber_moisture_class(1)
-    assert tmc.member == '1'
+    assert tmc.members == '1'
     assert tmc.moisture_class == TimberMoistureClassType.TIMBER_MOISTURE_CLASS_TYPE_2.name
 
     closeModel('timberMoistureClass.rs9')

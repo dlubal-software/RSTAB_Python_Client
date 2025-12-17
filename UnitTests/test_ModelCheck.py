@@ -8,7 +8,7 @@ sys.path.append(PROJECT_ROOT)
 
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.node import Node
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.material import Material
 from RSTAB.initModel import Model, CheckIfMethodOrTypeExists
 from RSTAB.Tools.ModelCheck import ModelCheck
@@ -25,7 +25,7 @@ def test_model_check():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Node(1, 0, 0, 0)
     Node(2, 0, 0, 0)

@@ -10,9 +10,9 @@ sys.path.append(dirName + r'/../..')
 from RSTAB.enums import NodalSupportType, StaticAnalysisType, NodalLoadDirection, MemberLoadDistribution, MemberLoadDirection, MemberRotationSpecificationType
 from window import window
 from RSTAB.dataTypes import inf
-from RSTAB.initModel import Model, Calculate_all, insertSpaces, GetListOfOpenedModels
+from RSTAB.initModel import Model, Calculate_all, GetListOfOpenedModels
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForNodes.nodalSupport import NodalSupport
@@ -34,10 +34,10 @@ def main(hall_width_L, hall_height_h_o, hall_height_h_m, number_frames, frame_sp
 
 # -------------------------------------------------------------
     # Sections
-    Section(1, "HEB 220")
-    Section(2, "IPE 300")
-    Section(3, "U 100", 2)
-    Section(4, "Cable 14.00", 2)
+    CrossSection(1, "HEB 220")
+    CrossSection(2, "IPE 300")
+    CrossSection(3, "U 100", 2)
+    CrossSection(4, "Cable 14.00", 2)
 
 # -------------------------------------------------------------
     # Nodes

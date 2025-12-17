@@ -9,7 +9,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import AddOn, TimberServiceClassServiceClass
 from RSTAB.initModel import Model, SetAddonStatus
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.TypesForTimberDesign.timberServiceClass import TimberServiceClass
@@ -28,7 +28,7 @@ def test_timberServiceClass():
     Node(2, 5, 0, 0)
     Node(3, 10, 0, 0)
     Material(1, 'KLH (20 mm) | KLH')
-    Section(1, 'R_M1 0.2/0.5', 1)
+    CrossSection(1, 'R_M1 0.2/0.5', 1)
     Member(1, 1, 2, 0, 1, 1)
     Member(2, 2, 3, 0, 1, 1)
 
@@ -38,5 +38,5 @@ def test_timberServiceClass():
 
     tsc = Model.clientModel.service.get_timber_service_class(1)
 
-    assert tsc.member == '1 2'
+    assert tsc.members == '1 2'
     assert tsc.service_class == TimberServiceClassServiceClass.TIMBER_SERVICE_CLASS_TYPE_2.name

@@ -8,7 +8,7 @@ sys.path.append(PROJECT_ROOT)
 from RSTAB.enums import SetType, MemberType
 from RSTAB.initModel import Model
 from RSTAB.BasicObjects.material import Material
-from RSTAB.BasicObjects.section import Section
+from RSTAB.BasicObjects.crossSection import CrossSection
 from RSTAB.BasicObjects.node import Node
 from RSTAB.BasicObjects.member import Member
 from RSTAB.BasicObjects.memberSet import MemberSet
@@ -27,7 +27,7 @@ def test_material():
 
     material = Model.clientModel.service.get_material(1)
     assert material.no == 1
-    assert material.name == 'S235 | CYS EN 1993-1-1:2009-03'
+    assert material.name == 'S235 | EN 1993-1-1:2005-05'
 
 def test_node_init():
 
@@ -37,7 +37,7 @@ def test_node_init():
     Node(1, 2, 0, 0)
 
     node = Model.clientModel.service.get_node(1)
-    
+
     Model.clientModel.service.finish_modification()
 
     assert node.no == 1
@@ -49,11 +49,11 @@ def test_section():
     Model.clientModel.service.begin_modification()
 
     Material(1, 'S235')
-    Section(1, 'IPE 300')
+    CrossSection(1, 'IPE 300')
 
     Model.clientModel.service.finish_modification()
 
-    section = Model.clientModel.service.get_section(1)
+    section = Model.clientModel.service.get_cross_section(1)
 
     assert section.no == 1
     assert section.name == 'IPE 300 | -- | British Steel'
@@ -68,7 +68,7 @@ def test_member_init():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Member(1,  1, 2, 0, 1, 1)
 
@@ -77,7 +77,7 @@ def test_member_init():
     member = Model.clientModel.service.get_member(1)
 
     assert member.analytical_length == 5
-    assert member.section_start == 1
+    assert member.cross_section_start == 1
 
 def test_member_set():
 
@@ -90,7 +90,7 @@ def test_member_set():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Member(1, 1, 2, 0, 1, 1)
     Member(2, 2, 3, 0, 1, 1)
@@ -115,7 +115,7 @@ def test_member_delete():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Member(1, 1, 2, 0, 1, 1)
     Member(2, 2, 3, 0, 1, 1)
@@ -150,7 +150,7 @@ def test_member_types():
 
     Material(1, 'S235')
 
-    Section(1, 'IPE 300', 1)
+    CrossSection(1, 'IPE 300', 1)
 
     Member.Beam(1, 1, 2)
     Member.Rigid(2, 2, 3)
